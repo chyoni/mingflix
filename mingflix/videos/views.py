@@ -31,3 +31,30 @@ class History(APIView):
 
         serializer = serializers.HistorySerializer(historys, many=True)
         return Response(data=serializer.data)
+
+
+class HotVideos(APIView):
+
+    def get(self, request, format=None):
+
+        hot_five = models.Video.objects.all().order_by('-views')[:5]
+
+        serializer = serializers.VideoSerializer(hot_five, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+
+class VideoDetail(APIView):
+
+    def get(self, request, video_id, format=None):
+
+        user = request.user
+
+        try:
+            video = models.Video.objects.get(id=video_id)
+        except models.Video.DoesNotExist:
+            return Response(status=status.HTTP_404_NOT_FOUND)
+
+        serializer = serializers.VideoSerializer(video)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)

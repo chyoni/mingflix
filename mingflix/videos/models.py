@@ -19,6 +19,22 @@ class Video(user_models.TimeStampModel):
     def __str__(self):
         return 'Title: {} - Description: {}'.format(self.title, self.description)
 
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
+
+    @property
+    def like_count(self):
+        return self.videoLikes.all().count()
+
+    @property
+    def unlike_count(self):
+        return self.videoUnlikes.all().count()
+
+    @property
+    def comment_count(self):
+        return self.comments.all().count()
+
 
 class VideoLike(user_models.TimeStampModel):
 
@@ -47,6 +63,14 @@ class Comment(user_models.TimeStampModel):
     def __str__(self):
         return 'Video: {} - Comment: {}'.format(self.video.title, self.message)
 
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
+
+    @property
+    def reply_count(self):
+        return self.replys.all().count()
+
 
 class CommentLike(user_models.TimeStampModel):
 
@@ -55,6 +79,10 @@ class CommentLike(user_models.TimeStampModel):
 
     def __str__(self):
         return 'Comment: {} - Creator: {}'.format(self.comment.message, self.creator.username)
+
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
 
 
 class CommentUnlike(user_models.TimeStampModel):
@@ -74,6 +102,10 @@ class Reply(user_models.TimeStampModel):
 
     def __str__(self):
         return 'Comment: {} - Reply: {} - Creator: {}'.format(self.comment.message, self.message, self.creator.username)
+
+    @property
+    def natural_time(self):
+        return naturaltime(self.created_at)
 
 
 class History(user_models.TimeStampModel):
