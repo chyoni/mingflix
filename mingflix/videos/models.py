@@ -11,7 +11,7 @@ class Video(user_models.TimeStampModel):
     title = models.CharField(max_length=255)
     description = models.CharField(max_length=255, null=True)
     tags = TaggableManager()
-    views = models.IntegerField(null=True, blank=True)
+    views = models.IntegerField(null=True, blank=True, default=0)
     poster = models.ImageField()
     creator = models.ForeignKey(user_models.User, on_delete=models.CASCADE, blank=True, related_name="videos")
     channel = models.ForeignKey(user_models.Channel, on_delete=models.CASCADE)
@@ -74,3 +74,9 @@ class Reply(user_models.TimeStampModel):
 
     def __str__(self):
         return 'Comment: {} - Reply: {} - Creator: {}'.format(self.comment.message, self.message, self.creator.username)
+
+
+class History(user_models.TimeStampModel):
+
+    creator = models.ForeignKey(user_models.User, on_delete=models.CASCADE, related_name="historys")
+    video = models.ForeignKey(Video, on_delete=models.CASCADE, related_name="historys")
