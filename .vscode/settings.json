@@ -1,3 +1,4 @@
 {
-    "python.pythonPath": "C:\\Users\\Admin\\.virtualenvs\\mingflix-yip-7lG9\\Scripts\\python.exe"
+    "python.pythonPath": "C:\\Users\\Admin\\.virtualenvs\\mingflix-yip-7lG9\\Scripts\\python.exe",
+    "python.linting.pylintEnabled": true
 }

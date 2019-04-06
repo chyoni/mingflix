@@ -5,16 +5,6 @@ from . import models
 from mingflix.users import models as user_models
 
 
-class IntroUserSerializer(serializers.ModelSerializer):
-
-    class Meta:
-        model = user_models.User
-        fields = (
-            'profile_image',
-            'username',
-        )
-
-
 class IntroChannelSerializer(serializers.ModelSerializer):
 
     class Meta:
@@ -23,6 +13,19 @@ class IntroChannelSerializer(serializers.ModelSerializer):
             'id',
             'channel_name',
             'channel_caption',
+        )
+
+
+class IntroUserSerializer(serializers.ModelSerializer):
+
+    channel = IntroChannelSerializer()
+
+    class Meta:
+        model = user_models.User
+        fields = (
+            'profile_image',
+            'username',
+            'channel',
         )
 
 
@@ -71,11 +74,30 @@ class ReplySerializer(serializers.ModelSerializer):
         )
 
 
+class VideoListSerializer(serializers.ModelSerializer):
+
+    creator = IntroUserSerializer()
+    tags = TagListSerializerField()
+
+    class Meta:
+        model = models.Video
+        fields = (
+            'id',
+            'file',
+            'title',
+            'description',
+            'views',
+            'creator',
+            'poster',
+            'tags',
+            'natural_time',
+        )
+
+
 class VideoSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     tags = TagListSerializerField()
     creator = IntroUserSerializer()
-    channel = IntroChannelSerializer()
     comments = CommentSerializer(many=True)
 
     class Meta:
@@ -94,7 +116,6 @@ class VideoSerializer(TaggitSerializer, serializers.ModelSerializer):
             'comment_count',
             'poster',
             'creator',
-            'channel',
         )
 
 
