@@ -32,6 +32,12 @@ class User(AbstractUser):
     def __str__(self):
         return self.username
 
+    def followers_count(self):
+        return self.followers.all().count()
+
+    def following_count(self):
+        return self.following.all().count()
+
 
 class Channel(TimeStampModel):
 
