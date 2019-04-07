@@ -74,6 +74,14 @@ class Comment(user_models.TimeStampModel):
     def reply_count(self):
         return self.replys.all().count()
 
+    @property
+    def like_count(self):
+        return self.commentsLikes.all().count()
+
+    @property
+    def unlike_count(self):
+        return self.commentsUnlikes.all().count()
+
 
 class CommentLike(user_models.TimeStampModel):
 

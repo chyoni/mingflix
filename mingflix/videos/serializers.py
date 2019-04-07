@@ -45,7 +45,11 @@ class VideoUnlikeSerializer(serializers.ModelSerializer):
 
 class CommentSerializer(serializers.ModelSerializer):
 
-    creator = IntroUserSerializer()
+    creator = IntroUserSerializer(read_only=True)
+    natural_time = serializers.ReadOnlyField()
+    reply_count = serializers.ReadOnlyField()
+    like_count = serializers.ReadOnlyField()
+    unlike_count = serializers.ReadOnlyField()
 
     class Meta:
         model = models.Comment
@@ -55,6 +59,8 @@ class CommentSerializer(serializers.ModelSerializer):
             'creator',
             'natural_time',
             'reply_count',
+            'like_count',
+            'unlike_count',
         )
 
 

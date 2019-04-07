@@ -1,11 +1,11 @@
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework import status
-from . import models, serializers
+from django.db.models import Q
 from mingflix.users import serializers as user_serializers
 from mingflix.users import models as user_models
 from mingflix.notifications import views as notification_views
-from django.db.models import Q
+from . import models, serializers
 
 
 # Create your views here.
@@ -52,6 +52,8 @@ class VideoDetail(APIView):
 
     def get(self, request, video_id, format=None):
 
+        user = request.user
+
         try:
             video = models.Video.objects.get(id=video_id)
         except models.Video.DoesNotExist:
@@ -59,6 +61,10 @@ class VideoDetail(APIView):
 
         video.views = video.views + 1
         video.save()
+
+        create_history = models.History.objects.create(creator=user, video=video)
+        create_history.save()
+
         serializer = serializers.VideoSerializer(video)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
@@ -113,10 +119,7 @@ class LikeVideo(APIView):
 
     def get(self, request, video_id, format=None):
 
-        try:
-            likes = models.VideoLike.objects.filter(video__id=video_id)
-        except models.VideoLike.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+        likes = models.VideoLike.objects.filter(video__id=video_id)
 
         like_creators_id = likes.values('creator_id')
         # values 라는 함수는 likes라는 오브젝트안에서 가져올수 있는 값들을 정해줌
@@ -136,7 +139,7 @@ class LikeVideo(APIView):
         try:
             found_video = models.Video.objects.get(id=video_id)
         except models.Video.DoesNotExist:
-            return Response(status=status.HTTP_404_NOT_FOUND)
+            return Response(status=status.HTTP_204_NO_CONTENT)
 
         try:
             models.VideoLike.objects.get(video=found_video, creator=user)
@@ -146,4 +149,120 @@ class LikeVideo(APIView):
             create_like.save()
 
             notification_views.create_notification(user, found_video.creator, "like", found_video, None)
+            return Response(status=status.HTTP_201_CREATED)
+
+
+class CancelLikeVideo(APIView):
+
+    def delete(self, request, video_id, format=None):
+
+        user = request.user
+
+        try:
+            like = models.VideoLike.objects.get(video__id=video_id, creator=user)
+            like.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.VideoLike.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UnlikeVideo(APIView):
+
+    def get(self, request, video_id, format=None):
+
+        unlikes = models.VideoUnlike.objects.filter(video__id=video_id)
+
+        unlike_creators_id = unlikes.values('creator_id')
+
+        unlike_users = user_models.User.objects.filter(id__in=unlike_creators_id)
+
+        serializer = user_serializers.UserListSerializer(unlike_users, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, video_id, format=None):
+
+        user = request.user
+
+        try:
+            video = models.Video.objects.get(id=video_id)
+        except models.Video.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        try:
+            models.VideoUnlike.objects.get(creator=user, video=video)
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
+        except models.VideoUnlike.DoesNotExist:
+            create_unlike = models.VideoUnlike.objects.create(creator=user, video=video)
+            create_unlike.save()
+
+            return Response(status=status.HTTP_201_CREATED)
+
+
+class CancelUnlikeVideo(APIView):
+
+    def delete(self, request, video_id, format=None):
+
+        user = request.user
+        try:
+            pre_exist_unlike = models.VideoUnlike.objects.get(creator=user, video__id=video_id)
+            pre_exist_unlike.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.VideoUnlike.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class CommentOnVideo(APIView):
+
+    def post(self, request, video_id, format=None):
+
+        user = request.user
+
+        try:
+            video = models.Video.objects.get(id=video_id)
+        except models.Video.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        serializer = serializers.CommentSerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(creator=user, video=video)
+
+            notification_views.create_notification(user, video.creator, "comment", video, serializer.data['message'])
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+            return Response(data=serializer.data, status=status.HTTP_400_BAD_REQUEST)
+
+
+class LikeComment(APIView):
+
+    def get(self, request, comment_id, format=None):
+
+        likes = models.CommentLike.objects.filter(comment__id=comment_id)
+
+        like_creators_id = likes.values('creator_id')
+
+        users = user_models.User.objects.filter(id__in=like_creators_id)
+
+        serializer = user_serializers.UserListSerializer(users, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment = models.Comment.objects.get(id=comment_id)
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        try:
+            models.CommentLike.objects.get(creator=user, comment=comment)
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
+        except models.CommentLike.DoesNotExist:
+            create_like = models.CommentLike.objects.create(creator=user, comment=comment)
+            create_like.save()
+
             return Response(status=status.HTTP_201_CREATED)
