@@ -14,7 +14,7 @@ class UserAdmin(auth_admin.UserAdmin):
     add_form = UserCreationForm
     fieldsets = (("User", {"fields": ("name", "gender", "profile_image", "phone",
                                       "followers", "following")}),) + auth_admin.UserAdmin.fieldsets
-    list_display = ["username", "name", "is_superuser"]
+    list_display = ["id", "username", "name", "is_superuser"]
     search_fields = ["name"]
 
 
@@ -30,6 +30,7 @@ class ChannelAdmin(admin.ModelAdmin):
     )
 
     list_display = (
+        'id',
         'channel_name',
         'channel_caption',
         'stream_key',

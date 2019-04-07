@@ -7,6 +7,7 @@ from . import models
 class NotificationAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'to',
         'notification_type',

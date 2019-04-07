@@ -23,6 +23,7 @@ class VideoAdmin(admin.ModelAdmin):
     )
 
     list_display = (
+        'id',
         'title',
         'description',
         'creator',
@@ -36,6 +37,7 @@ class VideoAdmin(admin.ModelAdmin):
 class VideoLikeAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'video',
         'created_at',
@@ -47,6 +49,7 @@ class VideoLikeAdmin(admin.ModelAdmin):
 class VideoUnlikeAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'video',
         'created_at',
@@ -58,6 +61,7 @@ class VideoUnlikeAdmin(admin.ModelAdmin):
 class CommentAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'message',
         'creator',
         'video',
@@ -70,6 +74,7 @@ class CommentAdmin(admin.ModelAdmin):
 class CommentLikeAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'comment',
         'created_at',
@@ -81,6 +86,7 @@ class CommentLikeAdmin(admin.ModelAdmin):
 class CommentUnlikeAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'comment',
         'created_at',
@@ -92,6 +98,7 @@ class CommentUnlikeAdmin(admin.ModelAdmin):
 class ReplyAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'message',
         'comment',
         'creator',
@@ -104,6 +111,7 @@ class ReplyAdmin(admin.ModelAdmin):
 class ReplyLikeAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'reply',
         'created_at',
@@ -115,6 +123,7 @@ class ReplyLikeAdmin(admin.ModelAdmin):
 class ReplyUnlikeAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'reply',
         'created_at',
@@ -126,6 +135,7 @@ class ReplyUnlikeAdmin(admin.ModelAdmin):
 class HistoryAdmin(admin.ModelAdmin):
 
     list_display = (
+        'id',
         'creator',
         'video',
     )
