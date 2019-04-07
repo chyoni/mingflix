@@ -377,6 +377,19 @@ class ReplyOnComment(APIView):
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class DeleteMyReply(APIView):
+
+    def delete(self, request, reply_id, format=None):
+
+        user = request.user
+        try:
+            my_reply = models.Reply.objects.get(id=reply_id, creator=user)
+            my_reply.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.Reply.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 class LikeReply(APIView):
 
     def get(self, request, reply_id, format=None):
@@ -418,4 +431,49 @@ class CancelLikeReply(APIView):
             pre_exist_like.delete()
             return Response(status=status.HTTP_200_OK)
         except models.ReplyLike.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UnlikeReply(APIView):
+
+    def get(self, request, reply_id, format=None):
+
+        unlikes = models.ReplyUnlike.objects.filter(reply__id=reply_id)
+
+        unlike_creators_id = unlikes.values('creator_id')
+
+        unlike_users = user_models.User.objects.filter(id__in=unlike_creators_id)
+
+        serializer = user_serializers.UserListSerializer(unlike_users, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, reply_id, format=None):
+
+        user = request.user
+
+        try:
+            reply = models.Reply.objects.get(id=reply_id)
+        except models.Reply.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        try:
+            models.ReplyUnlike.objects.get(reply=reply, creator=user)
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
+        except models.ReplyUnlike.DoesNotExist:
+            create_unlike = models.ReplyUnlike.objects.create(creator=user, reply=reply)
+            create_unlike.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+
+class CancelUnlikeReply(APIView):
+
+    def delete(self, request, reply_id, format=None):
+
+        user = request.user
+        try:
+            pre_exist_unlike = models.ReplyUnlike.objects.get(creator=user, reply__id=reply_id)
+            pre_exist_unlike.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.ReplyUnlike.DoesNotExist:
             return Response(status=status.HTTP_204_NO_CONTENT)
