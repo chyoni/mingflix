@@ -118,6 +118,32 @@ class Reply(user_models.TimeStampModel):
     def natural_time(self):
         return naturaltime(self.created_at)
 
+    @property
+    def like_count(self):
+        return self.replyLikes.all().count()
+
+    @property
+    def unlike_count(self):
+        return self.replyUnlikes.all().count()
+
+
+class ReplyLike(user_models.TimeStampModel):
+
+    creator = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
+    reply = models.ForeignKey(Reply, on_delete=models.CASCADE, related_name="replyLikes")
+
+    def __str__(self):
+        return 'Reply: {} - Creator: {}'.format(self.reply.message, self.creator.username)
+
+
+class ReplyUnlike(user_models.TimeStampModel):
+
+    creator = models.ForeignKey(user_models.User, on_delete=models.CASCADE)
+    reply = models.ForeignKey(Reply, on_delete=models.CASCADE, related_name="replyUnlikes")
+
+    def __str__(self):
+        return 'Reply: {} - Creator: {}'.format(self.reply.message, self.creator.username)
+
 
 class History(user_models.TimeStampModel):
 

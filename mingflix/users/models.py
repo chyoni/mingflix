@@ -47,6 +47,7 @@ class Channel(TimeStampModel):
     channel_name = models.CharField(_("Name"), max_length=255, blank=True)
     channel_caption = models.CharField(_("Caption"), max_length=255, blank=True)
     creator = models.OneToOneField(User, on_delete=models.CASCADE, related_name="channel")
+    stream_key = models.CharField(max_length=255, unique=True, null=True, blank=True)
 
     def __str__(self):
         return self.channel_name

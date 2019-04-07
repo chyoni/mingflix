@@ -32,6 +32,7 @@ class ChannelAdmin(admin.ModelAdmin):
     list_display = (
         'channel_name',
         'channel_caption',
+        'stream_key',
         'creator',
         'created_at'
 

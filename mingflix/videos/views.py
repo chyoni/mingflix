@@ -126,9 +126,9 @@ class LikeVideo(APIView):
         # 그 중에 creator_id가 존재하기 때문에 __ 가 아닌 _ 만 써도 되는것
         # 만약 creator__id 라고 쓰면 이건 deep relationship으로 얻는 거
         # creator_id라고 쓰면 이건그냥 values라는 함수가 제공해주는 어떠한 key에 대한 값을 가져오는것
-        users = user_models.User.objects.filter(id__in=like_creators_id)
+        like_users = user_models.User.objects.filter(id__in=like_creators_id)
 
-        serializer = user_serializers.UserListSerializer(users, many=True)
+        serializer = user_serializers.UserListSerializer(like_users, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -232,7 +232,7 @@ class CommentOnVideo(APIView):
             return Response(data=serializer.data, status=status.HTTP_201_CREATED)
 
         else:
-            return Response(data=serializer.data, status=status.HTTP_400_BAD_REQUEST)
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 class LikeComment(APIView):
@@ -243,9 +243,9 @@ class LikeComment(APIView):
 
         like_creators_id = likes.values('creator_id')
 
-        users = user_models.User.objects.filter(id__in=like_creators_id)
+        like_users = user_models.User.objects.filter(id__in=like_creators_id)
 
-        serializer = user_serializers.UserListSerializer(users, many=True)
+        serializer = user_serializers.UserListSerializer(like_users, many=True)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -266,3 +266,85 @@ class LikeComment(APIView):
             create_like.save()
 
             return Response(status=status.HTTP_201_CREATED)
+
+
+class CancelLikeComment(APIView):
+
+    def delete(self, request, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            pre_exist_like = models.CommentLike.objects.get(creator=user, comment__id=comment_id)
+            pre_exist_like.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.CommentLike.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class UnlikeComment(APIView):
+
+    def get(self, request, comment_id, format=None):
+
+        unlikes = models.CommentUnlike.objects.filter(comment__id=comment_id)
+
+        unlike_creators_id = unlikes.values('creator_id')
+
+        unlike_users = user_models.User.objects.filter(id__in=unlike_creators_id)
+
+        serializer = user_serializers.UserListSerializer(unlike_users, many=True)
+
+        return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    def post(self, request, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment = models.Comment.objects.get(id=comment_id)
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        try:
+            models.CommentUnlike.objects.get(comment__id=comment_id, creator=user)
+            return Response(status=status.HTTP_304_NOT_MODIFIED)
+        except models.CommentUnlike.DoesNotExist:
+            create_unlike = models.CommentUnlike.objects.create(comment=comment, creator=user)
+            create_unlike.save()
+            return Response(status=status.HTTP_201_CREATED)
+
+
+class CancelUnlikeComment(APIView):
+
+    def delete(self, request, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            pre_exist_unlike = models.CommentUnlike.objects.get(comment__id=comment_id, creator=user)
+            pre_exist_unlike.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.CommentUnlike.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+class ReplyOnComment(APIView):
+
+    def post(self, request, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            comment = models.Comment.objects.get(id=comment_id)
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+        serializer = serializers.ReplySerializer(data=request.data)
+
+        if serializer.is_valid():
+            serializer.save(creator=user, comment=comment)
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

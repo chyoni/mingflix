@@ -100,6 +100,28 @@ class ReplyAdmin(admin.ModelAdmin):
     )
 
 
+@admin.register(models.ReplyLike)
+class ReplyLikeAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'creator',
+        'reply',
+        'created_at',
+        'updated_at',
+    )
+
+
+@admin.register(models.ReplyUnlike)
+class ReplyUnlikeAdmin(admin.ModelAdmin):
+
+    list_display = (
+        'creator',
+        'reply',
+        'created_at',
+        'updated_at',
+    )
+
+
 @admin.register(models.History)
 class HistoryAdmin(admin.ModelAdmin):
 

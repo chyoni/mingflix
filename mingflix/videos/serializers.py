@@ -66,17 +66,20 @@ class CommentSerializer(serializers.ModelSerializer):
 
 class ReplySerializer(serializers.ModelSerializer):
 
-    creator = IntroUserSerializer()
-    comment = CommentSerializer()
+    creator = IntroUserSerializer(read_only=True)
+    natural_time = serializers.ReadOnlyField()
+    like_count = serializers.ReadOnlyField()
+    unlike_count = serializers.ReadOnlyField()
 
     class Meta:
         model = models.Reply
         fields = (
             'id',
             'message',
-            'comment',
             'creator',
-            'natural_time'
+            'natural_time',
+            'like_count',
+            'unlike_count',
         )
 
 
