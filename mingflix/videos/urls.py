@@ -10,6 +10,7 @@ urlpatterns = [
     path("<int:video_id>/unlikes/", view=views.UnlikeVideo.as_view(), name="video_unlike"),
     path("<int:video_id>/cancelunlikes/", view=views.CancelUnlikeVideo.as_view(), name="video_cancelunlike"),
     path("<int:video_id>/comments/", view=views.CommentOnVideo.as_view(), name="video_comment"),
+    path("comments/<int:comment_id>/delete/", view=views.DeleteMyComment.as_view(), name="comment_delete"),
     path("comments/<int:comment_id>/likes/", view=views.LikeComment.as_view(), name="comment_like"),
     path("comments/<int:comment_id>/cancellikes/", view=views.CancelLikeComment.as_view(), name="comment_cancellike"),
     path("comments/<int:comment_id>/unlikes/", view=views.UnlikeComment.as_view(), name="comment_unlike"),

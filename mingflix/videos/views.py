@@ -235,6 +235,20 @@ class CommentOnVideo(APIView):
             return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
+class DeleteMyComment(APIView):
+
+    def delete(self, request, comment_id, format=None):
+
+        user = request.user
+
+        try:
+            my_comment = models.Comment.objects.get(creator=user, id=comment_id)
+            my_comment.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.Comment.DoesNotExist:
+            return Response(status=status.HTTP_204_NO_CONTENT)
+
+
 class LikeComment(APIView):
 
     def get(self, request, comment_id, format=None):
