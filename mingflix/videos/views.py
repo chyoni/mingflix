@@ -355,6 +355,18 @@ class ModerateComment(APIView):
             return Response(status=status.HTTP_400_BAD_REQUEST)
 
 
+class ModerateReply(APIView):
+
+    def delete(self,request,video_id,reply_id,format=None):
+
+        user =request.user
+        try:
+            delete_reply = models.Reply.objects.get(id=reply_id, comment__video__id=video_id, comment__video__creator=user)
+            delete_reply.delete()
+            return Response(status=status.HTTP_200_OK)
+        except models.Reply.DoesNotExist:
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
 class ReplyOnComment(APIView):
 
     def post(self, request, comment_id, format=None):

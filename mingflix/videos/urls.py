@@ -11,6 +11,7 @@ urlpatterns = [
     path("<int:video_id>/cancelunlikes/", view=views.CancelUnlikeVideo.as_view(), name="video_cancelunlike"),
     path("<int:video_id>/comments/", view=views.CommentOnVideo.as_view(), name="video_comment"),
     path("<int:video_id>/comments/<int:comment_id>/", view=views.ModerateComment.as_view(), name="comment_moderate"),
+    path("<int:video_id>/replys/<int:reply_id>/", view=views.ModerateReply.as_view(), name="reply_moderate"),
     path("comments/<int:comment_id>/delete/", view=views.DeleteMyComment.as_view(), name="comment_delete"),
     path("comments/<int:comment_id>/likes/", view=views.LikeComment.as_view(), name="comment_like"),
     path("comments/<int:comment_id>/cancellikes/", view=views.CancelLikeComment.as_view(), name="comment_cancellike"),
