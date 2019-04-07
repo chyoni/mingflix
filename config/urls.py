@@ -15,6 +15,7 @@ urlpatterns = [
     # User management
     path("users/", include("mingflix.users.urls", namespace="users")),
     path("videos/", include("mingflix.videos.urls", namespace="videos")),
+    path("notifications/", include("mingflix.notifications.urls", namespace="notifications")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

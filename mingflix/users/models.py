@@ -38,6 +38,9 @@ class User(AbstractUser):
     def following_count(self):
         return self.following.all().count()
 
+    def post_count(self):
+        return self.videos.all().count()
+
 
 class Channel(TimeStampModel):
 

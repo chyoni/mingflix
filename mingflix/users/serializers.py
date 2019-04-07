@@ -14,5 +14,6 @@ class UserListSerializer(serializers.ModelSerializer):
             'profile_image',
             'username',
             'channel',
-            'followers_set',
+            'followers_count',
+            'post_count',
         )

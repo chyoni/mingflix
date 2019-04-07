@@ -35,6 +35,9 @@ class Video(user_models.TimeStampModel):
     def comment_count(self):
         return self.comments.all().count()
 
+    class Meta:
+        ordering = ["-created_at"]
+
 
 class VideoLike(user_models.TimeStampModel):
 
