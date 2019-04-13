@@ -83,7 +83,7 @@ class ReplySerializer(serializers.ModelSerializer):
         )
 
 
-class VideoListSerializer(serializers.ModelSerializer):
+class VideoListSerializer(TaggitSerializer, serializers.ModelSerializer):
 
     creator = IntroUserSerializer()
     tags = TagListSerializerField()
@@ -137,4 +137,19 @@ class HistorySerializer(serializers.ModelSerializer):
         fields = (
             'id',
             'video',
+        )
+
+
+class InputVideoSerializer(TaggitSerializer, serializers.ModelSerializer):
+
+    tags = TagListSerializerField()
+
+    class Meta:
+        model = models.Video
+        fields = (
+            'file',
+            'title',
+            'description',
+            'tags',
+            'poster'
         )

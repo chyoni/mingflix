@@ -10,6 +10,24 @@ from . import models, serializers
 
 # Create your views here.
 
+class PostVideo(APIView):
+
+    def post(self,request,format=None):
+
+        user = request.user
+
+        serializer = serializers.InputVideoSerializer(data=request.data)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user, channel=user.channel)
+
+            return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+        
+        else:
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
 class MyVideos(APIView):
 
     def get(self, request, format=None):
@@ -50,6 +68,14 @@ class HotVideos(APIView):
 
 class VideoDetail(APIView):
 
+    def find_own_video(self,video_id, user):
+
+        try:
+            video = models.Video.objects.get(id=video_id, creator=user)
+            return video
+        except models.Video.DoesNotExist:
+            return None
+
     def get(self, request, video_id, format=None):
 
         user = request.user
@@ -68,6 +94,44 @@ class VideoDetail(APIView):
         serializer = serializers.VideoSerializer(video)
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
+
+    
+    def put(self,request,video_id, format=None):
+
+        user = request.user
+
+        video = self.find_own_video(video_id,user)
+
+        if video is None:
+
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        serializer = serializers.InputVideoSerializer(video,data=request.data, partial=True)
+
+        if serializer.is_valid():
+
+            serializer.save(creator=user)
+
+            return Response(data=serializer.data, status=status.HTTP_204_NO_CONTENT)
+        
+        else:
+
+            return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+
+    def delete(self,request,video_id, format=None):
+
+        user = request.user
+
+        video = self.find_own_video(video_id,user)
+
+        if video is None:
+
+            return Response(status=status.HTTP_400_BAD_REQUEST)
+
+        video.delete()
+
+        return Response(status=status.HTTP_200_OK)
 
 
 class Search(APIView):

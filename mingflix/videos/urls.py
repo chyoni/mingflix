@@ -27,4 +27,5 @@ urlpatterns = [
     path("hot/", view=views.HotVideos.as_view(), name="hot"),
     path("search/", view=views.Search.as_view(), name="video_search"),
     path("followings/", view=views.VideosOfFollowing.as_view(), name="followings_video"),
+    path("post/", view=views.PostVideo.as_view(), name="post_video"),
 ]

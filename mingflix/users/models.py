@@ -28,6 +28,7 @@ class User(AbstractUser):
     gender = models.CharField(max_length=50, choices=GENDER_CHOICES, null=True)
     followers = models.ManyToManyField("self", blank=True, symmetrical=False, related_name="followers_set")
     following = models.ManyToManyField("self", blank=True, symmetrical=False, related_name="following_set")
+    is_streaming = models.BooleanField(default=False)
 
     def __str__(self):
         return self.username
