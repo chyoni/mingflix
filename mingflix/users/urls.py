@@ -3,6 +3,7 @@ from . import views
 
 app_name = "users"
 urlpatterns = [
+    path("login/facebook/", views.FacebookLogin.as_view(), name="fb_login"),
     path("stream/on/", view=views.StreamOn.as_view(), name="user_streamon"),
     path("stream/off/", view=views.StreamOff.as_view(), name="user_streamoff"),
     path("<int:user_id>/follow/", view=views.FollowUser.as_view(), name="user_follow"),
