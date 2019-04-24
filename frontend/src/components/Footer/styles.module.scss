@@ -1,0 +1,31 @@
+@import "../../config/variables";
+
+.footer {
+  width: 100%;
+  max-width: $max-page-width;
+  display: flex;
+  margin: 55px auto;
+  align-items: center;
+  justify-content: space-between;
+  @include breakpoint("phone-tablet") {
+    justify-content: center;
+    max-width: 350px;
+    margin-bottom: 25px;
+  }
+  font-size: $small-font-size;
+  text-transform: uppercase;
+  font-weight: 600;
+  .column {
+    margin-bottom: 15px;
+    .item {
+      color: $dark-blue;
+      cursor: pointer;
+      @include breakpoint("phone-tablet") {
+        margin-right: 15px;
+      }
+    }
+    .mingflix {
+      color: $dark-grey;
+    }
+  }
+}

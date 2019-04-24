@@ -1,0 +1,70 @@
+@import "../../config/variables";
+
+.navigation {
+  position: sticky;
+  top: 0;
+  width: 100%;
+  @include boxBorder(no);
+  display: flex;
+  justify-content: center;
+  .inner {
+    width: 100%;
+    height: 77px;
+    max-width: $max-page-width;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 25px 0;
+    .column {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      width: 33%;
+      &:first-child {
+        justify-content: flex-start;
+      }
+      &:last-child {
+        justify-content: flex-end;
+      }
+      .logo {
+        width: 40px;
+        max-width: 100px;
+        @include breakpoint("phone") {
+          margin-left: 60px;
+        }
+      }
+      .searchInput {
+        @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+        font-family: "Open Sans", sans-serif;
+        @include breakpoint("phone") {
+          display: none;
+        }
+        margin-right: 50px;
+        width: 215px;
+        box-sizing: border-box;
+        padding: 5px;
+        border: 1px solid #dbdbdb;
+        border-radius: 3px;
+        background-color: #fafafa;
+        font-size: 14px;
+        font-weight: 300;
+        &::placeholder {
+          color: $dark-grey;
+          text-align: center;
+        }
+        &:focus {
+          outline: none;
+          background-color: white;
+        }
+      }
+      .navIcon {
+        margin-left: 18px;
+        cursor: pointer;
+      }
+      .sidebar {
+        margin-right: 20px;
+        cursor: pointer;
+      }
+    }
+  }
+}

@@ -1,0 +1,100 @@
+@import "../config/variables";
+
+.formComponent {
+  @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+  font-family: "Open Sans", sans-serif;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+  .form {
+    display: flex;
+    flex-direction: column;
+    input[type="submit"] {
+      margin-top: 10px;
+    }
+    .textInput {
+      border: 1px solid #efefef;
+      border-radius: 3px;
+      background-color: $bg-color;
+      margin-bottom: 5px;
+      font-size: $small-font-size;
+      padding: 9px 0 7px 8px;
+      font-weight: 400;
+      &:focus {
+        outline: none;
+        border: 1px solid #b2b2b2;
+      }
+    }
+  }
+  .button {
+    @include blueButton();
+    i {
+      margin-right: 10px;
+    }
+  }
+  .divider {
+    text-transform: uppercase;
+    color: $dark-grey;
+    font-weight: 600;
+    margin: 20px 0;
+    margin-bottom: 20px;
+    position: relative;
+    &:before {
+      content: "";
+      width: 42%;
+      position: absolute;
+      background-color: $dark-grey;
+      height: 1px;
+      left: 0;
+      top: 6px;
+      opacity: 0.8;
+    }
+    &:after {
+      content: "";
+      width: 42%;
+      position: absolute;
+      background-color: $dark-grey;
+      height: 1px;
+      right: 0;
+      top: 6px;
+      opacity: 0.8;
+    }
+  }
+  .facebookLink {
+    @import url("https://fonts.googleapis.com/css?family=Open+Sans");
+    font-family: "Open Sans", sans-serif;
+    color: #385185;
+    justify-content: center;
+    margin-bottom: 30px;
+    border: 0;
+    background-color: white;
+    font-size: $small-font-size;
+    cursor: pointer;
+    i {
+      margin-right: 5px;
+    }
+    &:focus,
+    &:active {
+      outline: none;
+    }
+  }
+  .facebookLinkWithSignUp {
+    all: unset;
+    @include blueButton();
+    background-color: $light-blue;
+    font-size: 13px;
+    width: 100%;
+    line-height: 30px;
+    color: white;
+    i {
+      margin-right: 7px;
+    }
+    cursor: pointer;
+  }
+  .forgotLink {
+    font-size: $small-font-size;
+    color: $dark-blue;
+    cursor: pointer;
+  }
+}
