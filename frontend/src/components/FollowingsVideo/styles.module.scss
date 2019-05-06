@@ -1,0 +1,28 @@
+@import "../../config/variables";
+
+.hotContainer {
+  max-width: $max-list-width;
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+  .column {
+    padding: 10px;
+    .title {
+      display: block;
+      font-size: 17px;
+      font-weight: 400;
+      margin-bottom: 15px;
+    }
+  }
+  .videoBox {
+    display: flex;
+    justify-content: flex-start;
+  }
+  .divider {
+    margin-top: 40px;
+    color: $light-grey;
+    border-bottom: 2px solid;
+  }
+}

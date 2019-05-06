@@ -1,5 +1,6 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import users from "./modules/user";
+import video from "./modules/video";
 import thunk from "redux-thunk";
 import { routerMiddleware } from "react-router-redux";
 import { connectRouter } from "connected-react-router";
@@ -21,6 +22,7 @@ if (env === "development") {
 const reducer = combineReducers({
   router: connectRouter(history),
   users,
+  video,
   i18nState
 });
 
