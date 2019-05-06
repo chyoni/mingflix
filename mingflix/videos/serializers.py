@@ -108,6 +108,7 @@ class VideoSerializer(TaggitSerializer, serializers.ModelSerializer):
     tags = TagListSerializerField()
     creator = IntroUserSerializer()
     comments = CommentSerializer(many=True)
+    is_liked = serializers.SerializerMethodField()
 
     class Meta:
         model = models.Video
@@ -125,7 +126,18 @@ class VideoSerializer(TaggitSerializer, serializers.ModelSerializer):
             'comment_count',
             'poster',
             'creator',
+            'is_liked'
         )
+
+    def get_is_liked(self, obj):
+        if 'request' in self.context:
+            request = self.context['request']
+            try:
+                models.VideoLike.objects.get(creator__id=request.user.id, video__id=obj.id)
+                return True
+            except models.VideoLike.DoesNotExist:
+                return False
+        return False
 
 
 class HistorySerializer(serializers.ModelSerializer):

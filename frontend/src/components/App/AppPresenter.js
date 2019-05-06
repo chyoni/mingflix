@@ -6,6 +6,8 @@ import Footer from "../Footer";
 import Navigation from "../Navigation";
 import Auth from "../Auth";
 import Feed from "../Feed";
+import Detail from "../Detail";
+import Profile from "../Profile";
 
 const AppPresesnter = props => [
   props.isLoggedIn ? <Navigation key={1} /> : null,
@@ -20,6 +22,8 @@ AppPresesnter.propTypes = {
 const PrivateRoutes = props => (
   <Switch>
     <Route exact={true} path={"/"} component={Feed} />
+    <Route exact={true} path={"/detail/:videoId"} component={Detail} />
+    <Route exact={true} path={"/profile"} component={Profile} />
   </Switch>
 );
 

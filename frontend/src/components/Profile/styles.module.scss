@@ -1,0 +1,16 @@
+@import "../../config/variables";
+
+.container {
+  width: 100%;
+  max-width: $max-page-width;
+  display: flex;
+  justify-content: center;
+  .header {
+    width: 100%;
+    max-width: $max-card-width;
+    margin-top: 40px;
+    .profileImage {
+      width: 100px;
+    }
+  }
+}

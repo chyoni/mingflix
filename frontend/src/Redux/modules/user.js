@@ -4,19 +4,27 @@
 
 const SAVE_TOKEN = "SAVE_TOKEN";
 const LOGOUT = "LOGOUT";
+const SET_PROFILE = "SET_PROFILE";
 
 //action creator
 
-function saveToken(token) {
+function saveToken(json) {
   return {
     type: SAVE_TOKEN,
-    token
+    json
   };
 }
 
 function logout() {
   return {
     type: LOGOUT
+  };
+}
+
+function setProfile(json) {
+  return {
+    type: SET_PROFILE,
+    json
   };
 }
 
@@ -36,8 +44,9 @@ function usernameLogin(username, password) {
     })
       .then(response => response.json())
       .then(json => {
+        console.log(json);
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json));
         }
       })
       .catch(err => console.log(err));
@@ -58,7 +67,7 @@ function facebookLogin(access_token) {
       .then(response => response.json())
       .then(json => {
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json));
         }
       })
       .catch(err => console.log(err));
@@ -83,10 +92,31 @@ function createAccount(username, password, email, name) {
       .then(response => response.json())
       .then(json => {
         if (json.token) {
-          dispatch(saveToken(json.token));
+          dispatch(saveToken(json));
         }
       })
       .catch(err => console.log(err));
+  };
+}
+
+function getProfile() {
+  return (dispatch, getState) => {
+    const {
+      users: { token, username }
+    } = getState();
+    fetch(`/users/${username}/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setProfile(json)));
   };
 }
 
@@ -94,7 +124,8 @@ function createAccount(username, password, email, name) {
 
 const initialState = {
   isLoggedIn: localStorage.getItem("jwt") ? true : false,
-  token: localStorage.getItem("jwt")
+  token: localStorage.getItem("jwt"),
+  username: localStorage.getItem("username")
 };
 
 //reducer
@@ -105,6 +136,8 @@ function reducer(state = initialState, action) {
       return applySaveToken(state, action);
     case LOGOUT:
       return applyLogout(state, action);
+    case SET_PROFILE:
+      return applySetProfile(state, action);
     default:
       return state;
   }
@@ -113,20 +146,34 @@ function reducer(state = initialState, action) {
 //reducer functions
 
 function applySaveToken(state, action) {
-  const { token } = action;
+  const {
+    json: { token, user }
+  } = action;
   localStorage.setItem("jwt", token);
+  localStorage.setItem("username", user.username);
   return {
     ...state,
     isLoggedIn: true,
-    token
+    token,
+    user,
+    username: user.username
   };
 }
 
 function applyLogout(state, action) {
   localStorage.removeItem("jwt");
+  localStorage.removeItem("username");
   return {
     ...state,
     isLoggedIn: false
+  };
+}
+
+function applySetProfile(state, action) {
+  const { json } = action;
+  return {
+    ...state,
+    yourProfile: json
   };
 }
 
@@ -136,7 +183,8 @@ const actionCreators = {
   usernameLogin,
   facebookLogin,
   createAccount,
-  logout
+  logout,
+  getProfile
 };
 
 //reducer export

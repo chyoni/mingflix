@@ -1,0 +1,80 @@
+@import "../../config/variables";
+
+.detailVideo {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: $max-page-width;
+  margin: 0 auto;
+  align-items: center; //좌우
+  .container {
+    @include boxBorder(yes);
+    width: 100%;
+    max-width: $max-card-width;
+    margin-top: 60px;
+    @include breakpoint("phone") {
+      background-color: transparent;
+      border: 0;
+      margin-bottom: 30px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .header {
+      display: flex;
+      padding: 15px;
+      border-bottom: 1px solid $border-color;
+      align-items: center;
+      .profileImage {
+        width: 40px;
+        height: 40px;
+        border: 1px solid $border-color;
+        border-radius: 50%;
+        margin-right: 15px;
+      }
+      .headerColumn {
+        display: flex;
+        flex-direction: column;
+        .creator {
+          font-weight: 600;
+          margin-bottom: 5px;
+        }
+        .location {
+          font-size: $small-font-size;
+        }
+      }
+    }
+    .postImage {
+      width: 599px;
+      max-height: 599px;
+    }
+    .meta {
+      padding: 15px;
+      padding-bottom: 0;
+      padding-top: 10px;
+      .titleColumn {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .title {
+          font-size: $normal-font-size;
+          font-weight: 600;
+        }
+        .views {
+          font-size: 14px;
+          font-weight: 400;
+          color: $dark-grey;
+        }
+      }
+      .timeColumn {
+        margin-bottom: 10px;
+        .postTime {
+          font-size: 14px;
+          font-weight: 400;
+          color: $dark-grey;
+        }
+      }
+    }
+  }
+}

@@ -62,11 +62,13 @@ const NavigationPresenter = (props, context) => (
           />
         </div>
         <div className={styles.navIcon}>
-          <IosPerson
-            icon={"ios-person-outline"}
-            fontSize={"30px"}
-            color={"black"}
-          />
+          <Link to={"/profile"}>
+            <IosPerson
+              icon={"ios-person-outline"}
+              fontSize={"30px"}
+              color={"black"}
+            />
+          </Link>
         </div>
         <div className={styles.navIcon}>
           <IosSetting

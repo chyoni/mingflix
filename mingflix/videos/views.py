@@ -91,7 +91,7 @@ class VideoDetail(APIView):
         create_history = models.History.objects.create(creator=user, video=video)
         create_history.save()
 
-        serializer = serializers.VideoSerializer(video)
+        serializer = serializers.VideoSerializer(video, context={'request': request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

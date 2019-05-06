@@ -30,7 +30,7 @@ const LoadingFeed = props => (
 
 const RenderFeed = props => [
   <div key={4} className={styles.feed}>
-    <HotVideos key={5} hotVideos={props.hotVideos} />,
+    <HotVideos key={5} hotVideos={props.hotVideos} />
     <FollowingsVideo key={6} followingsVideo={props.followingsVideo} />
   </div>
 ];

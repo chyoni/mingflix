@@ -3,7 +3,7 @@ import styles from "./styles.module.scss";
 import { Link } from "react-router-dom";
 
 const VideoList = props => (
-  <Link to={`/details/${props.id}/`} className={styles.link}>
+  <Link to={`/detail/${props.id}/`} className={styles.link}>
     <div className={styles.container}>
       <div className={styles.column}>
         <video
