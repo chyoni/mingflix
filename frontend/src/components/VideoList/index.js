@@ -22,9 +22,7 @@ const VideoList = props => (
         <span className={styles.title}>{props.title}</span>
       </div>
       <div className={styles.column}>
-        <span className={styles.channelName}>
-          {props.creator.channel.channel_name}
-        </span>
+        <span className={styles.channelName}>{props.creator.username}</span>
         <span className={styles.views}>
           {"조회수 "}
           {props.views}

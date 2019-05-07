@@ -5,7 +5,8 @@
 const SAVE_TOKEN = "SAVE_TOKEN";
 const LOGOUT = "LOGOUT";
 const SET_PROFILE = "SET_PROFILE";
-
+const SEARCH_USER = "SEARCH_USER";
+const SEARCH_VIDEO = "SEARCH_VIDEO";
 //action creator
 
 function saveToken(json) {
@@ -27,7 +28,18 @@ function setProfile(json) {
     json
   };
 }
-
+function setSearchUserList(searchUserList) {
+  return {
+    type: SEARCH_USER,
+    searchUserList
+  };
+}
+function setSearchVideoList(searchVideoList) {
+  return {
+    type: SEARCH_VIDEO,
+    searchVideoList
+  };
+}
 //API actions
 
 function usernameLogin(username, password) {
@@ -120,6 +132,51 @@ function getProfile() {
   };
 }
 
+function searchByTerm(searchTerm) {
+  return async (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    const searchUserList = await searchUsers(token, searchTerm);
+    const searchVideoList = await searchVideos(token, searchTerm);
+    if (searchUserList === 401 || searchVideoList === 401) {
+      dispatch(logout());
+    }
+    dispatch(setSearchUserList(searchUserList));
+    dispatch(setSearchVideoList(searchVideoList));
+  };
+}
+
+function searchUsers(token, searchTerm) {
+  return fetch(`/users/search/?username=${searchTerm}`, {
+    headers: {
+      Authorization: `JWT ${token}`
+    }
+  })
+    .then(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => json);
+}
+
+function searchVideos(token, searchTerm) {
+  return fetch(`/videos/search/?search_term=${searchTerm}`, {
+    headers: {
+      Authorization: `JWT ${token}`
+    }
+  })
+    .then(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => json);
+}
+
 //initial state
 
 const initialState = {
@@ -138,6 +195,10 @@ function reducer(state = initialState, action) {
       return applyLogout(state, action);
     case SET_PROFILE:
       return applySetProfile(state, action);
+    case SEARCH_USER:
+      return applySearchUser(state, action);
+    case SEARCH_VIDEO:
+      return applySearchVideo(state, action);
     default:
       return state;
   }
@@ -176,7 +237,20 @@ function applySetProfile(state, action) {
     yourProfile: json
   };
 }
-
+function applySearchUser(state, action) {
+  const { searchUserList } = action;
+  return {
+    ...state,
+    searchUserList
+  };
+}
+function applySearchVideo(state, action) {
+  const { searchVideoList } = action;
+  return {
+    ...state,
+    searchVideoList
+  };
+}
 //exports
 
 const actionCreators = {
@@ -184,7 +258,8 @@ const actionCreators = {
   facebookLogin,
   createAccount,
   logout,
-  getProfile
+  getProfile,
+  searchByTerm
 };
 
 //reducer export

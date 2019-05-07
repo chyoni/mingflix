@@ -8,6 +8,7 @@ import Auth from "../Auth";
 import Feed from "../Feed";
 import Detail from "../Detail";
 import Profile from "../Profile";
+import Search from "../Search";
 
 const AppPresesnter = props => [
   props.isLoggedIn ? <Navigation key={1} /> : null,
@@ -24,6 +25,7 @@ const PrivateRoutes = props => (
     <Route exact={true} path={"/"} component={Feed} />
     <Route exact={true} path={"/detail/:videoId"} component={Detail} />
     <Route exact={true} path={"/profile"} component={Profile} />
+    <Route exact={true} path={"/search/:searchTerm"} component={Search} />
   </Switch>
 );
 

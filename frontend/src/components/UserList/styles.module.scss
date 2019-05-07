@@ -1,0 +1,55 @@
+@import "../../config/variables";
+
+.userInfo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+  .profileImage {
+    width: 170px;
+    height: 160px;
+    border-radius: 50%;
+    border: 1px solid $border-color;
+    padding: 4px;
+    margin-right: 100px;
+  }
+  .main {
+    .usernameCard {
+      .username {
+        display: block;
+        font-weight: 100;
+        font-size: 25px;
+        margin-bottom: 15px;
+      }
+    }
+    .channelCard {
+      margin-bottom: 15px;
+      .post {
+        margin-right: 40px;
+        .postCount {
+          font-size: 15px;
+          font-weight: 600;
+        }
+      }
+      .followers {
+        margin-right: 40px;
+        .followersCount {
+          font-size: 15px;
+          font-weight: 600;
+        }
+      }
+      .followings {
+        margin-right: 40px;
+        .followingsCount {
+          font-size: 15px;
+          font-weight: 600;
+        }
+      }
+    }
+    .captionCard {
+      .channelCaption {
+        font-size: 16px;
+        font-weight: 600;
+      }
+    }
+  }
+}

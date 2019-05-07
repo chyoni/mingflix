@@ -29,13 +29,13 @@ const NavigationPresenter = (props, context) => (
         </Link>
       </div>
       <div className={styles.column}>
-        <form onSubmit={null}>
+        <form onSubmit={props.handleSubmit}>
           <input
             type={"text"}
             placeholder={context.t("Search")}
             className={styles.searchInput}
-            onChange={null}
-            value={null}
+            onChange={props.handleInputChange}
+            value={props.searchTerm}
           />
         </form>
       </div>

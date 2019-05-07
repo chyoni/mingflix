@@ -1,16 +1,75 @@
 @import "../../config/variables";
 
-.container {
+.infoContainer {
   width: 100%;
   max-width: $max-page-width;
   display: flex;
+  margin: 30px auto;
   justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid $border-color;
   .header {
     width: 100%;
+    display: flex;
+    align-items: center;
     max-width: $max-card-width;
     margin-top: 40px;
     .profileImage {
-      width: 100px;
+      width: 170px;
+      height: 160px;
+      border-radius: 50%;
+      border: 1px solid $border-color;
+      padding: 4px;
+      margin-right: 100px;
+    }
+    .main {
+      .usernameCard {
+        .username {
+          display: block;
+          font-weight: 100;
+          font-size: 25px;
+          margin-bottom: 30px;
+        }
+      }
+      .channelCard {
+        margin-bottom: 30px;
+        .post {
+          margin-right: 40px;
+          .postCount {
+            font-size: 15px;
+            font-weight: 600;
+          }
+        }
+        .followers {
+          margin-right: 40px;
+          .followersCount {
+            font-size: 15px;
+            font-weight: 600;
+          }
+        }
+        .followings {
+          margin-right: 40px;
+          .followingsCount {
+            font-size: 15px;
+            font-weight: 600;
+          }
+        }
+      }
+      .captionCard {
+        .channelCaption {
+          font-size: 16px;
+          font-weight: 600;
+        }
+      }
     }
   }
+}
+.videoContainer {
+  width: 100%;
+  max-width: $max-page-width;
+  display: flex;
+  margin: 30px auto;
+  justify-content: space-between;
+  border-bottom: 1px solid $border-color;
 }
