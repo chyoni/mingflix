@@ -8,6 +8,7 @@ import IosVideoCam from "react-ionicons/lib/IosVideocamOutline";
 import IosPerson from "react-ionicons/lib/IosPersonOutline";
 import IosSetting from "react-ionicons/lib/IosSettingsOutline";
 import IosMenu from "react-ionicons/lib/IosMenuOutline";
+import Notification from "../Notification";
 
 const NavigationPresenter = (props, context) => (
   <div className={styles.navigation}>
@@ -47,7 +48,7 @@ const NavigationPresenter = (props, context) => (
             color={"black"}
           />
         </div>
-        <div className={styles.navIcon}>
+        <div className={styles.navIcon} onClick={props.openNoticeList}>
           <IosNotification
             icon={"ios-notification-outline"}
             fontSize={"30px"}
@@ -77,6 +78,9 @@ const NavigationPresenter = (props, context) => (
             color={"black"}
           />
         </div>
+        {props.seeingNotices && (
+          <Notification closeNoticeList={props.closeNoticeList} />
+        )}
       </div>
     </div>
   </div>
@@ -84,6 +88,12 @@ const NavigationPresenter = (props, context) => (
 
 NavigationPresenter.contextTypes = {
   t: PropTypes.func.isRequired
+};
+
+NavigationPresenter.propTypes = {
+  seeingNotices: PropTypes.bool.isRequired,
+  openNoticeList: PropTypes.func.isRequired,
+  closeNoticeList: PropTypes.func.isRequired
 };
 
 export default NavigationPresenter;

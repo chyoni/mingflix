@@ -20,6 +20,10 @@ const VideoComments = props => (
   </div>
 );
 
+VideoComments.propTypes = {
+  comments: PropTypes.array
+};
+
 const Comment = props => (
   <div className={styles.oneToOneComment}>
     <img

@@ -9,7 +9,7 @@ class DetailContainer extends Component {
 
   static propTypes = {
     getVideo: PropTypes.func.isRequired,
-    video: PropTypes.object.isRequired,
+    video: PropTypes.object,
     getProfile: PropTypes.func.isRequired
   };
 

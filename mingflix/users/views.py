@@ -17,7 +17,7 @@ class Search(APIView):
 
             users = models.User.objects.filter(username__icontains=username)
 
-            serializer = serializers.UserListSerializer(users, many=True)
+            serializer = serializers.UserListSerializer(users, many=True, context={"request": request})
 
             return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -109,7 +109,7 @@ class UserProfile(APIView):
 
             return Response(status=status.HTTP_404_NOT_FOUND)
 
-        serializer = serializers.UserProfileSerializer(found_user)
+        serializer = serializers.UserProfileSerializer(found_user, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -129,7 +129,8 @@ class UserProfile(APIView):
 
         else:
 
-            serializer = serializers.UserProfileSerializer(found_user, data=request.data, partial=True)
+            serializer = serializers.UserProfileSerializer(
+                found_user, data=request.data, partial=True, context={"request": request})
 
             if serializer.is_valid():
 
@@ -204,7 +205,7 @@ class UserFollowers(APIView):
 
         user_followers = found_user.followers.all()
 
-        serializer = serializers.UserListSerializer(user_followers, many=True)
+        serializer = serializers.UserListSerializer(user_followers, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -220,7 +221,7 @@ class UserFollowing(APIView):
 
         user_following = found_user.following.all()
 
-        serializer = serializers.UserListSerializer(user_following, many=True)
+        serializer = serializers.UserListSerializer(user_following, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

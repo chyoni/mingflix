@@ -5,6 +5,7 @@ import Loading from "../Loading";
 import VideoActions from "../VideoActions";
 import CommentBox from "../CommentBox";
 import VideoComments from "../VideoComments";
+import { Link } from "react-router-dom";
 
 const DetailPresenter = props => {
   console.log(props);
@@ -13,21 +14,26 @@ const DetailPresenter = props => {
   ) : (
     <div className={styles.detailVideo}>
       <div className={styles.container}>
-        <header className={styles.header}>
-          <img
-            src={
-              props.video.creator.profile_image ||
-              require("../../images/noPhoto.jpg")
-            }
-            alt={props.video.creator.username}
-            className={styles.profileImage}
-          />
-          <div className={styles.headerColumn}>
-            <span className={styles.creator}>
-              {props.video.creator.username}
-            </span>
-          </div>
-        </header>
+        <Link
+          to={`/anonyprofile/${props.video.creator.username}/`}
+          className={styles.link}
+        >
+          <header className={styles.header}>
+            <img
+              src={
+                props.video.creator.profile_image ||
+                require("../../images/noPhoto.jpg")
+              }
+              alt={props.video.creator.username}
+              className={styles.profileImage}
+            />
+            <div className={styles.headerColumn}>
+              <span className={styles.creator}>
+                {props.video.creator.username}
+              </span>
+            </div>
+          </header>
+        </Link>
         <div className={styles.video}>
           <video
             controls={"controls"}
@@ -73,6 +79,10 @@ const DetailPresenter = props => {
       </div>
     </div>
   );
+};
+
+DetailPresenter.propTypes = {
+  video: PropTypes.object
 };
 
 export default DetailPresenter;

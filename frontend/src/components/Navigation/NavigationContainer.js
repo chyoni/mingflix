@@ -4,10 +4,11 @@ import NavigationPresenter from "./NavigationPresenter";
 class NavigationContainer extends Component {
   state = {
     isMenuOpen: false,
-    searchTerm: ""
+    searchTerm: "",
+    seeingNotices: false
   };
   render() {
-    const { isMenuOpen, searchTerm } = this.state;
+    const { isMenuOpen, searchTerm, seeingNotices } = this.state;
     return (
       <NavigationPresenter
         {...this.props}
@@ -16,6 +17,9 @@ class NavigationContainer extends Component {
         handleInputChange={this._handleInputChange}
         handleSubmit={this._handleSubmit}
         searchTerm={searchTerm}
+        seeingNotices={seeingNotices}
+        openNoticeList={this._openNoticeList}
+        closeNoticeList={this._closeNoticeList}
       />
     );
   }
@@ -41,6 +45,20 @@ class NavigationContainer extends Component {
       return {
         isMenuOpen: !state.isMenuOpen
       };
+    });
+  };
+
+  _openNoticeList = () => {
+    const { getNotification } = this.props;
+    this.setState({
+      seeingNotices: true
+    });
+    getNotification();
+  };
+
+  _closeNoticeList = () => {
+    this.setState({
+      seeingNotices: false
     });
   };
 }

@@ -1,0 +1,80 @@
+@import "../../config/variables";
+
+.link {
+  text-decoration: none;
+  color: black;
+  //   &:not(:last-child) {
+  //     border-bottom: 1px solid $border-color;
+  //   }
+  .container {
+    width: 100%;
+    max-width: $max-card-width;
+    min-height: 180px;
+    max-height: 300px;
+    .videoInfo {
+      display: flex;
+      margin-top: 30px;
+
+      .video {
+        margin-right: 20px;
+        .poster {
+          width: 250px;
+          height: 150px;
+        }
+      }
+      .info {
+        display: flex;
+        flex-direction: column;
+        .title {
+          margin-bottom: 10px;
+          font-size: $big-font-size;
+          font-weight: 600;
+        }
+        .description {
+          display: block;
+          font-size: 15px;
+          color: $dark-grey;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+        .tagList {
+          display: flex;
+          flex-wrap: wrap;
+          margin-bottom: 30px;
+          .tagChild {
+            font-size: 15px;
+            color: $dark-blue;
+            font-weight: 600;
+            margin-right: 6px;
+          }
+        }
+        .creatorName {
+          font-size: 15px;
+          color: $dark-grey;
+          font-weight: 600;
+          margin-bottom: 10px;
+        }
+        .viewsAndTime {
+          margin-bottom: 45px;
+          .views {
+            font-size: 15px;
+            color: $dark-grey;
+            font-weight: 600;
+            margin-right: 3px;
+          }
+          .divider {
+            font-size: 16px;
+            color: $dark-grey;
+            font-weight: 600;
+          }
+          .postTime {
+            margin-left: 3px;
+            font-size: 15px;
+            color: $dark-grey;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+  }
+}

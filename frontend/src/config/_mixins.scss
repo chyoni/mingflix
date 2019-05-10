@@ -31,6 +31,31 @@
   }
 }
 
+@mixin whiteButton() {
+  @import url("https://fonts.googleapis.com/css?family=Barlow:400,700|Roboto:400,700");
+  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -webkit-appearance: none; //browser마다 고유의 default 속성을 제거
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  border: 1px solid $dark-grey;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: $small-font-size;
+  line-height: 26px;
+  cursor: pointer;
+  &:focus,
+  &:active {
+    outline: none;
+  }
+  &:active {
+    opacity: 0.9;
+  }
+}
+
 $tablet-width: 768px;
 $desktop-width: 875px;
 $xl-desktop-width: 1351px;

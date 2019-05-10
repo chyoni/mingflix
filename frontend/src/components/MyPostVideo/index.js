@@ -5,7 +5,7 @@ import VideoList from "../VideoList";
 const MyPostVideo = props => (
   <div className={styles.hotContainer}>
     <div className={styles.column}>
-      <span className={styles.title}>{"내가 게시한 동영상"}</span>
+      <span className={styles.title}>{props.text}</span>
     </div>
     <div className={styles.videoBox}>
       {props.myVideo.map(video => {

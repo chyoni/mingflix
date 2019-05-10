@@ -1,0 +1,66 @@
+@import "../../config/variables";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  max-width: 550px;
+  box-sizing: border-box;
+  .noteBox {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    min-height: 65px;
+    border-bottom: 1px solid $light-grey;
+    .column {
+      display: flex;
+      align-items: center;
+      margin-right: 50px;
+      &:last-child {
+        margin-right: 0;
+      }
+      .avatar {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid $light-grey;
+      }
+      .user {
+        margin-top: 25px;
+        margin-left: 10px;
+        padding-bottom: 20px;
+        .username {
+          font-size: 15px;
+          font-weight: 600;
+          display: block;
+          margin-bottom: 3px;
+        }
+      }
+      .type {
+        display: flex;
+        flex-wrap: wrap;
+        font-size: 15px;
+      }
+      .time {
+        color: grey;
+        margin-left: 5px;
+        font-size: 14px;
+      }
+      .button {
+        margin-top: 15px;
+      }
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+  .noticeOnPoster {
+    width: 45px;
+    height: 45px;
+  }
+}

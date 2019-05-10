@@ -6,6 +6,7 @@ from mingflix.videos import serializers as video_serializers
 class UserListSerializer(serializers.ModelSerializer):
 
     channel = video_serializers.IntroChannelSerializer()
+    is_following = serializers.SerializerMethodField()
 
     class Meta:
         model = models.User
@@ -16,7 +17,15 @@ class UserListSerializer(serializers.ModelSerializer):
             'channel',
             'followers_count',
             'post_count',
+            'is_following'
         )
+
+    def get_is_following(self, obj):
+        if 'request' in self.context:
+            request = self.context['request']
+            if obj in request.user.following.all():
+                return True
+        return False
 
 
 class UserProfileSerializer(serializers.ModelSerializer):
@@ -26,10 +35,12 @@ class UserProfileSerializer(serializers.ModelSerializer):
     post_count = serializers.ReadOnlyField()
     followers_count = serializers.ReadOnlyField()
     following_count = serializers.ReadOnlyField()
+    is_following = serializers.SerializerMethodField()
 
     class Meta:
         model = models.User
         fields = (
+            'id',
             'profile_image',
             'username',
             'name',
@@ -39,7 +50,15 @@ class UserProfileSerializer(serializers.ModelSerializer):
             'post_count',
             'channel',
             'videos',
+            'is_following'
         )
+
+    def get_is_following(self, obj):
+        if 'request' in self.context:
+            request = self.context['request']
+            if obj in request.user.following.all():
+                return True
+        return False
 
 
 class ChannelSerializer(serializers.ModelSerializer):

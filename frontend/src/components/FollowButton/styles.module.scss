@@ -1,0 +1,13 @@
+@import "../../config/variables";
+
+.blueButton {
+  @include blueButton();
+  margin-bottom: 20px;
+  //margin-left: 145px;
+}
+
+.whiteButton {
+  @include whiteButton();
+  margin-bottom: 20px;
+  //margin-left: 170px;
+}

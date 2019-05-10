@@ -192,7 +192,7 @@ class LikeVideo(APIView):
         # creator_id라고 쓰면 이건그냥 values라는 함수가 제공해주는 어떠한 key에 대한 값을 가져오는것
         like_users = user_models.User.objects.filter(id__in=like_creators_id)
 
-        serializer = user_serializers.UserListSerializer(like_users, many=True)
+        serializer = user_serializers.UserListSerializer(like_users, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -240,7 +240,7 @@ class UnlikeVideo(APIView):
 
         unlike_users = user_models.User.objects.filter(id__in=unlike_creators_id)
 
-        serializer = user_serializers.UserListSerializer(unlike_users, many=True)
+        serializer = user_serializers.UserListSerializer(unlike_users, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -323,7 +323,7 @@ class LikeComment(APIView):
 
         like_users = user_models.User.objects.filter(id__in=like_creators_id)
 
-        serializer = user_serializers.UserListSerializer(like_users, many=True)
+        serializer = user_serializers.UserListSerializer(like_users, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -370,7 +370,7 @@ class UnlikeComment(APIView):
 
         unlike_users = user_models.User.objects.filter(id__in=unlike_creators_id)
 
-        serializer = user_serializers.UserListSerializer(unlike_users, many=True)
+        serializer = user_serializers.UserListSerializer(unlike_users, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -476,7 +476,7 @@ class LikeReply(APIView):
 
         like_users = user_models.User.objects.filter(id__in=like_creators_id)
 
-        serializer = user_serializers.UserListSerializer(like_users, many=True)
+        serializer = user_serializers.UserListSerializer(like_users, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
@@ -520,7 +520,7 @@ class UnlikeReply(APIView):
 
         unlike_users = user_models.User.objects.filter(id__in=unlike_creators_id)
 
-        serializer = user_serializers.UserListSerializer(unlike_users, many=True)
+        serializer = user_serializers.UserListSerializer(unlike_users, many=True, context={"request": request})
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 

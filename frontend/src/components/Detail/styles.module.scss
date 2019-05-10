@@ -21,6 +21,10 @@
     &:last-child {
       margin-bottom: 0;
     }
+    .link {
+      text-decoration: none;
+      color: black;
+    }
     .header {
       display: flex;
       padding: 15px;

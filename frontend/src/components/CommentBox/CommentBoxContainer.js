@@ -6,8 +6,16 @@ class CommentBoxContainer extends Component {
   state = {
     comment: ""
   };
+  static propTypes = {
+    username: PropTypes.object.isRequired,
+    submitComment: PropTypes.func.isRequired,
+    videoId: PropTypes.number.isRequired,
+    profileImage: PropTypes.string.isRequired,
+    creator: PropTypes.string.isRequired
+  };
 
   render() {
+    console.log(this.props);
     return (
       <CommentBoxPresenter
         {...this.state}

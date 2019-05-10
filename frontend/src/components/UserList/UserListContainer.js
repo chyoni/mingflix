@@ -8,7 +8,8 @@ class UserListContainer extends Component {
     followersCount: PropTypes.number,
     postCount: PropTypes.number,
     username: PropTypes.string,
-    profileImage: PropTypes.string
+    profileImage: PropTypes.string,
+    userId: PropTypes.number.isRequired
   };
   render() {
     const {
@@ -16,10 +17,12 @@ class UserListContainer extends Component {
       followersCount,
       postCount,
       username,
-      profileImage
+      profileImage,
+      userId
     } = this.props;
     return (
       <UserListPresenter
+        userId={userId}
         channelCaption={channelCaption}
         followersCount={followersCount}
         postCount={postCount}

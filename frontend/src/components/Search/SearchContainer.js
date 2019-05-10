@@ -25,13 +25,16 @@ class SearchContainer extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    const { searchByTerm, pathname } = this.props;
+    const {
+      searchByTerm,
+      location: { pathname }
+    } = this.props;
     if (nextProps.searchUserList && nextProps.searchVideoList) {
       this.setState({
         loading: false
       });
     }
-    if (nextProps.pathname !== pathname) {
+    if (nextProps.location.pathname !== pathname) {
       searchByTerm();
     }
   }

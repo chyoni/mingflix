@@ -5,8 +5,12 @@
 const SAVE_TOKEN = "SAVE_TOKEN";
 const LOGOUT = "LOGOUT";
 const SET_PROFILE = "SET_PROFILE";
+const SET_YOUR_PROFILE = "SET_YOUR_PROFILE";
 const SEARCH_USER = "SEARCH_USER";
 const SEARCH_VIDEO = "SEARCH_VIDEO";
+const SET_NOTIFICATION = "SET_NOTIFICATION";
+const SET_UNFOLLOW = "SET_UNFOLLOW";
+const SET_FOLLOW = "SET_FOLLOW";
 //action creator
 
 function saveToken(json) {
@@ -28,6 +32,12 @@ function setProfile(json) {
     json
   };
 }
+function setYourProfile(anonymousUser) {
+  return {
+    type: SET_YOUR_PROFILE,
+    anonymousUser
+  };
+}
 function setSearchUserList(searchUserList) {
   return {
     type: SEARCH_USER,
@@ -38,6 +48,25 @@ function setSearchVideoList(searchVideoList) {
   return {
     type: SEARCH_VIDEO,
     searchVideoList
+  };
+}
+
+function setNotification(notices) {
+  return {
+    type: SET_NOTIFICATION,
+    notices
+  };
+}
+function setUnFollowUser(userId) {
+  return {
+    type: SET_UNFOLLOW,
+    userId
+  };
+}
+function setFollowUser(userId) {
+  return {
+    type: SET_FOLLOW,
+    userId
   };
 }
 //API actions
@@ -132,6 +161,27 @@ function getProfile() {
   };
 }
 
+function getYourProfile(username) {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/users/${username}/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setYourProfile(json)));
+  };
+}
+
 function searchByTerm(searchTerm) {
   return async (dispatch, getState) => {
     const {
@@ -177,6 +227,71 @@ function searchVideos(token, searchTerm) {
     .then(json => json);
 }
 
+function getNotification() {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/notifications/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setNotification(json)));
+  };
+}
+
+function followUser(userId) {
+  return (dispatch, getState) => {
+    dispatch(setFollowUser(userId));
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/users/${userId}/follow/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(logout());
+      } else if (!response.ok) {
+        dispatch(setUnFollowUser(userId));
+      }
+    });
+  };
+}
+
+function unFollowUser(userId) {
+  return (dispatch, getState) => {
+    dispatch(setUnFollowUser(userId));
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/users/${userId}/unfollow/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(logout());
+      } else if (!response.ok) {
+        dispatch(setFollowUser(userId));
+      }
+    });
+  };
+}
+
 //initial state
 
 const initialState = {
@@ -199,6 +314,14 @@ function reducer(state = initialState, action) {
       return applySearchUser(state, action);
     case SEARCH_VIDEO:
       return applySearchVideo(state, action);
+    case SET_YOUR_PROFILE:
+      return applySetYourProfile(state, action);
+    case SET_NOTIFICATION:
+      return applySetNotification(state, action);
+    case SET_UNFOLLOW:
+      return applySetUnFollow(state, action);
+    case SET_FOLLOW:
+      return applySetFollow(state, action);
     default:
       return state;
   }
@@ -237,6 +360,14 @@ function applySetProfile(state, action) {
     yourProfile: json
   };
 }
+
+function applySetYourProfile(state, action) {
+  const { anonymousUser } = action;
+  return {
+    ...state,
+    anonymousUser
+  };
+}
 function applySearchUser(state, action) {
   const { searchUserList } = action;
   return {
@@ -251,6 +382,72 @@ function applySearchVideo(state, action) {
     searchVideoList
   };
 }
+function applySetNotification(state, action) {
+  const { notices } = action;
+  return {
+    ...state,
+    notices
+  };
+}
+
+function applySetUnFollow(state, action) {
+  const { userId } = action;
+  if (state.anonymousUser.id) {
+    const { anonymousUser } = state;
+    if (anonymousUser.id === userId) {
+      const updateAmUser = {
+        ...anonymousUser,
+        is_following: false
+      };
+      return { ...state, anonymousUser: updateAmUser };
+    } else {
+      return { ...state, anonymousUser };
+    }
+  } else if (state.notices.length > 0) {
+    const { notices } = state;
+    const updateNoticeList = notices.map(notice => {
+      if (notice.creator.id === userId) {
+        return {
+          ...notice,
+          creator: {
+            is_following: false
+          }
+        };
+      }
+      return notice;
+    });
+    return { ...state, notices: updateNoticeList };
+  }
+}
+function applySetFollow(state, action) {
+  const { userId } = action;
+  if (state.anonymousUser.id) {
+    const { anonymousUser } = state;
+    if (anonymousUser.id === userId) {
+      const updateAmUser = {
+        ...anonymousUser,
+        is_following: true
+      };
+      return { ...state, anonymousUser: updateAmUser };
+    } else {
+      return { ...state, anonymousUser };
+    }
+  } else if (state.notices.length > 0) {
+    const { notices } = state;
+    const updateNoticeList = notices.map(notice => {
+      if (notice.creator.id === userId) {
+        return {
+          ...notice,
+          creator: {
+            is_following: true
+          }
+        };
+      }
+      return notice;
+    });
+    return { ...state, notices: updateNoticeList };
+  }
+}
 //exports
 
 const actionCreators = {
@@ -259,7 +456,11 @@ const actionCreators = {
   createAccount,
   logout,
   getProfile,
-  searchByTerm
+  searchByTerm,
+  getYourProfile,
+  getNotification,
+  followUser,
+  unFollowUser
 };
 
 //reducer export

@@ -24,3 +24,6 @@ class Notification(user_models.TimeStampModel):
 
     def __str__(self):
         return 'From: {} - To: {}'.format(self.creator, self.to)
+
+    def natural_time(self):
+        return naturaltime(self.created_at)

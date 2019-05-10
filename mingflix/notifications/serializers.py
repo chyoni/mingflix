@@ -17,5 +17,6 @@ class NotificationSerializer(serializers.ModelSerializer):
             'to',
             'notification_type',
             'video',
-            'comment'
+            'comment',
+            'natural_time'
         )

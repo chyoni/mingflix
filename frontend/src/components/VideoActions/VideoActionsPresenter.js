@@ -34,4 +34,12 @@ const VideoActionsPresenter = (props, context) => (
   </div>
 );
 
+VideoActionsPresenter.propTypes = {
+  commentCount: PropTypes.number.isRequired,
+  handleHeartClick: PropTypes.func.isRequired,
+  isLiked: PropTypes.bool.isRequired,
+  likeCount: PropTypes.number.isRequired,
+  videoId: PropTypes.number.isRequired
+};
+
 export default VideoActionsPresenter;

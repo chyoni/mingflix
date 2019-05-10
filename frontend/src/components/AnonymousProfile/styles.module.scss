@@ -1,12 +1,20 @@
 @import "../../config/variables";
 
-.link {
-  text-decoration: none;
-  color: black;
-  .userInfo {
+.infoContainer {
+  width: 100%;
+  max-width: $max-page-width;
+  display: flex;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid $border-color;
+  .header {
+    width: 100%;
     display: flex;
     align-items: center;
-    margin-bottom: 60px;
+    max-width: $max-card-width;
+    margin-top: 40px;
     .profileImage {
       width: 170px;
       height: 160px;
@@ -17,15 +25,19 @@
     }
     .main {
       .usernameCard {
+        display: flex;
+        max-width: 305px;
+        justify-content: space-between;
+        align-items: center;
         .username {
           display: block;
           font-weight: 100;
           font-size: 25px;
-          margin-bottom: 15px;
+          margin-bottom: 30px;
         }
       }
       .channelCard {
-        margin-bottom: 15px;
+        margin-bottom: 30px;
         .post {
           margin-right: 40px;
           .postCount {
@@ -56,4 +68,12 @@
       }
     }
   }
+}
+.videoContainer {
+  width: 100%;
+  max-width: $max-page-width;
+  display: flex;
+  margin: 30px auto;
+  justify-content: space-between;
+  border-bottom: 1px solid $border-color;
 }
