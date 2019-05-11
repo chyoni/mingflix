@@ -19,6 +19,7 @@
   .videoBox {
     display: flex;
     justify-content: flex-start;
+    flex-wrap: wrap;
   }
   .divider {
     margin-top: 40px;

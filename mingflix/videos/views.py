@@ -88,8 +88,11 @@ class VideoDetail(APIView):
         video.views = video.views + 1
         video.save()
 
-        create_history = models.History.objects.create(creator=user, video=video)
-        create_history.save()
+        try: 
+            found_history = models.History.objects.get(creator=user, video=video)
+        except models.History.DoesNotExist:
+            create_history = models.History.objects.create(creator=user, video=video)
+            create_history.save()
 
         serializer = serializers.VideoSerializer(video, context={'request': request})
 

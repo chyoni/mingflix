@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import Loading from "../Loading";
 import styles from "./styles.module.scss";
 import MyPostVideo from "../MyPostVideo";
@@ -9,6 +10,9 @@ const ProfilePresenter = props => {
     <Loading />
   ) : (
     <React.Fragment>
+      <Helmet>
+        <title>Mingflix | 나의 프로필</title>
+      </Helmet>
       <div className={styles.infoContainer}>
         <div className={styles.header}>
           <img

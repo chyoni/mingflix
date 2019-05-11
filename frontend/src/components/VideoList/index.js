@@ -1,5 +1,6 @@
 import React from "react";
 import styles from "./styles.module.scss";
+import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const VideoList = props => (
@@ -39,5 +40,15 @@ const VideoList = props => (
     </div>
   </Link>
 );
+
+VideoList.propTypes = {
+  id: PropTypes.number.isRequired,
+  poster: PropTypes.string.isRequired,
+  file: PropTypes.string.isRequired,
+  title: PropTypes.string.isRequired,
+  creator: PropTypes.object.isRequired,
+  views: PropTypes.number.isRequired,
+  natural_time: PropTypes.string.isRequired
+};
 
 export default VideoList;

@@ -1,7 +1,7 @@
 // import
 
 import { actionCreators as userAction } from "./user";
-
+import { toast } from "react-toastify";
 // actions
 
 const SET_HOT_VIDEOS = "SET_HOT_VIDEOS";
@@ -10,6 +10,7 @@ const SET_VIDEO = "SET_VIDEO";
 const LIKE_VIDEO = "LIKE_VIDEO";
 const CANCEL_LIKE_VIDEO = "CANCEL_LIKE_VIDEO";
 const ADD_COMMENT = "ADD_COMMENT";
+const SET_MY_HISTORY = "SET_MY_HISTORY";
 // action creator
 
 function setHotVideos(hotVideos) {
@@ -52,6 +53,13 @@ function addComment(videoId, comment) {
     type: ADD_COMMENT,
     videoId,
     comment
+  };
+}
+
+function setMyHistory(myHistory) {
+  return {
+    type: SET_MY_HISTORY,
+    myHistory
   };
 }
 //action API
@@ -114,6 +122,30 @@ function getVideo(videoId) {
         return response.json();
       })
       .then(json => dispatch(setVideo(json)));
+  };
+}
+
+function deleteVideo(videoId) {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/videos/${videoId}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userAction.logout());
+        } else if (response.ok) {
+          toast.success("동영상이 삭제 되었습니다🙂");
+        }
+        return response.json();
+      })
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
   };
 }
 
@@ -188,6 +220,62 @@ function commentVideo(videoId, message) {
   };
 }
 
+function getMyHistory() {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/videos/history/`, {
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userAction.logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setMyHistory(json)))
+      .catch(err => console.log(err));
+  };
+}
+
+function postVideo(file, poster, title, tags, description) {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    let formData = new FormData();
+    formData.append("file", file);
+    formData.append("poster", poster);
+    formData.append("title", title);
+    formData.append("tags", tags);
+    formData.append("description", description);
+    fetch(`/videos/post/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        Accept: "application/json, text/plain, */*"
+      },
+      body: formData
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userAction.logout());
+        } else if (response.ok === true) {
+          toast.success("영상이 업로드 되었습니다😝");
+        }
+        return response.json();
+      })
+      .then(json => {
+        console.log(json);
+      })
+      .catch(err => console.log(err));
+  };
+}
+
 // initial state
 
 const initialState = {
@@ -210,6 +298,8 @@ function reducer(state = initialState, action) {
       return applyCancellikeVideo(state, action);
     case ADD_COMMENT:
       return applyAddComment(state, action);
+    case SET_MY_HISTORY:
+      return applySetMyHistory(state, action);
     default:
       return state;
   }
@@ -284,6 +374,14 @@ function applyAddComment(state, action) {
     return { ...state, video };
   }
 }
+
+function applySetMyHistory(state, action) {
+  const { myHistory } = action;
+  return {
+    ...state,
+    myHistory
+  };
+}
 // export
 
 const actionCreators = {
@@ -292,7 +390,10 @@ const actionCreators = {
   getVideo,
   likeVideo,
   cancelLikeVideo,
-  commentVideo
+  commentVideo,
+  getMyHistory,
+  postVideo,
+  deleteVideo
 };
 
 export { actionCreators };

@@ -92,5 +92,9 @@ $iphone6plus-width: 550px;
     @media (max-width: #{$desktop-width}) {
       @content;
     }
+  } @else if $breakpoint == "superbig-desktop" {
+    @media (width: 2560px) {
+      @content;
+    }
   }
 }

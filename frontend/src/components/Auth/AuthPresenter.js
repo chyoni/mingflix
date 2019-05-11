@@ -1,10 +1,14 @@
 import React from "react";
+import Helmet from "react-helmet";
 import styles from "./styles.module.scss";
 import LoginForm from "../LoginForm";
 import SignUpForm from "../SignUpForm";
 
 const AuthPresenter = props => (
   <div className={styles.container}>
+    <Helmet>
+      <title>Mingflix | 로그인 및 회원가입</title>
+    </Helmet>
     <div className={styles.column}>
       <div className={`${styles.whiteBox} ${styles.formBox}`}>
         <img src={require("../../images/loginlogo.png")} alt={"mingflix"} />

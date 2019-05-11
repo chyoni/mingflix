@@ -10,6 +10,8 @@ import Detail from "../Detail";
 import Profile from "../Profile";
 import Search from "../Search";
 import AnonymousProfile from "../AnonymousProfile";
+import History from "../History";
+import Post from "../Post";
 
 const AppPresesnter = props => [
   props.isLoggedIn ? <Navigation key={1} /> : null,
@@ -32,6 +34,8 @@ const PrivateRoutes = props => (
       path={"/anonyprofile/:username"}
       component={AnonymousProfile}
     />
+    <Route exact={true} path={"/history"} component={History} />
+    <Route exact={true} path={"/post"} component={Post} />
   </Switch>
 );
 

@@ -11,6 +11,8 @@ const SEARCH_VIDEO = "SEARCH_VIDEO";
 const SET_NOTIFICATION = "SET_NOTIFICATION";
 const SET_UNFOLLOW = "SET_UNFOLLOW";
 const SET_FOLLOW = "SET_FOLLOW";
+const SET_CHANGE_PASSWORD = "SET_CHANGE_PASSWORD";
+const SET_FOLLOWING_LIST = "SET_FOLLOWING_LIST";
 //action creator
 
 function saveToken(json) {
@@ -67,6 +69,19 @@ function setFollowUser(userId) {
   return {
     type: SET_FOLLOW,
     userId
+  };
+}
+
+function setChangePassword() {
+  return {
+    type: SET_CHANGE_PASSWORD
+  };
+}
+
+function setFollowingList(followingList) {
+  return {
+    type: SET_FOLLOWING_LIST,
+    followingList
   };
 }
 //API actions
@@ -292,6 +307,55 @@ function unFollowUser(userId) {
   };
 }
 
+function changePassword(current_password, new_password) {
+  return (dispatch, getState) => {
+    const {
+      users: { token, username }
+    } = getState();
+    fetch(`/users/${username}/password/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        current_password,
+        new_password
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setChangePassword()))
+      .catch(err => console.log(err));
+  };
+}
+
+function getFollowingList() {
+  return (dispatch, getState) => {
+    const {
+      users: { token, username }
+    } = getState();
+    fetch(`/users/${username}/following/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setFollowingList(json)))
+      .catch(err => console.log(err));
+  };
+}
+
 //initial state
 
 const initialState = {
@@ -322,6 +386,10 @@ function reducer(state = initialState, action) {
       return applySetUnFollow(state, action);
     case SET_FOLLOW:
       return applySetFollow(state, action);
+    case SET_CHANGE_PASSWORD:
+      return applySetChangePassword(state, action);
+    case SET_FOLLOWING_LIST:
+      return applySetFollowingList(state, action);
     default:
       return state;
   }
@@ -350,6 +418,12 @@ function applyLogout(state, action) {
   return {
     ...state,
     isLoggedIn: false
+  };
+}
+
+function applySetChangePassword(state, action) {
+  return {
+    ...state
   };
 }
 
@@ -448,6 +522,14 @@ function applySetFollow(state, action) {
     return { ...state, notices: updateNoticeList };
   }
 }
+
+function applySetFollowingList(state, action) {
+  const { followingList } = action;
+  return {
+    ...state,
+    followingList
+  };
+}
 //exports
 
 const actionCreators = {
@@ -460,7 +542,9 @@ const actionCreators = {
   getYourProfile,
   getNotification,
   followUser,
-  unFollowUser
+  unFollowUser,
+  changePassword,
+  getFollowingList
 };
 
 //reducer export

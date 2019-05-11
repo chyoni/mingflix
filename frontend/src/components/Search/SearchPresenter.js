@@ -1,4 +1,5 @@
 import React from "react";
+import Helmet from "react-helmet";
 import styles from "./styles.module.scss";
 import UserList from "../UserList";
 import Loading from "../Loading";
@@ -10,6 +11,9 @@ const SearchPresenter = props => {
     <Loading />
   ) : (
     <div className={styles.searchContainer}>
+      <Helmet>
+        <title>Mingflix | 검색</title>
+      </Helmet>
       <div className={styles.userListCard}>
         <h4 className={styles.title}>{"Users"}</h4>
         {!props.loading && props.userList.length < 1 && <NotFound text={""} />}
