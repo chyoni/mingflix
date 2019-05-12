@@ -1,0 +1,41 @@
+@import "../../config/variables";
+
+.container {
+  z-index: 9999;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  .box {
+    display: flex;
+    flex-direction: column;
+    @include boxBorder(yes);
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    min-height: 180px;
+    overflow: auto;
+    .header {
+      display: flex;
+      width: 100%;
+      align-items: center;
+      justify-content: space-between;
+      padding: 20px;
+      border-bottom: 1px solid $border-color;
+      .title {
+        width: 100%;
+        font-size: 15px;
+        font-weight: 600;
+        text-align: center;
+      }
+      .closeIcon {
+        cursor: pointer;
+      }
+    }
+  }
+}

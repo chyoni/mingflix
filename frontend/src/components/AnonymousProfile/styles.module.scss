@@ -46,6 +46,7 @@
           }
         }
         .followers {
+          cursor: pointer;
           margin-right: 40px;
           .followersCount {
             font-size: 15px;
@@ -53,6 +54,7 @@
           }
         }
         .followings {
+          cursor: pointer;
           margin-right: 40px;
           .followingsCount {
             font-size: 15px;

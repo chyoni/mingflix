@@ -1,15 +1,5 @@
 @import "../../config/variables";
 
-.VideoComments {
-  margin-top: 20px;
-  .creatorField {
-    margin-bottom: 15px;
-  }
-  .commentField {
-    margin-bottom: 5px;
-  }
-}
-
 .oneToOneComment {
   margin-top: 15px;
   display: flex;
@@ -19,6 +9,7 @@
   .more {
     .moreIcon {
       &:hover {
+        cursor: pointer;
         border-radius: 20px;
         background-color: #cdcdcd;
       }

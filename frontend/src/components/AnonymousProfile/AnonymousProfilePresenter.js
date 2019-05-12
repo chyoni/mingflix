@@ -2,8 +2,11 @@ import React from "react";
 import Helmet from "react-helmet";
 import styles from "./styles.module.scss";
 import Loading from "../Loading";
+import PropTypes from "prop-types";
 import MyPostVideo from "../MyPostVideo";
 import FollowButton from "../FollowButton";
+import FollowersBox from "../FollowersBox";
+import FollowingsBox from "../FollowingsBox";
 
 const AnonymousProfilePresenter = props => {
   console.log(props);
@@ -44,14 +47,20 @@ const AnonymousProfilePresenter = props => {
                 {"  "}
                 {"posts"}
               </span>
-              <span className={styles.followers}>
+              <span
+                className={styles.followers}
+                onClick={props.toggleFollowers}
+              >
                 <span className={styles.followersCount}>
                   {props.amProfile.followers_count}
                 </span>
                 {"  "}
                 {"followers"}
               </span>
-              <span className={styles.followings}>
+              <span
+                className={styles.followings}
+                onClick={props.toggleFollowings}
+              >
                 <span className={styles.followingsCount}>
                   {props.amProfile.following_count}
                 </span>
@@ -64,6 +73,18 @@ const AnonymousProfilePresenter = props => {
                 {props.amProfile.channel.channel_caption}
               </span>
             </div>
+            {props.seeFollowers && (
+              <FollowersBox
+                toggleFollowers={props.toggleFollowers}
+                username={props.amProfile.username}
+              />
+            )}
+            {props.seeFollowings && (
+              <FollowingsBox
+                toggleFollowings={props.toggleFollowings}
+                username={props.amProfile.username}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -75,6 +96,14 @@ const AnonymousProfilePresenter = props => {
       </div>
     </React.Fragment>
   );
+};
+
+AnonymousProfilePresenter.propTypes = {
+  loading: PropTypes.bool.isRequired,
+  seeFollowers: PropTypes.bool.isRequired,
+  seeFollowings: PropTypes.bool.isRequired,
+  toggleFollowers: PropTypes.func.isRequired,
+  toggleFollowings: PropTypes.func.isRequired
 };
 
 export default AnonymousProfilePresenter;

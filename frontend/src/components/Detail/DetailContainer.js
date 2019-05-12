@@ -31,7 +31,6 @@ class DetailContainer extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { video, username } = this.props;
     const { loading, isMoreOption } = this.state;
     return (

@@ -8,11 +8,12 @@ class SidebarContainer extends Component {
   };
   static propTypes = {
     followingList: PropTypes.array,
-    myFollowingList: PropTypes.func.isRequired
+    myFollowingList: PropTypes.func.isRequired,
+    username: PropTypes.string.isRequired
   };
   componentDidMount() {
-    const { myFollowingList } = this.props;
-    myFollowingList();
+    const { myFollowingList, username } = this.props;
+    myFollowingList(username);
   }
 
   componentWillReceiveProps = nextProps => {

@@ -57,6 +57,8 @@ const DetailPresenter = props => {
             <MoreOption
               toggleMoreOption={props.toggleMoreOption}
               handleDelete={props.handleDelete}
+              videoId={props.video.id}
+              zz
             />
           )}
         </header>
@@ -100,7 +102,11 @@ const DetailPresenter = props => {
             profileImage={props.yourProfile.profile_image}
             creator={props.yourProfile.username}
           />
-          <VideoComments comments={props.video.comments} />
+          <VideoComments
+            videoId={props.video.id}
+            creator={props.video.creator.username}
+            comments={props.video.comments}
+          />
         </div>
       </div>
     </div>

@@ -220,6 +220,42 @@ function commentVideo(videoId, message) {
   };
 }
 
+function moderateComment(videoId, commentId) {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/videos/${videoId}/comments/${commentId}/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userAction.logout());
+      }
+    });
+  };
+}
+
+function deleteMyComment(commentId) {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/videos/comments/${commentId}/delete/`, {
+      method: "DELETE",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    }).then(response => {
+      if (response.status === 401) {
+        dispatch(userAction.logout());
+      }
+    });
+  };
+}
+
 function getMyHistory() {
   return (dispatch, getState) => {
     const {
@@ -266,6 +302,38 @@ function postVideo(file, poster, title, tags, description) {
           dispatch(userAction.logout());
         } else if (response.ok === true) {
           toast.success("영상이 업로드 되었습니다😝");
+        }
+        return response.json();
+      })
+      .then(json => {
+        console.log(json);
+      })
+      .catch(err => console.log(err));
+  };
+}
+function updateVideo(videoId, poster, title, tags, description) {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    let formData = new FormData();
+    formData.append("poster", poster);
+    formData.append("title", title);
+    formData.append("tags", tags);
+    formData.append("description", description);
+    fetch(`/videos/${videoId}/`, {
+      method: "PUT",
+      headers: {
+        Authorization: `JWT ${token}`,
+        Accept: "application/json, text/plain, */*"
+      },
+      body: formData
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(userAction.logout());
+        } else if (response.ok === true) {
+          toast.success("영상이 수정되었습니다🤗");
         }
         return response.json();
       })
@@ -393,7 +461,10 @@ const actionCreators = {
   commentVideo,
   getMyHistory,
   postVideo,
-  deleteVideo
+  deleteVideo,
+  updateVideo,
+  moderateComment,
+  deleteMyComment
 };
 
 export { actionCreators };

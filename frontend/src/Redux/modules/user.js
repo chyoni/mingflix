@@ -13,6 +13,7 @@ const SET_UNFOLLOW = "SET_UNFOLLOW";
 const SET_FOLLOW = "SET_FOLLOW";
 const SET_CHANGE_PASSWORD = "SET_CHANGE_PASSWORD";
 const SET_FOLLOWING_LIST = "SET_FOLLOWING_LIST";
+const SET_FOLLOWER_LIST = "SET_FOLLOWER_LIST";
 //action creator
 
 function saveToken(json) {
@@ -82,6 +83,13 @@ function setFollowingList(followingList) {
   return {
     type: SET_FOLLOWING_LIST,
     followingList
+  };
+}
+
+function setFollowerList(followerList) {
+  return {
+    type: SET_FOLLOWER_LIST,
+    followerList
   };
 }
 //API actions
@@ -334,10 +342,10 @@ function changePassword(current_password, new_password) {
   };
 }
 
-function getFollowingList() {
+function getFollowingList(username) {
   return (dispatch, getState) => {
     const {
-      users: { token, username }
+      users: { token }
     } = getState();
     fetch(`/users/${username}/following/`, {
       method: "GET",
@@ -352,6 +360,28 @@ function getFollowingList() {
         return response.json();
       })
       .then(json => dispatch(setFollowingList(json)))
+      .catch(err => console.log(err));
+  };
+}
+
+function getFollowersList(username) {
+  return (dispatch, getState) => {
+    const {
+      users: { token }
+    } = getState();
+    fetch(`/users/${username}/followers/`, {
+      method: "GET",
+      headers: {
+        Authorization: `JWT ${token}`
+      }
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => dispatch(setFollowerList(json)))
       .catch(err => console.log(err));
   };
 }
@@ -390,6 +420,8 @@ function reducer(state = initialState, action) {
       return applySetChangePassword(state, action);
     case SET_FOLLOWING_LIST:
       return applySetFollowingList(state, action);
+    case SET_FOLLOWER_LIST:
+      return applySetFollowerList(state, action);
     default:
       return state;
   }
@@ -530,6 +562,14 @@ function applySetFollowingList(state, action) {
     followingList
   };
 }
+
+function applySetFollowerList(state, action) {
+  const { followerList } = action;
+  return {
+    ...state,
+    followerList
+  };
+}
 //exports
 
 const actionCreators = {
@@ -544,7 +584,8 @@ const actionCreators = {
   followUser,
   unFollowUser,
   changePassword,
-  getFollowingList
+  getFollowingList,
+  getFollowersList
 };
 
 //reducer export

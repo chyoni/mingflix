@@ -1,8 +1,11 @@
 import React from "react";
 import Helmet from "react-helmet";
 import Loading from "../Loading";
+import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
 import MyPostVideo from "../MyPostVideo";
+import FollowersBox from "../FollowersBox";
+import FollowingsBox from "../FollowingsBox";
 
 const ProfilePresenter = props => {
   console.log(props);
@@ -37,14 +40,20 @@ const ProfilePresenter = props => {
                 {"  "}
                 {"posts"}
               </span>
-              <span className={styles.followers}>
+              <span
+                className={styles.followers}
+                onClick={props.toggleFollowers}
+              >
                 <span className={styles.followersCount}>
                   {props.yourProfile.followers_count}
                 </span>
                 {"  "}
                 {"followers"}
               </span>
-              <span className={styles.followings}>
+              <span
+                className={styles.followings}
+                onClick={props.toggleFollowings}
+              >
                 <span className={styles.followingsCount}>
                   {props.yourProfile.following_count}
                 </span>
@@ -57,6 +66,18 @@ const ProfilePresenter = props => {
                 {props.yourProfile.channel.channel_caption}
               </span>
             </div>
+            {props.seeFollowers && (
+              <FollowersBox
+                toggleFollowers={props.toggleFollowers}
+                username={props.yourProfile.username}
+              />
+            )}
+            {props.seeFollowings && (
+              <FollowingsBox
+                toggleFollowings={props.toggleFollowings}
+                username={props.yourProfile.username}
+              />
+            )}
           </div>
         </div>
       </div>
@@ -68,6 +89,13 @@ const ProfilePresenter = props => {
       </div>
     </React.Fragment>
   );
+};
+
+ProfilePresenter.propTypes = {
+  seeFollowers: PropTypes.bool.isRequired,
+  seeFollowings: PropTypes.bool.isRequired,
+  toggleFollowers: PropTypes.func.isRequired,
+  toggleFollowings: PropTypes.func.isRequired
 };
 
 export default ProfilePresenter;

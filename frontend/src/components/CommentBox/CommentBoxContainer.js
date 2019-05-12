@@ -15,7 +15,6 @@ class CommentBoxContainer extends Component {
   };
 
   render() {
-    console.log(this.props);
     return (
       <CommentBoxPresenter
         {...this.state}
@@ -30,7 +29,6 @@ class CommentBoxContainer extends Component {
     const {
       target: { value, name }
     } = event;
-    console.log(name, value);
     this.setState({
       [name]: value
     });

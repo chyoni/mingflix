@@ -4,7 +4,9 @@ import PropTypes from "prop-types";
 
 class AnonymousProfileContainer extends Component {
   state = {
-    loading: true
+    loading: true,
+    seeFollowers: false,
+    seeFollowings: false
   };
 
   static propTypes = {
@@ -40,16 +42,36 @@ class AnonymousProfileContainer extends Component {
     }
   };
   render() {
-    const { loading } = this.state;
+    const { loading, seeFollowers, seeFollowings } = this.state;
     const { anonymousUser, username } = this.props;
     return (
       <AnonymousProfilePresenter
         loading={loading}
+        seeFollowers={seeFollowers}
+        seeFollowings={seeFollowings}
         amProfile={anonymousUser}
         username={username}
+        toggleFollowers={this._toggleFollowers}
+        toggleFollowings={this._toggleFollowings}
       />
     );
   }
+
+  _toggleFollowers = () => {
+    this.setState(state => {
+      return {
+        seeFollowers: !state.seeFollowers
+      };
+    });
+  };
+
+  _toggleFollowings = () => {
+    this.setState(state => {
+      return {
+        seeFollowings: !state.seeFollowings
+      };
+    });
+  };
 }
 
 export default AnonymousProfileContainer;

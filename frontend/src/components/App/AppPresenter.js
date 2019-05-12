@@ -12,6 +12,7 @@ import Search from "../Search";
 import AnonymousProfile from "../AnonymousProfile";
 import History from "../History";
 import Post from "../Post";
+import Update from "../Update";
 
 const AppPresesnter = props => [
   props.isLoggedIn ? <Navigation key={1} /> : null,
@@ -36,6 +37,7 @@ const PrivateRoutes = props => (
     />
     <Route exact={true} path={"/history"} component={History} />
     <Route exact={true} path={"/post"} component={Post} />
+    <Route exact={true} path={"/update/:videoId"} component={Update} />
   </Switch>
 );
 

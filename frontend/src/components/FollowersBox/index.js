@@ -1,21 +1,20 @@
-import SidebarContainer from "./SidebarContainer";
 import { connect } from "react-redux";
+import FollowersBoxContainer from "./FollowersBoxContainer";
 import { actionCreators as userAction } from "../../Redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    users: { followingList, username }
+    users: { followerList }
   } = state;
   return {
-    followingList,
-    username
+    followerList
   };
 };
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
-    myFollowingList: username => {
-      dispatch(userAction.getFollowingList(username));
+    getFollowerList: username => {
+      dispatch(userAction.getFollowersList(username));
     }
   };
 };
@@ -23,4 +22,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default connect(
   mapStateToProps,
   mapDispatchToProps
-)(SidebarContainer);
+)(FollowersBoxContainer);
