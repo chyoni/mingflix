@@ -6,26 +6,43 @@ import styles from "./styles.module.scss";
 import MyPostVideo from "../MyPostVideo";
 import FollowersBox from "../FollowersBox";
 import FollowingsBox from "../FollowingsBox";
+import { Link } from "react-router-dom";
 
 const ProfilePresenter = props => {
   console.log(props);
   return props.loading ? (
     <Loading />
-  ) : (
+  ) : props.yourProfile.channel ? (
     <React.Fragment>
       <Helmet>
         <title>Mingflix | 나의 프로필</title>
       </Helmet>
       <div className={styles.infoContainer}>
         <div className={styles.header}>
-          <img
-            src={
-              props.yourProfile.profile_image ||
-              require("../../images/noPhoto.jpg")
-            }
-            alt={props.yourProfile.username}
-            className={styles.profileImage}
-          />
+          {props.yourProfile.is_streaming ? (
+            <Link
+              to={`/live/${props.yourProfile.channel.stream_key}/`}
+              className={styles.link}
+            >
+              <img
+                src={
+                  props.yourProfile.profile_image ||
+                  require("../../images/noPhoto.jpg")
+                }
+                alt={props.yourProfile.username}
+                className={styles.streamProfileImage}
+              />
+            </Link>
+          ) : (
+            <img
+              src={
+                props.yourProfile.profile_image ||
+                require("../../images/noPhoto.jpg")
+              }
+              alt={props.yourProfile.username}
+              className={styles.profileImage}
+            />
+          )}
           <div className={styles.main}>
             <div className={styles.usernameCard}>
               <span className={styles.username}>
@@ -88,6 +105,20 @@ const ProfilePresenter = props => {
         />
       </div>
     </React.Fragment>
+  ) : (
+    <React.Fragment>
+      <Helmet>
+        <title>Mingflix | 나의 프로필</title>
+      </Helmet>
+      <div className={styles.infoContainer}>
+        <div className={styles.noChannelHeader}>
+          <span className={styles.noChannel}>{"채널이 없습니다😥"}</span>
+          <button className={styles.channelCreate} onClick={props.goCraeteFunc}>
+            {"채널 만들기"}
+          </button>
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 
@@ -95,7 +126,8 @@ ProfilePresenter.propTypes = {
   seeFollowers: PropTypes.bool.isRequired,
   seeFollowings: PropTypes.bool.isRequired,
   toggleFollowers: PropTypes.func.isRequired,
-  toggleFollowings: PropTypes.func.isRequired
+  toggleFollowings: PropTypes.func.isRequired,
+  goCraeteFunc: PropTypes.func.isRequired
 };
 
 export default ProfilePresenter;

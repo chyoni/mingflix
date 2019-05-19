@@ -8,14 +8,24 @@ class FeedContainer extends Component {
   };
   static propTypes = {
     getHotVideos: PropTypes.func.isRequired,
-    getFollowingsVideos: PropTypes.func.isRequired
+    getFollowingsVideos: PropTypes.func.isRequired,
+    getFollowingsStreaming: PropTypes.func.isRequired
   };
 
   componentDidMount() {
-    const { getHotVideos, getFollowingsVideos } = this.props;
-    if (!this.props.hotVideos && !this.props.followingsVideos) {
+    const {
+      getHotVideos,
+      getFollowingsVideos,
+      getFollowingsStreaming
+    } = this.props;
+    if (
+      !this.props.hotVideos ||
+      !this.props.followingsVideo ||
+      !this.props.followingsStreaming
+    ) {
       getHotVideos();
       getFollowingsVideos();
+      getFollowingsStreaming();
     } else {
       this.setState({
         loading: false
@@ -24,7 +34,11 @@ class FeedContainer extends Component {
   }
 
   componentWillReceiveProps = nextProps => {
-    if (nextProps.hotVideos) {
+    if (
+      nextProps.hotVideos &&
+      nextProps.followingsVideo &&
+      nextProps.followingsStreaming
+    ) {
       this.setState({
         loading: false
       });
@@ -32,13 +46,13 @@ class FeedContainer extends Component {
   };
 
   render() {
-    const { hotVideos, followingsVideo } = this.props;
-    console.log(this.state.loading);
+    const { hotVideos, followingsVideo, followingsStreaming } = this.props;
     return (
       <FeedPresenter
         loading={this.state.loading}
         hotVideos={hotVideos}
         followingsVideo={followingsVideo}
+        followingsStreaming={followingsStreaming}
       />
     );
   }

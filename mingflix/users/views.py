@@ -165,6 +165,29 @@ class UserChannel(APIView):
 
         return Response(data=serializer.data, status=status.HTTP_200_OK)
 
+    def post(self, request, username, format=None):
+
+        user = request.user
+
+        exist_channel = self.get_channel(username)
+
+        if exist_channel is None:
+
+            serializer = serializers.ChannelSerializer(data=request.data)
+
+            if serializer.is_valid():
+
+                serializer.save(creator=user)
+
+                return Response(data=serializer.data, status=status.HTTP_201_CREATED)
+
+            else:
+                return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+        else:
+
+            return Response(status=status.HTTP_302_FOUND)
+
     def put(self, request, username, format=None):
 
         user = request.user

@@ -1,0 +1,64 @@
+@import "../../config/variables";
+
+.container {
+  position: fixed;
+  top: 79px;
+  left: 58%;
+  width: 300px;
+  height: 0;
+  z-index: 10;
+  .box {
+    @include boxBorder(no);
+    box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+    width: 100%;
+    max-width: 300px;
+    &:after {
+      border-top: 0px solid transparent;
+      border-left: 20px solid transparent;
+      border-right: 20px solid transparent;
+      border-bottom: 20px solid white;
+
+      content: "";
+      position: absolute;
+      top: -19px;
+      left: 86.4%;
+    }
+    .header {
+      display: flex;
+      padding: 14px 0;
+      justify-content: center;
+      align-items: center;
+      border-bottom: 2px solid $light-grey;
+      .title {
+        order: 0;
+        font-weight: 600;
+        font-size: 20px;
+      }
+    }
+    .content {
+      min-height: 80px;
+      max-height: 80px;
+      overflow-y: auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      &:hover {
+        background-color: #cdcdcd;
+      }
+      .icon {
+        margin-right: 10px;
+      }
+      .startStream {
+        font-size: 17px;
+        text-align: center;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.link {
+  text-decoration: none;
+  color: black;
+}

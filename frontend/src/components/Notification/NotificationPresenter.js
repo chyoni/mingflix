@@ -6,7 +6,6 @@ import Loading from "../Loading";
 import NoticeRow from "../NoticeRow";
 
 const NotificationPresenter = props => {
-  console.log(props);
   return (
     <div className={styles.container}>
       <div className={styles.box}>

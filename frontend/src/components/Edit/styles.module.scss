@@ -1,0 +1,176 @@
+@import "../../config/variables";
+
+.container {
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  max-width: $max-page-width;
+  .editContainer {
+    @include boxBorder(yes);
+    width: 100%;
+    max-width: $max-card-width;
+    margin-top: 60px;
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      justify-content: center;
+      border-bottom: 1px solid $border-color;
+      .title {
+        font-size: 19px;
+        font-weight: 600;
+      }
+    }
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .username {
+        margin-top: 20px;
+        margin-right: 35px;
+        .usernameInput {
+          background-color: $dark-grey;
+          margin-right: 50px;
+          width: 400px;
+          border: 1px solid #efefef;
+          border-radius: 3px;
+          margin-bottom: 5px;
+          font-size: $small-font-size;
+          padding: 9px 0 7px 8px;
+          font-size: 16px;
+          font-weight: 600;
+          &:focus {
+            outline: none;
+            border: 1px solid #b2b2b2;
+          }
+        }
+        .usernameSpan {
+          font-size: 14px;
+          font-weight: 600;
+        }
+      }
+      .previewInput {
+        margin-right: 50px;
+        width: 400px;
+        border: 1px solid #efefef;
+        border-radius: 3px;
+        background-color: $bg-color;
+        margin-bottom: 5px;
+        font-size: $small-font-size;
+        padding: 9px 0 7px 8px;
+        font-weight: 400;
+        &:focus {
+          outline: none;
+          border: 1px solid #b2b2b2;
+        }
+      }
+      .button {
+        cursor: pointer;
+        border: 1px solid $border-color;
+        color: black;
+        background-color: white;
+        padding-left: 10px;
+        padding-right: 10px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+      .input {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+      .fileBox {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        margin-top: 10px;
+        margin-left: 36px;
+      }
+      .infoBox {
+        margin-top: 10px;
+        margin-left: -11px;
+        .name {
+          .nameSpan {
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+        .phone {
+          .phoneSpan {
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+        .channelName {
+          .channelNameSpan {
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+        .caption {
+          .channelCaptionSpan {
+            margin-right: 10px;
+            font-size: 14px;
+            font-weight: 600;
+          }
+        }
+      }
+    }
+    .footer {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      display: flex;
+      max-width: 775px;
+      justify-content: flex-end;
+      .updateButton {
+        cursor: pointer;
+        border: 1px solid $border-color;
+        color: black;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 15px;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.infoContainer {
+  width: 100%;
+  max-width: $max-page-width;
+  display: flex;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid $border-color;
+  .noChannelHeader {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    max-width: $max-card-width;
+    margin-top: 40px;
+    .noChannel {
+      display: block;
+      font-size: 19px;
+      font-weight: 400;
+      margin-bottom: 40px;
+    }
+    .channelCreate {
+      @include blueButton();
+    }
+  }
+}

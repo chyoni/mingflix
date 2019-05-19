@@ -14,7 +14,6 @@ class VideoCommentsContainer extends Component {
     videoId: PropTypes.number.isRequired
   };
   render() {
-    console.log(this.props);
     const { comments, creator, videoId } = this.props;
     const { seeCommentOp } = this.state;
     return (

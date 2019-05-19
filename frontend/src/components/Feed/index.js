@@ -1,14 +1,17 @@
 import FeedContainer from "./FeedContainer";
 import { connect } from "react-redux";
 import { actionCreators as videoAction } from "../../Redux/modules/video";
+import { actionCreators as streamAction } from "../../Redux/modules/streaming";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    video: { hotVideos, followingsVideo }
+    video: { hotVideos, followingsVideo },
+    streaming: { followingsStreaming }
   } = state;
   return {
     hotVideos,
-    followingsVideo
+    followingsVideo,
+    followingsStreaming
   };
 };
 
@@ -19,6 +22,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     getFollowingsVideos: () => {
       dispatch(videoAction.getFollowingsVideos());
+    },
+    getFollowingsStreaming: () => {
+      dispatch(streamAction.getFollowingsStreaming());
     }
   };
 };

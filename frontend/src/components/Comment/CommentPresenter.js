@@ -4,7 +4,6 @@ import styles from "./styles.module.scss";
 import IosClose from "react-ionicons/lib/IosClose";
 
 const CommentPresenter = props => {
-  console.log(props);
   return (
     <div className={styles.oneToOneComment}>
       <img

@@ -9,24 +9,34 @@ class SidebarContainer extends Component {
   static propTypes = {
     followingList: PropTypes.array,
     myFollowingList: PropTypes.func.isRequired,
-    username: PropTypes.string.isRequired
+    username: PropTypes.string.isRequired,
+    getProfile: PropTypes.func.isRequired,
+    yourProfile: PropTypes.object
   };
   componentDidMount() {
-    const { myFollowingList, username } = this.props;
+    const { myFollowingList, username, getProfile } = this.props;
     myFollowingList(username);
+    getProfile();
   }
 
   componentWillReceiveProps = nextProps => {
-    if (nextProps.followingList) {
+    if (nextProps.followingList && nextProps.yourProfile) {
       this.setState({
         loading: false
       });
     }
   };
   render() {
-    const { followingList } = this.props;
+    const { followingList, yourProfile } = this.props;
     const { loading } = this.state;
-    return <SidebarPresenter followingList={followingList} loading={loading} />;
+    console.log(this.props);
+    return (
+      <SidebarPresenter
+        followingList={followingList}
+        loading={loading}
+        yourProfile={yourProfile}
+      />
+    );
   }
 }
 

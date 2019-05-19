@@ -9,7 +9,8 @@ class SearchContainer extends Component {
   static propTypes = {
     searchByTerm: PropTypes.func.isRequired,
     searchUserList: PropTypes.array,
-    searchVideoList: PropTypes.array
+    searchVideoList: PropTypes.array,
+    searchStreamingList: PropTypes.array
   };
 
   componentDidMount() {
@@ -29,7 +30,11 @@ class SearchContainer extends Component {
       searchByTerm,
       location: { pathname }
     } = this.props;
-    if (nextProps.searchUserList && nextProps.searchVideoList) {
+    if (
+      nextProps.searchUserList &&
+      nextProps.searchVideoList &&
+      nextProps.searchStreamingList
+    ) {
       this.setState({
         loading: false
       });
@@ -40,13 +45,14 @@ class SearchContainer extends Component {
   }
 
   render() {
-    const { searchUserList, searchVideoList } = this.props;
+    const { searchUserList, searchVideoList, searchStreamingList } = this.props;
     const { loading } = this.state;
     return (
       <SearchPresenter
         loading={loading}
         userList={searchUserList}
         videoList={searchVideoList}
+        streamingList={searchStreamingList}
       />
     );
   }

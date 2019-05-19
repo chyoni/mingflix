@@ -1,0 +1,54 @@
+@import "../../config/variables";
+
+.link {
+  text-decoration: none;
+  color: black;
+  .container {
+    margin-right: 6px;
+    max-width: 200px;
+    min-height: 206px;
+    margin-bottom: 20px;
+    .column {
+      &:first-child {
+        margin-bottom: 10px;
+      }
+      .poster {
+        width: 200px;
+        height: 130px;
+      }
+      .topTitle {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .title {
+          font-weight: 600;
+          font-size: $small-font-size;
+          margin-bottom: 5px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+        }
+        .info {
+          font-size: 11px;
+          font-weight: 400;
+          color: #db3737;
+          border: 1px solid #db3737;
+        }
+      }
+      .description {
+        display: block;
+        font-size: 12px;
+        color: $dark-grey;
+        font-weight: 600;
+        margin-bottom: 4px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .channelName {
+        font-size: 12px;
+        color: $dark-grey;
+        display: block;
+        font-weight: 600;
+      }
+    }
+  }
+}

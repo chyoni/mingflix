@@ -13,6 +13,10 @@ import AnonymousProfile from "../AnonymousProfile";
 import History from "../History";
 import Post from "../Post";
 import Update from "../Update";
+import Live from "../Live";
+import Stream from "../Stream";
+import CreateChannel from "../CreateChannel";
+import Edit from "../Edit";
 
 const AppPresesnter = props => [
   props.isLoggedIn ? <Navigation key={1} /> : null,
@@ -38,6 +42,10 @@ const PrivateRoutes = props => (
     <Route exact={true} path={"/history"} component={History} />
     <Route exact={true} path={"/post"} component={Post} />
     <Route exact={true} path={"/update/:videoId"} component={Update} />
+    <Route exact={true} path={"/live/:streamKey"} component={Live} />
+    <Route exact={true} path={"/stream"} component={Stream} />
+    <Route exact={true} path={"/create"} component={CreateChannel} />
+    <Route exact={true} path={"/edit"} component={Edit} />
   </Switch>
 );
 

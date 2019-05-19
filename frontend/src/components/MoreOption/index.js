@@ -5,7 +5,6 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const MoreOption = props => {
-  console.log(props);
   return (
     <div className={styles.container}>
       <div className={styles.box}>

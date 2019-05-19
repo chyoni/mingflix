@@ -18,8 +18,12 @@
   .column {
     margin-bottom: 15px;
     .item {
+      @import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+      font-family: "Ubuntu", sans-serif;
       color: $dark-blue;
-      cursor: pointer;
+      margin-right: 13px;
+      font-weight: 600;
+      font-size: 14px;
       @include breakpoint("phone-tablet") {
         margin-right: 15px;
       }

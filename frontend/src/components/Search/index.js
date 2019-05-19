@@ -4,12 +4,13 @@ import { actionCreators as userAction } from "../../Redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    users: { searchUserList, searchVideoList },
+    users: { searchUserList, searchVideoList, searchStreamingList },
     router: { location }
   } = state;
   return {
     searchUserList,
     searchVideoList,
+    searchStreamingList,
     location
   };
 };

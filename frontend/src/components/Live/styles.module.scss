@@ -1,0 +1,125 @@
+@import "../../config/variables";
+
+.detailStreaming {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: $max-page-width;
+  margin: 0 auto;
+  align-items: center; //좌우
+  .container {
+    @include boxBorder(yes);
+    width: 100%;
+    max-width: $max-card-width;
+    margin-top: 60px;
+    @include breakpoint("phone") {
+      background-color: transparent;
+      border: 0;
+      margin-bottom: 30px;
+    }
+    &:last-child {
+      margin-bottom: 0;
+    }
+    .link {
+      text-decoration: none;
+      color: black;
+    }
+    .header {
+      display: flex;
+      padding: 15px;
+      width: 100%;
+      border-bottom: 1px solid $border-color;
+      align-items: center;
+      .userInfo {
+        display: flex;
+        align-items: center;
+        .profileImage {
+          width: 40px;
+          height: 40px;
+          border: 1px solid $border-color;
+          border-radius: 50%;
+          margin-right: 15px;
+        }
+        .headerColumn {
+          display: flex;
+          flex-direction: column;
+          .creator {
+            font-weight: 600;
+            margin-bottom: 5px;
+          }
+          .location {
+            font-size: $small-font-size;
+          }
+        }
+      }
+      .more {
+        display: flex;
+        width: 100%;
+        justify-content: flex-end;
+        .moreIcon {
+          cursor: pointer;
+          &:hover {
+            border-radius: 20px;
+            background-color: $light-grey;
+          }
+        }
+      }
+      .button {
+        @import url("https://fonts.googleapis.com/css?family=Barlow:400,700|Roboto:400,700");
+        font-family: "Barlow", sans-serif;
+        font-family: "Roboto", sans-serif;
+        -webkit-appearance: none; //browser마다 고유의 default 속성을 제거
+        border-radius: 3px;
+        background-color: #db3737;
+        color: white;
+        font-weight: 600;
+        border: 0;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        font-size: $small-font-size;
+        line-height: 26px;
+        cursor: pointer;
+        &:focus,
+        &:active {
+          outline: none;
+        }
+        &:active {
+          opacity: 0.9;
+        }
+      }
+    }
+    .streaming {
+      video {
+        z-index: 1;
+      }
+    }
+    .postImage {
+      width: 599px;
+      max-height: 599px;
+    }
+    .meta {
+      padding: 15px;
+      padding-bottom: 0;
+      padding-top: 10px;
+      .titleColumn {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        margin-bottom: 10px;
+        .title {
+          display: block;
+          font-size: $normal-font-size;
+          font-weight: 600;
+          margin-bottom: 30px;
+        }
+        .description {
+          font-size: 14px;
+          font-weight: 400;
+          color: $dark-grey;
+        }
+      }
+    }
+  }
+}

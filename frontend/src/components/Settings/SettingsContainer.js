@@ -6,9 +6,11 @@ class SettingsContainer extends Component {
   static propTypes = {
     toggleSetting: PropTypes.func.isRequired,
     logout: PropTypes.func.isRequired,
-    changePassword: PropTypes.func.isRequired
+    changePassword: PropTypes.func.isRequired,
+    goToHome: PropTypes.func.isRequired
   };
   render() {
+    console.log(this.props);
     return (
       <SettingsPresenter
         clickToggle={this._clickToggle}
@@ -22,9 +24,11 @@ class SettingsContainer extends Component {
     toggleSetting();
   };
 
-  _clickLogout = () => {
-    const { logout } = this.props;
-    logout();
+  _clickLogout = async () => {
+    const { logout, goToHome } = this.props;
+    await goToHome();
+    await logout();
+    window.location.reload();
   };
 }
 

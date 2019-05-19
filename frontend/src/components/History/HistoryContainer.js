@@ -26,7 +26,6 @@ class HistoryContainer extends Component {
   };
 
   render() {
-    console.log(this.props);
     const { myHistory } = this.props;
     const { loading } = this.state;
     return <HistoryPresenter myHistory={myHistory} loading={loading} />;

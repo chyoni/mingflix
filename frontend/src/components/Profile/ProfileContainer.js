@@ -10,7 +10,8 @@ class ProfileContainer extends Component {
   };
 
   static propTypes = {
-    getProfile: PropTypes.func.isRequired
+    getProfile: PropTypes.func.isRequired,
+    goToCreateChannel: PropTypes.func.isRequired
   };
 
   componentDidMount() {
@@ -36,6 +37,7 @@ class ProfileContainer extends Component {
         seeFollowings={seeFollowings}
         toggleFollowers={this._toggleFollowers}
         toggleFollowings={this._toggleFollowings}
+        goCraeteFunc={this._goCreateFunc}
       />
     );
   }
@@ -54,6 +56,11 @@ class ProfileContainer extends Component {
         seeFollowings: !state.seeFollowings
       };
     });
+  };
+
+  _goCreateFunc = () => {
+    const { goToCreateChannel } = this.props;
+    goToCreateChannel();
   };
 }
 

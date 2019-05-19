@@ -5,6 +5,7 @@ import styles from "./styles.module.scss";
 import Loading from "../Loading";
 import HotVideos from "../HotVideos";
 import FollowingsVideo from "../FollowingsVideo";
+import FollowStreaming from "../FollowStreaming";
 
 const FeedPresenter = props => {
   return props.loading ? (
@@ -13,6 +14,7 @@ const FeedPresenter = props => {
     <RenderFeed
       hotVideos={props.hotVideos}
       followingsVideo={props.followingsVideo}
+      followingsStreaming={props.followingsStreaming}
     />
   );
 };
@@ -20,7 +22,8 @@ const FeedPresenter = props => {
 FeedPresenter.propTypes = {
   loading: PropTypes.bool.isRequired,
   hotVideos: PropTypes.array,
-  followingsVideo: PropTypes.array
+  followingsVideo: PropTypes.array,
+  followingsStreaming: PropTypes.array
 };
 
 const LoadingFeed = props => (
@@ -36,6 +39,7 @@ const RenderFeed = props => [
     </Helmet>
     <HotVideos key={5} hotVideos={props.hotVideos} />
     <FollowingsVideo key={6} followingsVideo={props.followingsVideo} />
+    <FollowStreaming key={7} followingsStreaming={props.followingsStreaming} />
   </div>
 ];
 

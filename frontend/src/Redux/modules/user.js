@@ -1,3 +1,5 @@
+import { toast } from "react-toastify";
+import { push } from "react-router-redux";
 //import
 
 //actions
@@ -8,6 +10,7 @@ const SET_PROFILE = "SET_PROFILE";
 const SET_YOUR_PROFILE = "SET_YOUR_PROFILE";
 const SEARCH_USER = "SEARCH_USER";
 const SEARCH_VIDEO = "SEARCH_VIDEO";
+const SEARCH_STREAMING = "SEARCH_STREAMING";
 const SET_NOTIFICATION = "SET_NOTIFICATION";
 const SET_UNFOLLOW = "SET_UNFOLLOW";
 const SET_FOLLOW = "SET_FOLLOW";
@@ -51,6 +54,13 @@ function setSearchVideoList(searchVideoList) {
   return {
     type: SEARCH_VIDEO,
     searchVideoList
+  };
+}
+
+function setSearchStreamList(searchStreamingList) {
+  return {
+    type: SEARCH_STREAMING,
+    searchStreamingList
   };
 }
 
@@ -111,6 +121,8 @@ function usernameLogin(username, password) {
         console.log(json);
         if (json.token) {
           dispatch(saveToken(json));
+        } else {
+          toast.error("아이디 혹은 비밀번호가 틀립니다😥");
         }
       })
       .catch(err => console.log(err));
@@ -153,10 +165,58 @@ function createAccount(username, password, email, name) {
         name
       })
     })
-      .then(response => response.json())
+      .then(response => {
+        return response.json();
+      })
       .then(json => {
+        console.log(json);
         if (json.token) {
           dispatch(saveToken(json));
+        } else if (!json.token && json.username) {
+          toast.error(json.username[0]);
+        } else if (!json.token && json.email) {
+          toast.error(json.email[0]);
+        } else if (!json.token && json.password1) {
+          toast.error(json.password1[0]);
+        }
+      })
+      .catch(err => console.log(err));
+  };
+}
+
+function createChannel(channel_name, channel_caption, stream_key) {
+  return (dispatch, getState) => {
+    const {
+      users: { token, username }
+    } = getState();
+    fetch(`/users/${username}/channel/`, {
+      method: "POST",
+      headers: {
+        Authorization: `JWT ${token}`,
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        channel_name,
+        channel_caption,
+        stream_key
+      })
+    })
+      .then(response => {
+        if (response.status === 401) {
+          dispatch(logout());
+        }
+        return response.json();
+      })
+      .then(json => {
+        if (json.id) {
+          toast.success("채널이 생성되었습니다😘");
+          setTimeout(() => {
+            dispatch(push("/profile"));
+          }, 2500);
+        } else if (!json.id && json.channel_name) {
+          toast.error(json.channel_name[0]);
+        } else if (!json.id && json.stream_key) {
+          toast.error(json.stream_key[0]);
         }
       })
       .catch(err => console.log(err));
@@ -205,6 +265,89 @@ function getYourProfile(username) {
   };
 }
 
+function editInfo(profile_image, name, phone, channel_name, channel_caption) {
+  return async (dispatch, getState) => {
+    const {
+      users: { token, username }
+    } = getState();
+    const editProfileRes = await editProfile(
+      token,
+      username,
+      profile_image,
+      name,
+      phone
+    );
+    const editChannelRes = await editChannelInfo(
+      token,
+      username,
+      channel_name,
+      channel_caption
+    );
+    if (editProfileRes === 401 || editChannelRes === 401) {
+      dispatch(logout());
+    } else if (editProfileRes.id && editChannelRes.id) {
+      toast.success("프로필이 수정되었습니다🤗");
+      setTimeout(() => {
+        dispatch(push("/profile"));
+      }, 2500);
+    }
+  };
+}
+
+function editProfile(token, username, profile_image, name, phone) {
+  let formData = new FormData();
+  if (profile_image === null) {
+    formData.append("name", name);
+    formData.append("phone", phone);
+  } else {
+    formData.append("profile_image", profile_image);
+    formData.append("name", name);
+    formData.append("phone", phone);
+  }
+  return fetch(`/users/${username}/`, {
+    method: "PUT",
+    headers: {
+      Authorization: `JWT ${token}`,
+      Accept: "application/json, text/plain, */*"
+    },
+    body: formData
+  })
+    .then(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => {
+      return json;
+    })
+    .catch(err => console.log(err));
+}
+
+function editChannelInfo(token, username, channel_name, channel_caption) {
+  return fetch(`/users/${username}/channel/`, {
+    method: "PUT",
+    headers: {
+      Authorization: `JWT ${token}`,
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      channel_name,
+      channel_caption
+    })
+  })
+    .then(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => {
+      return json;
+    })
+    .catch(err => console.log(err));
+}
+
 function searchByTerm(searchTerm) {
   return async (dispatch, getState) => {
     const {
@@ -212,11 +355,17 @@ function searchByTerm(searchTerm) {
     } = getState();
     const searchUserList = await searchUsers(token, searchTerm);
     const searchVideoList = await searchVideos(token, searchTerm);
-    if (searchUserList === 401 || searchVideoList === 401) {
+    const searchStreamingList = await searchStreaming(token, searchTerm);
+    if (
+      searchUserList === 401 ||
+      searchVideoList === 401 ||
+      searchStreamingList === 401
+    ) {
       dispatch(logout());
     }
     dispatch(setSearchUserList(searchUserList));
     dispatch(setSearchVideoList(searchVideoList));
+    dispatch(setSearchStreamList(searchStreamingList));
   };
 }
 
@@ -237,6 +386,21 @@ function searchUsers(token, searchTerm) {
 
 function searchVideos(token, searchTerm) {
   return fetch(`/videos/search/?search_term=${searchTerm}`, {
+    headers: {
+      Authorization: `JWT ${token}`
+    }
+  })
+    .then(response => {
+      if (response.status === 401) {
+        return 401;
+      }
+      return response.json();
+    })
+    .then(json => json);
+}
+
+function searchStreaming(token, searchTerm) {
+  return fetch(`/streaming/search/?stream_search_term=${searchTerm}`, {
     headers: {
       Authorization: `JWT ${token}`
     }
@@ -408,6 +572,8 @@ function reducer(state = initialState, action) {
       return applySearchUser(state, action);
     case SEARCH_VIDEO:
       return applySearchVideo(state, action);
+    case SEARCH_STREAMING:
+      return applySearchStreaming(state, action);
     case SET_YOUR_PROFILE:
       return applySetYourProfile(state, action);
     case SET_NOTIFICATION:
@@ -488,6 +654,15 @@ function applySearchVideo(state, action) {
     searchVideoList
   };
 }
+
+function applySearchStreaming(state, action) {
+  const { searchStreamingList } = action;
+  return {
+    ...state,
+    searchStreamingList
+  };
+}
+
 function applySetNotification(state, action) {
   const { notices } = action;
   return {
@@ -585,7 +760,9 @@ const actionCreators = {
   unFollowUser,
   changePassword,
   getFollowingList,
-  getFollowersList
+  getFollowersList,
+  createChannel,
+  editInfo
 };
 
 //reducer export

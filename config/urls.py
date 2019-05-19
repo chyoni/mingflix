@@ -16,6 +16,7 @@ urlpatterns = [
     path("rest-auth/registration/", include('rest_auth.registration.urls')),
     path("users/", include("mingflix.users.urls", namespace="users")),
     path("videos/", include("mingflix.videos.urls", namespace="videos")),
+    path("streaming/", include("mingflix.streaming.urls", namespace="streaming")),
     path("notifications/", include("mingflix.notifications.urls", namespace="notifications")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here

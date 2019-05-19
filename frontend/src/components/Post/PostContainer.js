@@ -8,24 +8,45 @@ class PostContainer extends Component {
     poster: null,
     title: "",
     tags: "",
-    description: ""
+    description: "",
+    loading: true
   };
   static propTypes = {
-    postVideo: PropTypes.func.isRequired
+    postVideo: PropTypes.func.isRequired,
+    yourProfile: PropTypes.object,
+    getProfile: PropTypes.func.isRequired
   };
+
+  componentDidMount() {
+    const { getProfile } = this.props;
+    getProfile();
+  }
+
+  componentWillReceiveProps = nextProps => {
+    if (nextProps.yourProfile) {
+      this.setState({
+        loading: false
+      });
+    }
+  };
+
   render() {
-    const { file, poster, title, tags, description } = this.state;
+    const { file, poster, title, tags, description, loading } = this.state;
+    const { yourProfile } = this.props;
     return (
       <PostPresenter
         file={file}
         poster={poster}
         title={title}
         tags={tags}
+        loading={loading}
         description={description}
         fileOnChange={this._fileOnChange}
         posterOnChange={this._posterOnChange}
         handleInputChange={this._handleInputChange}
         handleOnSubmit={this._handleOnSubmit}
+        yourProfile={yourProfile}
+        goCraeteFunc={this._goCraeteFunc}
       />
     );
   }
@@ -63,6 +84,13 @@ class PostContainer extends Component {
     setTimeout(() => {
       push(`/profile`);
     }, 2500);
+  };
+
+  _goCraeteFunc = () => {
+    const {
+      history: { push }
+    } = this.props;
+    push("/create");
   };
 }
 

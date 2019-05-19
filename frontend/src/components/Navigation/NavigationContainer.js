@@ -6,10 +6,17 @@ class NavigationContainer extends Component {
     isMenuOpen: false,
     searchTerm: "",
     seeingNotices: false,
-    isSettingOpen: false
+    isSettingOpen: false,
+    seeingStream: false
   };
   render() {
-    const { isMenuOpen, searchTerm, seeingNotices, isSettingOpen } = this.state;
+    const {
+      isMenuOpen,
+      searchTerm,
+      seeingNotices,
+      isSettingOpen,
+      seeingStream
+    } = this.state;
     return (
       <NavigationPresenter
         {...this.props}
@@ -21,6 +28,8 @@ class NavigationContainer extends Component {
         searchTerm={searchTerm}
         seeingNotices={seeingNotices}
         isSettingOpen={isSettingOpen}
+        seeingStream={seeingStream}
+        toggleStream={this._toggleStream}
         openNoticeList={this._openNoticeList}
         closeNoticeList={this._closeNoticeList}
       />
@@ -55,6 +64,14 @@ class NavigationContainer extends Component {
     this.setState(state => {
       return {
         isSettingOpen: !state.isSettingOpen
+      };
+    });
+  };
+
+  _toggleStream = () => {
+    this.setState(state => {
+      return {
+        seeingStream: !state.seeingStream
       };
     });
   };

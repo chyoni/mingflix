@@ -13,6 +13,7 @@ class IntroChannelSerializer(serializers.ModelSerializer):
             'id',
             'channel_name',
             'channel_caption',
+            'stream_key',
         )
 
 

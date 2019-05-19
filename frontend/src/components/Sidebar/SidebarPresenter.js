@@ -5,7 +5,9 @@ import IosHome from "react-ionicons/lib/IosHomeOutline";
 import IosFolder from "react-ionicons/lib/IosFolderOutline";
 import IosBookmark from "react-ionicons/lib/IosBookmarkOutline";
 import IosAdd from "react-ionicons/lib/IosAdd";
+import IosVideoCam from "react-ionicons/lib/IosVideocamOutline";
 import Loading from "../Loading";
+import IosSetting from "react-ionicons/lib/IosSettingsOutline";
 import SmallUserList from "../SmallUserList";
 import { Link } from "react-router-dom";
 
@@ -49,6 +51,23 @@ const SidebarPresenter = props => {
             {"Post Video"}
           </div>
         </Link>
+        {props.yourProfile.is_streaming && (
+          <Link
+            to={`/live/${props.yourProfile.channel.stream_key}/`}
+            className={styles.link}
+          >
+            <div className={styles.column}>
+              <section className={styles.icon}>
+                <IosVideoCam
+                  icon={"ios-videocam-outline"}
+                  fontSize={"28px"}
+                  color={"black"}
+                />
+              </section>
+              {"My Streaming"}
+            </div>
+          </Link>
+        )}
         <div className={styles.subscribeColumn}>
           <div className={styles.subscribeTitle}>
             <section className={styles.icon}>
@@ -73,6 +92,18 @@ const SidebarPresenter = props => {
             })}
           </div>
         </div>
+        <Link to={"/edit"} className={styles.link}>
+          <div className={styles.column}>
+            <section className={styles.icon}>
+              <IosSetting
+                icon={"ios-setting-outline"}
+                fontSize={"28px"}
+                color={"black"}
+              />
+            </section>
+            {"Edit Profile"}
+          </div>
+        </Link>
       </div>
     </div>
   );

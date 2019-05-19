@@ -7,26 +7,43 @@ import MyPostVideo from "../MyPostVideo";
 import FollowButton from "../FollowButton";
 import FollowersBox from "../FollowersBox";
 import FollowingsBox from "../FollowingsBox";
+import { Link } from "react-router-dom";
 
 const AnonymousProfilePresenter = props => {
   console.log(props);
   return props.loading ? (
     <Loading />
-  ) : (
+  ) : props.amProfile.channel ? (
     <React.Fragment>
       <Helmet>
         <title>Mingflix | 프로필</title>
       </Helmet>
       <div className={styles.infoContainer}>
         <div className={styles.header}>
-          <img
-            src={
-              props.amProfile.profile_image ||
-              require("../../images/noPhoto.jpg")
-            }
-            alt={props.amProfile.username}
-            className={styles.profileImage}
-          />
+          {props.amProfile.is_streaming ? (
+            <Link
+              to={`/live/${props.amProfile.channel.stream_key}/`}
+              className={styles.link}
+            >
+              <img
+                src={
+                  props.amProfile.profile_image ||
+                  require("../../images/noPhoto.jpg")
+                }
+                alt={props.amProfile.username}
+                className={styles.streamProfileImage}
+              />
+            </Link>
+          ) : (
+            <img
+              src={
+                props.amProfile.profile_image ||
+                require("../../images/noPhoto.jpg")
+              }
+              alt={props.amProfile.username}
+              className={styles.profileImage}
+            />
+          )}
           <div className={styles.main}>
             <div className={styles.usernameCard}>
               <span className={styles.username}>
@@ -95,6 +112,8 @@ const AnonymousProfilePresenter = props => {
         />
       </div>
     </React.Fragment>
+  ) : (
+    <div />
   );
 };
 

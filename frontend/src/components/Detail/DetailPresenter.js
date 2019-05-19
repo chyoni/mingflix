@@ -11,7 +11,6 @@ import MoreOption from "../MoreOption";
 import { Link } from "react-router-dom";
 
 const DetailPresenter = props => {
-  console.log(props);
   return props.loading ? (
     <Loading />
   ) : (
@@ -58,7 +57,6 @@ const DetailPresenter = props => {
               toggleMoreOption={props.toggleMoreOption}
               handleDelete={props.handleDelete}
               videoId={props.video.id}
-              zz
             />
           )}
         </header>

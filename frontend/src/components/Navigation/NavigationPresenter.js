@@ -10,6 +10,7 @@ import IosMenu from "react-ionicons/lib/IosMenuOutline";
 import Notification from "../Notification";
 import Settings from "../Settings";
 import Sidebar from "../Sidebar";
+import StreamBoard from "../StreamBoard";
 
 const NavigationPresenter = (props, context) => (
   <div className={styles.navigation}>
@@ -49,7 +50,7 @@ const NavigationPresenter = (props, context) => (
             color={"black"}
           />
         </div>
-        <div className={styles.navIcon}>
+        <div className={styles.navIcon} onClick={props.toggleStream}>
           <IosVideoCam
             icon={"ios-videocam-outline"}
             fontSize={"30px"}
@@ -79,6 +80,9 @@ const NavigationPresenter = (props, context) => (
           <Settings toggleSetting={props.toggleSetting} />
         )}
         {props.isMenuOpen && <Sidebar />}
+        {props.seeingStream && (
+          <StreamBoard toggleStream={props.toggleStream} />
+        )}
       </div>
     </div>
   </div>
@@ -95,7 +99,9 @@ NavigationPresenter.propTypes = {
   toggleSetting: PropTypes.func.isRequired,
   isSettingOpen: PropTypes.bool.isRequired,
   isMenuOpen: PropTypes.bool.isRequired,
-  toggleMenu: PropTypes.func.isRequired
+  toggleMenu: PropTypes.func.isRequired,
+  seeingStream: PropTypes.bool.isRequired,
+  toggleStream: PropTypes.func.isRequired
 };
 
 export default NavigationPresenter;

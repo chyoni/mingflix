@@ -4,11 +4,12 @@ import { actionCreators as userAction } from "../../Redux/modules/user";
 
 const mapStateToProps = (state, ownProps) => {
   const {
-    users: { followingList, username }
+    users: { followingList, username, yourProfile }
   } = state;
   return {
     followingList,
-    username
+    username,
+    yourProfile
   };
 };
 
@@ -16,6 +17,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     myFollowingList: username => {
       dispatch(userAction.getFollowingList(username));
+    },
+    getProfile: () => {
+      dispatch(userAction.getProfile());
     }
   };
 };

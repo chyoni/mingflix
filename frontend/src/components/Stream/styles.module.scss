@@ -1,0 +1,94 @@
+@import "../../config/variables";
+
+.container {
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  max-width: $max-page-width;
+  .postContainer {
+    @include boxBorder(yes);
+    width: 100%;
+    max-width: $max-card-width;
+    margin-top: 60px;
+    .header {
+      display: flex;
+      align-items: center;
+      padding: 20px;
+      justify-content: center;
+      border-bottom: 1px solid $border-color;
+      .title {
+        font-size: 19px;
+        font-weight: 600;
+      }
+    }
+    .main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      .previewInput {
+        margin-right: 50px;
+        width: 400px;
+        border: 1px solid #efefef;
+        border-radius: 3px;
+        background-color: $bg-color;
+        margin-bottom: 5px;
+        font-size: $small-font-size;
+        padding: 9px 0 7px 8px;
+        font-weight: 400;
+        &:focus {
+          outline: none;
+          border: 1px solid #b2b2b2;
+        }
+      }
+      .button {
+        cursor: pointer;
+        border: 1px solid $border-color;
+        color: black;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+      .input {
+        font-size: 100px;
+        position: absolute;
+        left: 0;
+        top: 0;
+        opacity: 0;
+      }
+      .posterBox {
+        position: relative;
+        overflow: hidden;
+        display: inline-block;
+        padding: 20px;
+        margin-left: 98px;
+      }
+      .infoBox {
+        padding: 20px;
+        margin-left: -11px;
+      }
+    }
+    .footer {
+      margin-top: 30px;
+      margin-bottom: 30px;
+      display: flex;
+      max-width: 775px;
+      justify-content: flex-end;
+      .startButton {
+        cursor: pointer;
+        border: 1px solid $border-color;
+        color: black;
+        background-color: white;
+        padding: 8px 20px;
+        border-radius: 8px;
+        font-size: 20px;
+        font-weight: 600;
+      }
+    }
+  }
+}

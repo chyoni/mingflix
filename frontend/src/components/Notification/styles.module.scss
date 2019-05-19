@@ -44,7 +44,7 @@
     .content {
       min-height: 300px;
       max-height: 300px;
-      overflow-y: scroll;
+      overflow-y: auto;
       display: flex;
       align-items: center;
       flex-direction: column;

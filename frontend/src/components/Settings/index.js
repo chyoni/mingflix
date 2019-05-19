@@ -1,6 +1,7 @@
 import { connect } from "react-redux";
 import SettingsContainer from "./SettingsContainer";
 import { actionCreators as userAction } from "../../Redux/modules/user";
+import { push } from "react-router-redux";
 
 const mapDispatchToProps = (dispatch, ownProps) => {
   return {
@@ -9,6 +10,9 @@ const mapDispatchToProps = (dispatch, ownProps) => {
     },
     changePassword: (current_password, new_password) => {
       dispatch(userAction.changePassword(current_password, new_password));
+    },
+    goToHome: () => {
+      dispatch(push("/"));
     }
   };
 };

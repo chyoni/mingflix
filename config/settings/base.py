@@ -82,6 +82,7 @@ LOCAL_APPS = [
     "mingflix.users.apps.UsersAppConfig",
     "mingflix.videos.apps.VideosConfig",
     "mingflix.notifications.apps.NotificationsConfig",
+    "mingflix.streaming.apps.StreamingConfig",
     # Your stuff: custom apps go here
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps

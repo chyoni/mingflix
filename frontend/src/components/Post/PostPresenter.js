@@ -2,10 +2,17 @@ import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
 import styles from "./styles.module.scss";
+import Loading from "../Loading";
 
 const PostPresenter = props => {
   console.log(props);
-  return (
+  return props.loading ? (
+    <div className={styles.container}>
+      <div className={styles.postContainer}>
+        <Loading />
+      </div>
+    </div>
+  ) : props.yourProfile.channel ? (
     <div className={styles.container}>
       <Helmet>
         <title>Mingflix | 영상 업로드</title>
@@ -92,6 +99,22 @@ const PostPresenter = props => {
         </footer>
       </div>
     </div>
+  ) : (
+    <React.Fragment>
+      <Helmet>
+        <title>Mingflix | 영상 업로드</title>
+      </Helmet>
+      <div className={styles.infoContainer}>
+        <div className={styles.noChannelHeader}>
+          <span className={styles.noChannel}>
+            {"영상을 올리시려면 채널을 생성하세요🧐"}
+          </span>
+          <button className={styles.channelCreate} onClick={props.goCraeteFunc}>
+            {"채널 만들기"}
+          </button>
+        </div>
+      </div>
+    </React.Fragment>
   );
 };
 
@@ -99,7 +122,9 @@ PostPresenter.propTypes = {
   file: PropTypes.object,
   poster: PropTypes.object,
   fileOnChange: PropTypes.func.isRequired,
-  posterOnChange: PropTypes.func.isRequired
+  posterOnChange: PropTypes.func.isRequired,
+  yourProfile: PropTypes.object,
+  goCraeteFunc: PropTypes.func.isRequired
 };
 
 export default PostPresenter;
