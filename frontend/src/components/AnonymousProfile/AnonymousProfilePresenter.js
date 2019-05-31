@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import styles from "./styles.module.scss";
+import "./AnonymousProfile.css";
 import Loading from "../Loading";
 import PropTypes from "prop-types";
 import MyPostVideo from "../MyPostVideo";
@@ -18,12 +18,12 @@ const AnonymousProfilePresenter = props => {
       <Helmet>
         <title>Mingflix | 프로필</title>
       </Helmet>
-      <div className={styles.infoContainer}>
-        <div className={styles.header}>
+      <div className={"ap-info-container"}>
+        <div className={"ap-header"}>
           {props.amProfile.is_streaming ? (
             <Link
               to={`/live/${props.amProfile.channel.stream_key}/`}
-              className={styles.link}
+              className={"ap-link"}
             >
               <img
                 src={
@@ -31,7 +31,7 @@ const AnonymousProfilePresenter = props => {
                   require("../../images/noPhoto.jpg")
                 }
                 alt={props.amProfile.username}
-                className={styles.streamProfileImage}
+                className={"ap-stream-profile-image"}
               />
             </Link>
           ) : (
@@ -41,14 +41,12 @@ const AnonymousProfilePresenter = props => {
                 require("../../images/noPhoto.jpg")
               }
               alt={props.amProfile.username}
-              className={styles.profileImage}
+              className={"ap-profile-image"}
             />
           )}
-          <div className={styles.main}>
-            <div className={styles.usernameCard}>
-              <span className={styles.username}>
-                {props.amProfile.username}
-              </span>
+          <div className={"ap-main"}>
+            <div className={"ap-username-card"}>
+              <span className={"ap-username"}>{props.amProfile.username}</span>
               {props.username !== props.amProfile.username && (
                 <FollowButton
                   isFollowing={props.amProfile.is_following}
@@ -56,37 +54,34 @@ const AnonymousProfilePresenter = props => {
                 />
               )}
             </div>
-            <div className={styles.channelCard}>
-              <span className={styles.post}>
-                <span className={styles.postCount}>
+            <div className={"ap-channel-card"}>
+              <span className={"ap-post"}>
+                <span className={"ap-post-count"}>
                   {props.amProfile.post_count}
                 </span>
                 {"  "}
                 {"posts"}
               </span>
-              <span
-                className={styles.followers}
-                onClick={props.toggleFollowers}
-              >
-                <span className={styles.followersCount}>
+              <span className={"ap-followers"} onClick={props.toggleFollowers}>
+                <span className={"ap-followers-count"}>
                   {props.amProfile.followers_count}
                 </span>
                 {"  "}
                 {"followers"}
               </span>
               <span
-                className={styles.followings}
+                className={"ap-followings"}
                 onClick={props.toggleFollowings}
               >
-                <span className={styles.followingsCount}>
+                <span className={"ap-followings-count"}>
                   {props.amProfile.following_count}
                 </span>
                 {"  "}
                 {"followings"}
               </span>
             </div>
-            <div className={styles.captionCard}>
-              <span className={styles.channelCaption}>
+            <div className={"ap-caption-card"}>
+              <span className={"ap-channel-caption"}>
                 {props.amProfile.channel.channel_caption}
               </span>
             </div>
@@ -105,7 +100,7 @@ const AnonymousProfilePresenter = props => {
           </div>
         </div>
       </div>
-      <div className={styles.videoContainer}>
+      <div className={"ap-video-container"}>
         <MyPostVideo
           myVideo={props.amProfile.videos}
           text={`${props.amProfile.username}님의 동영상`}

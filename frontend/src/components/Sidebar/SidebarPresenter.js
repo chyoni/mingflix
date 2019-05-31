@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./Sidebar.css";
 import IosHome from "react-ionicons/lib/IosHomeOutline";
 import IosFolder from "react-ionicons/lib/IosFolderOutline";
 import IosBookmark from "react-ionicons/lib/IosBookmarkOutline";
@@ -13,15 +13,15 @@ import { Link } from "react-router-dom";
 
 const SidebarPresenter = props => {
   return props.loading ? (
-    <div className={styles.loadingContainer}>
+    <div className={"sidebar-loading-container"}>
       <Loading />
     </div>
   ) : (
-    <div className={styles.container}>
-      <div className={styles.content}>
-        <Link to={"/"} className={styles.link}>
-          <div className={styles.column}>
-            <section className={styles.icon}>
+    <div className={"sidebar-container"}>
+      <div className={"sidebar-content"}>
+        <Link to={"/"} className={"sidebar-link"}>
+          <div className={"sidebar-column"}>
+            <section className={"sidebar-icon"}>
               <IosHome
                 icon={"ios-home-outline"}
                 fontSize={"28px"}
@@ -31,9 +31,9 @@ const SidebarPresenter = props => {
             {"Home"}
           </div>
         </Link>
-        <Link to={"/history"} className={styles.link}>
-          <div className={styles.column}>
-            <section className={styles.icon}>
+        <Link to={"/history"} className={"sidebar-link"}>
+          <div className={"sidebar-column"}>
+            <section className={"sidebar-icon"}>
               <IosFolder
                 icon={"ios-folder-outline"}
                 fontSize={"28px"}
@@ -43,9 +43,9 @@ const SidebarPresenter = props => {
             {"History"}
           </div>
         </Link>
-        <Link to={"/post"} className={styles.link}>
-          <div className={styles.column}>
-            <section className={styles.icon}>
+        <Link to={"/post"} className={"sidebar-link"}>
+          <div className={"sidebar-column"}>
+            <section className={"sidebar-icon"}>
               <IosAdd icon={"ios-add"} fontSize={"28px"} color={"black"} />
             </section>
             {"Post Video"}
@@ -54,10 +54,10 @@ const SidebarPresenter = props => {
         {props.yourProfile.is_streaming && (
           <Link
             to={`/live/${props.yourProfile.channel.stream_key}/`}
-            className={styles.link}
+            className={"sidebar-link"}
           >
-            <div className={styles.column}>
-              <section className={styles.icon}>
+            <div className={"sidebar-column"}>
+              <section className={"sidebar-icon"}>
                 <IosVideoCam
                   icon={"ios-videocam-outline"}
                   fontSize={"28px"}
@@ -68,9 +68,9 @@ const SidebarPresenter = props => {
             </div>
           </Link>
         )}
-        <div className={styles.subscribeColumn}>
-          <div className={styles.subscribeTitle}>
-            <section className={styles.icon}>
+        <div className={"sidebar-subscribe-column"}>
+          <div className={"sidebar-subscribe-title"}>
+            <section className={"sidebar-icon"}>
               <IosBookmark
                 icon={"ios-bookmark-outline"}
                 fontSize={"28px"}
@@ -79,7 +79,7 @@ const SidebarPresenter = props => {
             </section>
             {"Subscribe"}
           </div>
-          <div className={styles.subscribeContent}>
+          <div className={"sidebar-subscribe-content"}>
             {props.followingList.map(following => {
               return (
                 <SmallUserList
@@ -92,9 +92,9 @@ const SidebarPresenter = props => {
             })}
           </div>
         </div>
-        <Link to={"/edit"} className={styles.link}>
-          <div className={styles.column}>
-            <section className={styles.icon}>
+        <Link to={"/edit"} className={"sidebar-link"}>
+          <div className={"sidebar-column"}>
+            <section className={"sidebar-icon"}>
               <IosSetting
                 icon={"ios-setting-outline"}
                 fontSize={"28px"}

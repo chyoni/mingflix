@@ -1,0 +1,27 @@
+@import "../../config/_variables.css";
+
+.mpv-mypost-video-container {
+  max-width: var(--max-list-width);
+  width: 100%;
+  min-height: 250px;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+.mpv-column {
+  padding: 10px;
+}
+.mpv-title {
+  display: block;
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.mpv-video-box {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.mpv-divider {
+  margin-top: 40px;
+}

@@ -1,18 +1,18 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "./CommentBox.css";
 import Textarea from "react-textarea-autosize";
 import PropTypes from "prop-types";
 
 const CommentBox = (props, context) => (
-  <div className={styles.container}>
+  <div className={"cb-container"}>
     <img
       src={props.profileImage || require("../../images/noPhoto.jpg")}
       alt={props.creator}
-      className={styles.profileImage}
+      className={"cb-profile-image"}
     />
-    <form className={styles.commentBox}>
+    <form className={"cb-comment-box"}>
       <Textarea
-        className={styles.input}
+        className={"cb-input"}
         placeholder={"댓글"}
         value={props.comment}
         onChange={props.handleInputChange}

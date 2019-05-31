@@ -1,0 +1,57 @@
+@import "../../config/_variables.css";
+
+.streaming-list-link {
+  text-decoration: none;
+  color: black;
+}
+.streaming-list-link:focus,
+.streaming-list-link:active {
+  outline: none;
+}
+.streaming-list-container {
+  margin-right: 6px;
+  max-width: 200px;
+  min-height: 206px;
+  margin-bottom: 20px;
+}
+.streaming-list-column:first-child {
+  margin-bottom: 10px;
+}
+
+.streaming-list-poster {
+  width: 200px;
+  height: 130px;
+}
+.streaming-list-top-title {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.streaming-list-title {
+  font-weight: 600;
+  font-size: var(--small-font-size);
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.streaming-list-info {
+  font-size: 11px;
+  font-weight: 400;
+  color: #db3737;
+  border: 1px solid #db3737;
+}
+.streaming-list-description {
+  display: block;
+  font-size: 12px;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin-bottom: 4px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.streaming-list-channel-name {
+  font-size: 12px;
+  color: var(--dark-grey);
+  display: block;
+  font-weight: 600;
+}

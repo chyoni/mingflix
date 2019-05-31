@@ -1,0 +1,59 @@
+@import "../../config/_variables.css";
+
+.streaming-search-list-link {
+  text-decoration: none;
+  color: black;
+}
+.streaming-search-list-link:focus,
+.streaming-search-list-link:active {
+  outline: none;
+}
+.streaming-search-list-container {
+  width: 100%;
+  max-width: var(--max-card-width);
+  min-height: 180px;
+  max-height: 300px;
+}
+.streaming-search-list-streaming-info {
+  display: flex;
+  margin-top: 30px;
+}
+.streaming-search-list-streaming {
+  margin-right: 20px;
+}
+.streaming-search-list-poster {
+  width: 250px;
+  height: 150px;
+}
+.streaming-search-list-info {
+  display: flex;
+  flex-direction: column;
+}
+.streaming-search-list-title {
+  margin-bottom: 6px;
+  font-size: var(--big-font-size);
+  font-weight: 600;
+}
+.streaming-search-list-description {
+  display: block;
+  font-size: 15px;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin-bottom: 6px;
+}
+.streaming-search-list-creator-name {
+  font-size: 15px;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin-bottom: 60px;
+}
+.streaming-search-list-stream-red-box {
+  margin-bottom: 45px;
+}
+.streaming-search-list-red-box {
+  font-size: 15px;
+  padding: 5px;
+  font-weight: 400;
+  color: #db3737;
+  border: 1px solid #db3737;
+}

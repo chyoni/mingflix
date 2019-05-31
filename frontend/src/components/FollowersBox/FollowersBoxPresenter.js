@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./FollowersBox.css";
 import Loading from "../Loading";
 import CloseIcon from "react-ionicons/lib/MdClose";
 import SmallUserList from "../SmallUserList";
@@ -8,17 +8,17 @@ import SmallUserList from "../SmallUserList";
 const FollowersBoxPresenter = props => {
   console.log(props);
   return props.loading ? (
-    <div className={styles.container}>
-      <div className={styles.box}>
+    <div className={"fbox-container"}>
+      <div className={"fbox-box"}>
         <Loading />
       </div>
     </div>
   ) : (
-    <div className={styles.container}>
-      <div className={styles.box}>
-        <header className={styles.header}>
-          <h4 className={styles.title}>{"Followers"}</h4>
-          <span className={styles.closeIcon} onClick={props.toggleFollowers}>
+    <div className={"fbox-container"}>
+      <div className={"fbox-box"}>
+        <header className={"fbox-header"}>
+          <h4 className={"fbox-title"}>{"Followers"}</h4>
+          <span className={"fbox-close-icon"} onClick={props.toggleFollowers}>
             <CloseIcon icon={"md-close"} fontSize={"28px"} color={"black"} />
           </span>
         </header>

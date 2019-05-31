@@ -1,0 +1,113 @@
+@import "../../config/_variables.css";
+
+.detail-detail-video {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--max-page-width);
+  margin: 0 auto;
+  align-items: center;
+}
+.detail-container {
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  max-width: var(--max-card-width);
+  margin-top: 60px;
+}
+
+.detail-container:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 320px) and (max-width: 550px) {
+  .detail-container {
+    background-color: transparent;
+    border: 0;
+    margin-bottom: 30px;
+  }
+}
+
+.detail-link {
+  text-decoration: none;
+  color: black;
+}
+.detail-header {
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+}
+.detail-user-info {
+  display: flex;
+  align-items: center;
+}
+.detail-profile-image {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.detail-header-column {
+  display: flex;
+  flex-direction: column;
+}
+.detail-creator {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.detail-location {
+  font-size: var(--small-font-size);
+}
+.detail-more {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.detail-more-icon {
+  cursor: pointer;
+}
+
+.detail-more-icon:hover {
+  border-radius: 20px;
+  background-color: var(--light-grey);
+}
+
+.detail-video {
+  z-index: 1;
+}
+.detail-post-image {
+  width: 599px;
+  max-height: 599px;
+}
+.detail-meta {
+  padding: 15px;
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+.detail-title-column {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.detail-title {
+  font-size: var(--normal-font-size);
+  font-weight: 600;
+}
+.detail-views {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--dark-grey);
+}
+.detail-time-column {
+  margin-bottom: 10px;
+}
+.detail-post-time {
+  font-size: 14px;
+  font-weight: 400;
+  color: var(--dark-grey);
+}

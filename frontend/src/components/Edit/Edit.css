@@ -1,0 +1,191 @@
+@import "../../config/_variables.css";
+@import url("https://fonts.googleapis.com/css?family=Barlow:400,700|Roboto:400,700");
+
+.edit-container {
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  max-width: var(--max-page-width);
+}
+.edit-edit-container {
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  max-width: var(--max-card-width);
+  margin-top: 60px;
+}
+.edit-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+}
+.edit-title {
+  font-size: 19px;
+  font-weight: 600;
+}
+.edit-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.edit-username {
+  margin-top: 20px;
+  margin-right: 35px;
+}
+.edit-username-input {
+  background-color: var(--dark-grey);
+  margin-right: 50px;
+  width: 400px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  margin-bottom: 5px;
+  font-size: var(--small-font-size);
+  padding: 9px 0 7px 8px;
+  font-size: 16px;
+  font-weight: 600;
+}
+.edit-username-input:focus {
+  outline: none;
+  border: 1px solid #b2b2b2;
+}
+.edit-username-span {
+  font-size: 14px;
+  font-weight: 600;
+}
+.edit-preview-input {
+  margin-right: 50px;
+  width: 400px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  background-color: var(--bg-color);
+  margin-bottom: 5px;
+  font-size: var(--small-font-size);
+  padding: 9px 0 7px 8px;
+  font-weight: 400;
+}
+.edit-preview-input:focus {
+  outline: none;
+  border: 1px solid #b2b2b2;
+}
+.edit-button {
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  color: black;
+  background-color: white;
+  padding-left: 10px;
+  padding-right: 10px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.edit-input {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
+.edit-file-box {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  margin-top: 10px;
+  margin-left: 36px;
+}
+.edit-info-box {
+  margin-top: 10px;
+  margin-left: -11px;
+}
+.edit-name-span {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.edit-phone-span {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.edit-channel-name-span {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.edit-channel-caption-span {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.edit-footer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  max-width: 775px;
+  justify-content: flex-end;
+}
+.edit-update-button {
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  color: black;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+}
+.edit-info-container {
+  width: 100%;
+  max-width: var(--max-page-width);
+  display: flex;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--border-color);
+}
+.edit-no-channel-header {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  max-width: var(--max-card-width);
+  margin-top: 40px;
+}
+.edit-no-channel {
+  display: block;
+  font-size: 19px;
+  font-weight: 400;
+  margin-bottom: 40px;
+}
+.edit-channel-create {
+  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -webkit-appearance: none; /*//browser마다 고유의 default 속성을 제거*/
+  border-radius: 3px;
+  background-color: var(--light-blue);
+  color: white;
+  font-weight: 600;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--small-font-size);
+  line-height: 26px;
+  cursor: pointer;
+}
+
+.edit-channel-create:focus,
+.edit-channel-create:active {
+  outline: none;
+}
+.edit-channel-create:active {
+  opacity: 0.9;
+}

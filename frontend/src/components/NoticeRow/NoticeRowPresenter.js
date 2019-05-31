@@ -1,38 +1,40 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./NoticeRow.css";
 import FollowButton from "../FollowButton";
 import { Link } from "react-router-dom";
 
 const NoticeRowPresenter = props => (
-  <div className={styles.container}>
-    <div className={styles.noteBox}>
+  <div className={"noticerow-container"}>
+    <div className={"noticerow-note-box"}>
       <Link
         to={`/anonyprofile/${props.creator.username}/`}
-        className={styles.link}
+        className={"noticerow-link"}
       >
-        <div className={styles.column}>
+        <div className={"noticerow-column"}>
           <img
             src={
               props.creator.profile_image || require("../../images/noPhoto.jpg")
             }
             alt={props.creator.username}
-            className={styles.avatar}
+            className={"noticerow-avatar"}
           />
-          <div className={styles.user}>
-            <span className={styles.username}>{props.creator.username}</span>
+          <div className={"noticerow-user"}>
+            <span className={"noticerow-username"}>
+              {props.creator.username}
+            </span>
           </div>
         </div>
       </Link>
-      <div className={styles.column}>
-        <span className={styles.type}>
+      <div className={"noticerow-column"}>
+        <span className={"noticerow-type"}>
           {props.type === "follow" && <FollowType />}
           {props.type === "comment" && <CommentType comment={props.comment} />}
           {props.type === "like" && <LikeType />}
-          <span className={styles.time}>{props.time}</span>
+          <span className={"noticerow-time"}>{props.time}</span>
         </span>
       </div>
-      <div className={styles.column}>
+      <div className={"noticerow-column"}>
         {props.type === "comment" && (
           <NoticeOnPoster
             videoId={props.video.id}
@@ -46,7 +48,7 @@ const NoticeRowPresenter = props => (
           />
         )}
         {props.type === "follow" && (
-          <section className={styles.button}>
+          <section className={"noticerow-button"}>
             <FollowButton
               isFollowing={props.creator.is_following}
               userId={props.creator.id}
@@ -77,10 +79,10 @@ const LikeType = props => {
 const NoticeOnPoster = props => {
   return (
     <React.Fragment>
-      <Link to={`/detail/${props.videoId}/`} className={styles.link}>
+      <Link to={`/detail/${props.videoId}/`} className={"noticerow-link"}>
         <img
           src={props.poster}
-          className={styles.noticeOnPoster}
+          className={"noticerow-notice-on-poster"}
           alt={"noImage"}
         />
       </Link>

@@ -2,7 +2,7 @@ import React from "react";
 import Helmet from "react-helmet";
 import Loading from "../Loading";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./Profile.css";
 import MyPostVideo from "../MyPostVideo";
 import FollowersBox from "../FollowersBox";
 import FollowingsBox from "../FollowingsBox";
@@ -17,12 +17,12 @@ const ProfilePresenter = props => {
       <Helmet>
         <title>Mingflix | 나의 프로필</title>
       </Helmet>
-      <div className={styles.infoContainer}>
-        <div className={styles.header}>
+      <div className={"profile-info-container"}>
+        <div className={"profile-header"}>
           {props.yourProfile.is_streaming ? (
             <Link
               to={`/live/${props.yourProfile.channel.stream_key}/`}
-              className={styles.link}
+              className={"profile-link"}
             >
               <img
                 src={
@@ -30,7 +30,7 @@ const ProfilePresenter = props => {
                   require("../../images/noPhoto.jpg")
                 }
                 alt={props.yourProfile.username}
-                className={styles.streamProfileImage}
+                className={"profile-stream-profile-image"}
               />
             </Link>
           ) : (
@@ -40,46 +40,46 @@ const ProfilePresenter = props => {
                 require("../../images/noPhoto.jpg")
               }
               alt={props.yourProfile.username}
-              className={styles.profileImage}
+              className={"profile-profile-image"}
             />
           )}
-          <div className={styles.main}>
-            <div className={styles.usernameCard}>
-              <span className={styles.username}>
+          <div className={"profile-main"}>
+            <div className={"profile-username-card"}>
+              <span className={"profile-username"}>
                 {props.yourProfile.username}
               </span>
             </div>
-            <div className={styles.channelCard}>
-              <span className={styles.post}>
-                <span className={styles.postCount}>
+            <div className={"profile-channel-card"}>
+              <span className={"profile-post"}>
+                <span className={"profile-post-count"}>
                   {props.yourProfile.post_count}
                 </span>
                 {"  "}
                 {"posts"}
               </span>
               <span
-                className={styles.followers}
+                className={"profile-followers"}
                 onClick={props.toggleFollowers}
               >
-                <span className={styles.followersCount}>
+                <span className={"profile-followers-count"}>
                   {props.yourProfile.followers_count}
                 </span>
                 {"  "}
                 {"followers"}
               </span>
               <span
-                className={styles.followings}
+                className={"profile-followings"}
                 onClick={props.toggleFollowings}
               >
-                <span className={styles.followingsCount}>
+                <span className={"profile-followings-count"}>
                   {props.yourProfile.following_count}
                 </span>
                 {"  "}
                 {"followings"}
               </span>
             </div>
-            <div className={styles.captionCard}>
-              <span className={styles.channelCaption}>
+            <div className={"profile-caption-card"}>
+              <span className={"profile-channel-caption"}>
                 {props.yourProfile.channel.channel_caption}
               </span>
             </div>
@@ -98,7 +98,7 @@ const ProfilePresenter = props => {
           </div>
         </div>
       </div>
-      <div className={styles.videoContainer}>
+      <div className={"profile-video-container"}>
         <MyPostVideo
           myVideo={props.yourProfile.videos}
           text={"내가 게시한 동영상"}
@@ -110,10 +110,13 @@ const ProfilePresenter = props => {
       <Helmet>
         <title>Mingflix | 나의 프로필</title>
       </Helmet>
-      <div className={styles.infoContainer}>
-        <div className={styles.noChannelHeader}>
-          <span className={styles.noChannel}>{"채널이 없습니다😥"}</span>
-          <button className={styles.channelCreate} onClick={props.goCraeteFunc}>
+      <div className={"profile-info-container"}>
+        <div className={"profile-no-channel-header"}>
+          <span className={"profile-no-channel"}>{"채널이 없습니다😥"}</span>
+          <button
+            className={"profile-channel-create"}
+            onClick={props.goCraeteFunc}
+          >
             {"채널 만들기"}
           </button>
         </div>

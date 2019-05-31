@@ -2,7 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import Helmet from "react-helmet";
 import { Link } from "react-router-dom";
-import styles from "./styles.module.scss";
+import "./Live.css";
 import Loading from "../Loading";
 import QuitStream from "../QuitStream";
 
@@ -11,35 +11,35 @@ const LivePresenter = props => {
   return props.loading ? (
     <Loading />
   ) : (
-    <div className={styles.detailStreaming}>
+    <div className={"live-detail-streaming"}>
       <Helmet>
         <title>Mingflix | 스트리밍</title>
       </Helmet>
-      <div className={styles.container}>
-        <header className={styles.header}>
+      <div className={"live-container"}>
+        <header className={"live-header"}>
           <Link
             to={`/anonyprofile/${props.userByStreamKey.username}/`}
-            className={styles.link}
+            className={"live-link"}
           >
-            <div className={styles.userInfo}>
+            <div className={"live-user-info"}>
               <img
                 src={
                   props.userByStreamKey.profile_image ||
                   require("../../images/noPhoto.jpg")
                 }
                 alt={props.userByStreamKey.username}
-                className={styles.profileImage}
+                className={"live-profile-image"}
               />
-              <div className={styles.headerColumn}>
-                <span className={styles.creator}>
+              <div className={"live-header-column"}>
+                <span className={"live-creator"}>
                   {props.userByStreamKey.username}
                 </span>
               </div>
             </div>
           </Link>
-          <div className={styles.more}>
+          <div className={"live-more"}>
             {props.currentUser === props.userByStreamKey.username && (
-              <button className={styles.button} onClick={props.toggleQuitFunc}>
+              <button className={"live-button"} onClick={props.toggleQuitFunc}>
                 {"종료"}
               </button>
             )}
@@ -51,29 +51,32 @@ const LivePresenter = props => {
             )}
           </div>
         </header>
-        <div className={styles.streaming}>
-          <a href="http://110.47.6.140:8080">
-            <video
-              controls
-              preload="auto"
-              width={"898"}
-              height={"700"}
-              poster={props.userByStreamKey.streamings[0].poster}
-              data-setup="{}"
-            >
-              <source
-                src={`rtmp://110.47.6.140:1935/live/${props.streamKey}`}
-                type={"rtmp/flv"}
-              />
-            </video>
-          </a>
+        S
+        <div className={"live-streaming-container"}>
+          {/* <a href="http://110.47.6.140:8080"> */}
+          <video
+            id="my_video_1"
+            className="video-js vjs-default-skin vjs-big-play-centered"
+            controls
+            preload={"auto"}
+            width={"898"}
+            height={"700"}
+            // poster={props.userBytreamKey.streamings[0].poster}
+            data-setup="{}"
+          >
+            <source
+              src={`rtmp://110.47.6.140:1935/live/${props.streamKey}`}
+              type={"rtmp/flv"}
+            />
+          </video>
+          {/* </a> */}
         </div>
-        <div className={styles.meta}>
-          <div className={styles.titleColumn}>
-            <span className={styles.title}>
+        <div className={"live-meta"}>
+          <div className={"live-title-column"}>
+            <span className={"live-title"}>
               {props.userByStreamKey.streamings[0].title}
             </span>
-            <span className={styles.description}>
+            <span className={"live-description"}>
               {props.userByStreamKey.streamings[0].description}
             </span>
           </div>

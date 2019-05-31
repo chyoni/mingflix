@@ -1,0 +1,139 @@
+@import "../../config/_variables.css";
+@import url("https://fonts.googleapis.com/css?family=Barlow:400,700|Roboto:400,700");
+
+.video-con {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 700px;
+  max-height: 700px;
+}
+
+.live-detail-streaming {
+  min-height: 500px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: var(--max-page-width);
+  margin: 0 auto;
+  align-items: center;
+}
+.live-container {
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 1010px;
+}
+.live-container:last-child {
+  margin-bottom: 0;
+}
+
+@media (min-width: 320px) and (max-width: 550px) {
+  .live-container {
+    background-color: transparent;
+    border: 0;
+    margin-bottom: 30px;
+  }
+}
+
+.live-link {
+  text-decoration: none;
+  color: black;
+}
+
+.live-header {
+  display: flex;
+  padding: 15px;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+  align-items: center;
+}
+.live-user-info {
+  display: flex;
+  align-items: center;
+}
+.live-profile-image {
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--border-color);
+  border-radius: 50%;
+  margin-right: 15px;
+}
+.live-header-column {
+  display: flex;
+  flex-direction: column;
+}
+.live-creator {
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.live-location {
+  font-size: var(--small-font-size);
+}
+.live-more {
+  display: flex;
+  width: 100%;
+  justify-content: flex-end;
+}
+.live-more-icon {
+  cursor: pointer;
+}
+.live-more-icon:hover {
+  border-radius: 20px;
+  background-color: var(--light-grey);
+}
+.live-button {
+  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  background-color: #db3737;
+  color: white;
+  font-weight: 600;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--small-font-size);
+  line-height: 26px;
+  cursor: pointer;
+}
+.live-button:hover,
+.live-button:active {
+  outline: none;
+}
+.live-button:active {
+  opacity: 0.9;
+}
+
+.live-streaming {
+  z-index: 1;
+}
+.live-post-image {
+  width: 599px;
+  max-height: 599px;
+}
+.live-meta {
+  padding: 15px;
+  padding-bottom: 0;
+  padding-top: 10px;
+}
+.live-title-column {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+.live-title {
+  display: block;
+  font-size: 25px;
+  font-weight: 600;
+  margin-bottom: 30px;
+}
+.live-description {
+  font-size: 18px;
+  font-weight: 400;
+  color: var(--dark-grey);
+}

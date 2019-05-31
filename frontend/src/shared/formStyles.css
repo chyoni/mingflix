@@ -1,0 +1,144 @@
+@import "../config/_variables.css";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans");
+@import url("https://fonts.googleapis.com/css?family=Barlow:400,700|Roboto:400,700");
+
+.fst-form-component {
+  font-family: "Open Sans", sans-serif;
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 25px;
+}
+.fst-form {
+  display: flex;
+  flex-direction: column;
+}
+
+input[type="submit"] {
+  margin-top: 10px;
+}
+
+.fst-text-input {
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  background-color: var(--bg-color);
+  margin-bottom: 5px;
+  font-size: var(--small-font-size);
+  padding: 9px 0 7px 8px;
+  font-weight: 400;
+}
+
+.fst-text-input:focus {
+  outline: none;
+  border: 1px solid #b2b2b2;
+}
+
+.fst-button {
+  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  background-color: var(--light-blue);
+  color: white;
+  font-weight: 600;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--small-font-size);
+  line-height: 26px;
+  cursor: pointer;
+}
+.fst-button:focus,
+.fst-button:active {
+  outline: none;
+}
+.fst-button:active {
+  opacity: 0.9;
+}
+.fst-button > i {
+  margin-right: 10px;
+}
+
+.fst-divider {
+  text-transform: uppercase;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin: 20px 0;
+  margin-bottom: 20px;
+  position: relative;
+}
+.fst-divider::before {
+  content: "";
+  width: 42%;
+  position: absolute;
+  background-color: var(--dark-grey);
+  height: 1px;
+  left: 0;
+  top: 6px;
+  opacity: 0.8;
+}
+.fst-divider::after {
+  content: "";
+  width: 42%;
+  position: absolute;
+  background-color: var(--dark-grey);
+  height: 1px;
+  right: 0;
+  top: 6px;
+  opacity: 0.8;
+}
+.fst-facebook-link {
+  font-family: "Open Sans", sans-serif;
+  color: #385185;
+  justify-content: center;
+  margin-bottom: 30px;
+  border: 0;
+  background-color: white;
+  font-size: var(--small-font-size);
+  cursor: pointer;
+}
+.fst-facebook-link > i {
+  margin-right: 5px;
+}
+.fst-facebook-link:focus,
+.fst-facebook-link:active {
+  outline: none;
+}
+
+.fst-facebook-link-with-signup {
+  all: unset;
+  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -webkit-appearance: none;
+  border-radius: 3px;
+  background-color: var(--light-blue);
+  color: white;
+  font-weight: 600;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--small-font-size);
+  line-height: 26px;
+  cursor: pointer;
+  font-size: 13px;
+  width: 100%;
+  line-height: 30px;
+}
+.fst-facebook-link-with-signup > i {
+  margin-right: 7px;
+}
+.fst-facebook-link-with-signup:active,
+.fst-facebook-link-with-signup:focus {
+  outline: none;
+}
+.fst-facebook-link-with-signup:active {
+  opacity: 0.9;
+}
+
+.fst-forgot-link {
+  font-size: var(--small-font-size);
+  color: var(--dark-blue);
+  cursor: pointer;
+}

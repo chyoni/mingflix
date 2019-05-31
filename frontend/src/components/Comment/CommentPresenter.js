@@ -1,43 +1,43 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./Comment.css";
 import IosClose from "react-ionicons/lib/IosClose";
 
 const CommentPresenter = props => {
   return (
-    <div className={styles.oneToOneComment}>
+    <div className={"comment-one-to-one-comment"}>
       <img
         src={props.profileImage || require("../../images/noPhoto.jpg")}
         alt={props.creator}
-        className={styles.profileImage}
+        className={"comment-profile-image"}
       />
-      <div className={styles.divider}>
-        <div className={styles.data}>
-          <span className={styles.creator}>{props.creator}</span>
-          <span className={styles.time}>{props.postTime}</span>
+      <div className={"comment-divider"}>
+        <div className={"comment-data"}>
+          <span className={"comment-creator"}>{props.creator}</span>
+          <span className={"comment-time"}>{props.postTime}</span>
         </div>
-        <span className={styles.comments}>{props.comment}</span>
+        <span className={"comment-comments"}>{props.comment}</span>
       </div>
       {props.currentCreator === props.videoCreator && (
-        <div className={styles.more}>
+        <div className={"comment-more"}>
           <section onClick={props.handleDeleteByVideoCreator}>
             <IosClose
               icon={"md-more"}
               fontSize={"25px"}
               color={"black"}
-              className={styles.moreIcon}
+              className={"comment-more-icon"}
             />
           </section>
         </div>
       )}
       {props.currentCreator === props.commentCreator && (
-        <div className={styles.more}>
+        <div className={"comment-more"}>
           <section onClick={props.handleDeleteByCommentCreator}>
             <IosClose
               icon={"md-more"}
               fontSize={"25px"}
               color={"black"}
-              className={styles.moreIcon}
+              className={"comment-more-icon"}
             />
           </section>
         </div>

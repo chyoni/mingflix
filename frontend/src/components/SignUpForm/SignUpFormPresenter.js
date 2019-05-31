@@ -1,18 +1,18 @@
 import React from "react";
-import formStyles from "../../shared/formStyles.module.scss";
+import "../../shared/formStyles.css";
 import PropTypes from "prop-types";
 import FacebookLogin from "react-facebook-login";
 
 const SignUpFormPresenter = props => (
-  <div className={formStyles.formComponent}>
-    <form className={formStyles.form} onSubmit={props.handleSubmit}>
+  <div className={"fst-form-component"}>
+    <form className={"fst-form"} onSubmit={props.handleSubmit}>
       <input
         type={"text"}
         name={"username"}
         placeholder={"Username"}
         onChange={props.handleInputChange}
         value={props.username}
-        className={formStyles.textInput}
+        className={"fst-text-input"}
       />
       <input
         type={"text"}
@@ -20,7 +20,7 @@ const SignUpFormPresenter = props => (
         placeholder={"Name"}
         onChange={props.handleInputChange}
         value={props.name}
-        className={formStyles.textInput}
+        className={"fst-text-input"}
       />
       <input
         type={"email"}
@@ -28,7 +28,7 @@ const SignUpFormPresenter = props => (
         placeholder={"Email"}
         onChange={props.handleInputChange}
         value={props.email}
-        className={formStyles.textInput}
+        className={"fst-text-input"}
       />
       <input
         type={"password"}
@@ -36,16 +36,16 @@ const SignUpFormPresenter = props => (
         placeholder={"Password"}
         onChange={props.handleInputChange}
         value={props.password}
-        className={formStyles.textInput}
+        className={"fst-text-input"}
       />
-      <input type={"submit"} value={"회원가입"} className={formStyles.button} />
+      <input type={"submit"} value={"회원가입"} className={"fst-button"} />
     </form>
-    <span className={formStyles.divider}>or</span>
+    <span className={"fst-divider"}>or</span>
     <FacebookLogin
       appId="392495391566342"
       autoLoad={false}
       fields="name,email,picture"
-      cssClass={formStyles.facebookLink}
+      cssClass={"fst-facebook-link"}
       callback={props.handleFacebookLogin}
       icon={"fa-facebook-square"}
       textButton={"페이스북으로 로그인"}

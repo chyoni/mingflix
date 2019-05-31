@@ -1,0 +1,70 @@
+@import "../../config/_variables.css";
+
+.quit-container {
+  z-index: 9000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+.quit-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  max-width: 200px;
+}
+.quit-header {
+  display: flex;
+  width: 100%;
+  padding: 14px 0;
+  align-items: center;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+}
+.quit-title {
+  width: 100%;
+  font-size: 15px;
+  font-weight: 600;
+  text-align: center;
+}
+.quit-column {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.quit-quit {
+  cursor: pointer;
+  width: 100%;
+  border-bottom: 1px solid var(--border-color);
+  color: #db3737;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 15px;
+  text-align: center;
+}
+.quit-quit:hover {
+  background-color: #cdcdcd;
+}
+.quit-close {
+  width: 100%;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 400;
+  padding: 15px;
+  text-align: center;
+}
+.quit-close:hover {
+  background-color: #cdcdcd;
+}

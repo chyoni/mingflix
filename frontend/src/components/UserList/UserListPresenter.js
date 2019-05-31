@@ -1,36 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./UserList.css";
 import { Link } from "react-router-dom";
 
 const UserListPresenter = props => (
-  <Link to={`/anonyprofile/${props.username}/`} className={styles.link}>
-    <div className={styles.userInfo}>
+  <Link to={`/anonyprofile/${props.username}/`} className={"userlist-link"}>
+    <div className={"userlist-user-info"}>
       <img
         src={props.profileImage || require("../../images/noPhoto.jpg")}
         alt={props.username}
-        className={styles.profileImage}
+        className={"userlist-profile-image"}
       />
-      <div className={styles.main}>
-        <div className={styles.usernameCard}>
-          <span className={styles.username}>{props.username}</span>
+      <div className={"userlist-main"}>
+        <div className={"userlist-username-card"}>
+          <span className={"userlist-username"}>{props.username}</span>
         </div>
-        <div className={styles.channelCard}>
-          <span className={styles.post}>
-            <span className={styles.postCount}>{props.postCount}</span>
+        <div className={"userlist-channel-card"}>
+          <span className={"userlist-post"}>
+            <span className={"userlist-post-count"}>{props.postCount}</span>
             {"  "}
             {"posts"}
           </span>
-          <span className={styles.followers}>
-            <span className={styles.followersCount}>
+          <span className={"userlist-followers"}>
+            <span className={"userlist-followers-count"}>
               {props.followersCount}
             </span>
             {"  "}
             {"followers"}
           </span>
         </div>
-        <div className={styles.captionCard}>
-          <span className={styles.channelCaption}>{props.channelCaption}</span>
+        <div className={"userlist-caption-card"}>
+          <span className={"userlist-channel-caption"}>
+            {props.channelCaption}
+          </span>
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./Feed.css";
 import Loading from "../Loading";
 import HotVideos from "../HotVideos";
 import FollowingsVideo from "../FollowingsVideo";
@@ -27,13 +27,13 @@ FeedPresenter.propTypes = {
 };
 
 const LoadingFeed = props => (
-  <div className={styles.feed}>
+  <div className={"feed-feed"}>
     <Loading />
   </div>
 );
 
 const RenderFeed = props => [
-  <div key={4} className={styles.feed}>
+  <div key={4} className={"feed-feed"}>
     <Helmet>
       <title>Mingflix | 홈</title>
     </Helmet>

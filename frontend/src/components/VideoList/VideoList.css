@@ -1,0 +1,54 @@
+@import "../../config/_variables.css";
+
+.videolist-link {
+  text-decoration: none;
+  color: black;
+}
+.videolist-link:focus,
+.videolist-link:active {
+  outline: none;
+}
+.videolist-container {
+  margin-right: 6px;
+  max-width: 200px;
+  min-height: 206px;
+  margin-bottom: 20px;
+}
+.videolist-column:first-child {
+  margin-bottom: 10px;
+}
+.videolist-poster {
+  width: 200px;
+  height: 130px;
+}
+.videolist-title {
+  font-weight: 600;
+  font-size: var(--small-font-size);
+  display: block;
+  margin-bottom: 15px;
+  overflow: hidden;
+}
+.videolist-channel-name {
+  font-size: 12px;
+  color: var(--dark-grey);
+  display: block;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+.videolist-views {
+  font-size: 12px;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin-right: 3px;
+}
+.videolist-divider {
+  font-size: 16px;
+  color: var(--dark-grey);
+  font-weight: 600;
+}
+.videolist-natural-time {
+  margin-left: 3px;
+  font-size: 12px;
+  color: var(--dark-grey);
+  font-weight: 600;
+}

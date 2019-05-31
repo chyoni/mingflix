@@ -1,0 +1,68 @@
+@import "../../config/_variables.css";
+
+.stream-board-container {
+  position: fixed;
+  top: 79px;
+  left: 58%;
+  width: 300px;
+  height: 0;
+  z-index: 10;
+}
+.stream-board-box {
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  box-shadow: 0 14px 28px rgba(0, 0, 0, 0.25), 0 10px 10px rgba(0, 0, 0, 0.22);
+  width: 100%;
+  max-width: 300px;
+}
+.stream-board-box::after {
+  border-top: 0px solid transparent;
+  border-left: 20px solid transparent;
+  border-right: 20px solid transparent;
+  border-bottom: 20px solid white;
+
+  content: "";
+  position: absolute;
+  top: -19px;
+  left: 86.4%;
+}
+.stream-board-header {
+  display: flex;
+  padding: 14px 0;
+  justify-content: center;
+  align-items: center;
+  border-bottom: 2px solid var(--light-grey);
+}
+.stream-board-title {
+  order: 0;
+  font-weight: 600;
+  font-size: 20px;
+}
+.stream-board-content {
+  min-height: 80px;
+  max-height: 80px;
+  overflow-y: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+.stream-board-content:hover {
+  background-color: #cdcdcd;
+}
+.stream-board-icon {
+  margin-right: 10px;
+}
+.stream-board-start-stream {
+  font-size: 17px;
+  text-align: center;
+  font-weight: 500;
+}
+.stream-board-link {
+  text-decoration: none;
+  color: black;
+}
+.stream-board-link:focus,
+.stream-board-link:active {
+  outline: none;
+}

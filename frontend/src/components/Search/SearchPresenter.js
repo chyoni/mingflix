@@ -1,6 +1,6 @@
 import React from "react";
 import Helmet from "react-helmet";
-import styles from "./styles.module.scss";
+import "./Search.css";
 import UserList from "../UserList";
 import Loading from "../Loading";
 import PropTypes from "prop-types";
@@ -12,12 +12,12 @@ const SearchPresenter = props => {
   return props.loading ? (
     <Loading />
   ) : (
-    <div className={styles.searchContainer}>
+    <div className={"search-search-container"}>
       <Helmet>
         <title>Mingflix | 검색</title>
       </Helmet>
-      <div className={styles.userListCard}>
-        <h4 className={styles.title}>{"Users"}</h4>
+      <div className={"search-user-list-card"}>
+        <h4 className={"search-title"}>{"Users"}</h4>
         {!props.loading && props.userList.length < 1 && <NotFound text={""} />}
         {!props.loading &&
           props.userList.length > 0 &&
@@ -39,8 +39,8 @@ const SearchPresenter = props => {
             }
           })}
       </div>
-      <div className={styles.videoListCard}>
-        <h4 className={styles.title}>{"Videos"}</h4>
+      <div className={"search-video-list-card"}>
+        <h4 className={"search-title"}>{"Videos"}</h4>
         {!props.loading && props.videoList.length < 1 && <NotFound text={""} />}
         {!props.loading &&
           props.videoList.length > 0 &&
@@ -61,8 +61,8 @@ const SearchPresenter = props => {
             );
           })}
       </div>
-      <div className={styles.streamingListCard}>
-        <h4 className={styles.title}>{"Streaming"}</h4>
+      <div className={"search-streaming-list-card"}>
+        <h4 className={"search-title"}>{"Streaming"}</h4>
         {!props.loading && props.streamingList.length < 1 && (
           <NotFound text={""} />
         )}
@@ -85,7 +85,9 @@ const SearchPresenter = props => {
   );
 };
 
-const NotFound = props => <span className={styles.notFound}>{props.text}</span>;
+const NotFound = props => (
+  <span className={"search-not-found"}>{props.text}</span>
+);
 
 SearchPresenter.propTypes = {
   loading: PropTypes.bool.isRequired,

@@ -1,33 +1,35 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./StreamingSearchList.css";
 import { Link } from "react-router-dom";
 
 const StreamingSearchListPresenter = props => {
   return (
     <Link
       to={`/live/${props.creator.channel.stream_key}/`}
-      className={styles.link}
+      className={"streaming-search-list-link"}
     >
-      <div className={styles.container}>
-        <div className={styles.streamingInfo}>
-          <div className={styles.streaming}>
+      <div className={"streaming-search-list-container"}>
+        <div className={"streaming-search-list-streaming-info"}>
+          <div className={"streaming-search-list-streaming"}>
             <img
               src={props.poster || require("../../images/noPhoto.jpg")}
               alt={props.title}
-              className={styles.poster}
+              className={"streaming-search-list-poster"}
             />
           </div>
-          <div className={styles.info}>
-            <span className={styles.title}>{props.title}</span>
-            <span className={styles.description}>
+          <div className={"streaming-search-list-info"}>
+            <span className={"streaming-search-list-title"}>{props.title}</span>
+            <span className={"streaming-search-list-description"}>
               {"description:  "} {props.description}
             </span>
-            <span className={styles.creatorName}>
+            <span className={"streaming-search-list-creator-name"}>
               {"creator: "} {props.creator.username}
             </span>
-            <div className={styles.streamRedBox}>
-              <span className={styles.redBox}>{"실시간 스트리밍"}</span>
+            <div className={"streaming-search-list-stream-red-box"}>
+              <span className={"streaming-search-list-red-box"}>
+                {"실시간 스트리밍"}
+              </span>
             </div>
           </div>
         </div>

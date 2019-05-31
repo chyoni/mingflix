@@ -1,0 +1,58 @@
+@import "../../config/_variables.css";
+
+.userlist-link {
+  text-decoration: none;
+  color: black;
+}
+.userlist-link:focus,
+.userlist-link:active {
+  outline: none;
+}
+.userlist-user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 60px;
+}
+.userlist-profile-image {
+  width: 170px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  padding: 4px;
+  margin-right: 100px;
+}
+
+.userlist-username {
+  display: block;
+  font-weight: 100;
+  font-size: 25px;
+  margin-bottom: 15px;
+}
+.userlist-channel-card {
+  margin-bottom: 15px;
+}
+.userlist-post {
+  margin-right: 40px;
+}
+.userlist-post-count {
+  font-size: 15px;
+  font-weight: 600;
+}
+.userlist-followers {
+  margin-right: 40px;
+}
+.userlist-followers-count {
+  font-size: 15px;
+  font-weight: 600;
+}
+.userlist-followings {
+  margin-right: 40px;
+}
+.userlist-followings-count {
+  font-size: 15px;
+  font-weight: 600;
+}
+.userlist-channel-caption {
+  font-size: 16px;
+  font-weight: 600;
+}

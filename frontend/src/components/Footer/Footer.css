@@ -1,0 +1,41 @@
+@import "../../config/_variables.css";
+@import url("https://fonts.googleapis.com/css?family=Ubuntu&display=swap");
+
+.footer-footer {
+  width: 100%;
+  max-width: var(--max-page-width);
+  display: flex;
+  margin: 55px auto;
+  align-items: center;
+  justify-content: space-between;
+  font-size: var(--small-font-size);
+  text-transform: uppercase;
+  font-weight: 600;
+}
+@media (max-width: 850px) {
+  .footer-footer {
+    justify-content: center;
+    max-width: 350px;
+    margin-bottom: 25px;
+  }
+}
+
+.footer-column {
+  margin-bottom: 15px;
+}
+
+.footer-item {
+  font-family: "Ubuntu", sans-serif;
+  color: var(--dark-blue);
+  margin-right: 13px;
+  font-weight: 600;
+  font-size: 14px;
+}
+@media (max-width: 850px) {
+  .footer-item {
+    margin-right: 15px;
+  }
+}
+.footer-mingflix {
+  color: var(--dark-grey);
+}

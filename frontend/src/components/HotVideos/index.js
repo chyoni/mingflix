@@ -1,18 +1,18 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "./HotVideos.css";
 import VideoList from "../VideoList";
 
 const HotVideos = props => (
-  <div className={styles.hotContainer}>
-    <div className={styles.column}>
-      <span className={styles.title}>{"인기 동영상"}</span>
+  <div className={"hotvideos-hot-container"}>
+    <div className={"hotvideos-column"}>
+      <span className={"hotvideos-title"}>{"인기 동영상"}</span>
     </div>
-    <div className={styles.videoBox}>
+    <div className={"hotvideos-video-box"}>
       {props.hotVideos.map(video => {
         return <VideoList key={video.id} {...video} />;
       })}
     </div>
-    <div className={styles.divider} />
+    <div className={"hotvideos-divider"} />
   </div>
 );
 

@@ -1,14 +1,14 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./VideoActions.css";
 import HeartOutIcon from "react-ionicons/lib/IosHeartOutline";
 import HeartIcon from "react-ionicons/lib/IosHeart";
 import TextIcon from "react-ionicons/lib/IosTextOutline";
 
 const VideoActionsPresenter = (props, context) => (
-  <div className={styles.photoActions}>
-    <div className={styles.iconColumn}>
-      <span className={styles.icon} onClick={props.handleHeartClick}>
+  <div className={"video-actions-photo-actions"}>
+    <div className={"video-actions-icon-column"}>
+      <span className={"video-actions-icon"} onClick={props.handleHeartClick}>
         {props.isLiked ? (
           <HeartIcon icon={"ios-heart"} fontSize={"28px"} color={"#EB4B59"} />
         ) : (
@@ -19,15 +19,15 @@ const VideoActionsPresenter = (props, context) => (
           />
         )}
       </span>
-      <span className={styles.icon}>
+      <span className={"video-actions-icon"}>
         <TextIcon icon={"ios-text-outline"} fontSize={"28px"} color={"black"} />
       </span>
     </div>
-    <div className={styles.likeCountColumn}>
-      <span className={styles.likeCount} onClick={props.openLikes}>
+    <div className={"video-actions-like-count-column"}>
+      <span className={"video-actions-like-count"} onClick={props.openLikes}>
         {props.likeCount} {props.likeCount === 1 ? "like" : "likes"}
       </span>
-      <span className={styles.commentCount}>
+      <span className={"video-actions-comment-count"}>
         {props.commentCount} {"comments"}
       </span>
     </div>

@@ -1,16 +1,16 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "./VideoList.css";
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const VideoList = props => (
-  <Link to={`/detail/${props.id}/`} className={styles.link}>
-    <div className={styles.container}>
-      <div className={styles.column}>
+  <Link to={`/detail/${props.id}/`} className={"videolist-link"}>
+    <div className={"videolist-container"}>
+      <div className={"videolist-column"}>
         <img
           src={props.poster || require("../../images/noPhoto.jpg")}
           alt={props.file}
-          className={styles.poster}
+          className={"videolist-poster"}
         />
         {/* <video
           controls={"controls"}
@@ -24,18 +24,20 @@ const VideoList = props => (
           <source id={"ogv"} src={props.file} type={"video/ogg"} />
         </video> */}
       </div>
-      <div className={styles.column}>
-        <span className={styles.title}>{props.title}</span>
+      <div className={"videolist-column"}>
+        <span className={"videolist-title"}>{props.title}</span>
       </div>
-      <div className={styles.column}>
-        <span className={styles.channelName}>{props.creator.username}</span>
-        <span className={styles.views}>
+      <div className={"videolist-column"}>
+        <span className={"videolist-channel-name"}>
+          {props.creator.username}
+        </span>
+        <span className={"videolist-views"}>
           {"조회수 "}
           {props.views}
           {"회"}
         </span>
-        <span className={styles.divider}>{"·"}</span>
-        <span className={styles.naturalTime}>{props.natural_time}</span>
+        <span className={"videolist-divider"}>{"·"}</span>
+        <span className={"videolist-natural-time"}>{props.natural_time}</span>
       </div>
     </div>
   </Link>

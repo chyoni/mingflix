@@ -1,0 +1,80 @@
+@import "../../config/_variables.css";
+
+.video-search-list-link {
+  text-decoration: none;
+  color: black;
+}
+.video-search-list-link:active,
+.video-search-list-link:focus {
+  outline: none;
+}
+.video-search-list-container {
+  width: 100%;
+  max-width: var(--max-card-width);
+  min-height: 180px;
+  max-height: 300px;
+}
+.video-search-list-video-info {
+  display: flex;
+  margin-top: 30px;
+}
+.video-search-list-video {
+  margin-right: 20px;
+}
+.video-search-list-poster {
+  width: 250px;
+  height: 150px;
+}
+.video-search-list-info {
+  display: flex;
+  flex-direction: column;
+}
+.video-search-list-title {
+  margin-bottom: 10px;
+  font-size: var(--big-font-size);
+  font-weight: 600;
+}
+.video-search-list-description {
+  display: block;
+  font-size: 15px;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.video-search-list-tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+}
+.video-search-list-tag-child {
+  font-size: 15px;
+  color: var(--dark-blue);
+  font-weight: 600;
+  margin-right: 6px;
+}
+.video-search-list-creator-name {
+  font-size: 15px;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+.video-search-list-views-and-time {
+  margin-bottom: 45px;
+}
+.video-search-list-views {
+  font-size: 15px;
+  color: var(--dark-grey);
+  font-weight: 600;
+  margin-right: 3px;
+}
+.video-search-list-divider {
+  font-size: 16px;
+  color: var(--dark-grey);
+  font-weight: 600;
+}
+.video-search-list-post-time {
+  margin-left: 3px;
+  font-size: 15px;
+  color: var(--dark-grey);
+  font-weight: 600;
+}

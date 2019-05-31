@@ -1,0 +1,28 @@
+@import "../../config/_variables.css";
+
+.fsv-hot-container {
+  max-width: var(--max-list-width);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 15px;
+}
+.fsv-column {
+  padding: 10px;
+}
+.fsv-title {
+  display: block;
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.fsv-video-box {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.fsv-divider {
+  margin-top: 40px;
+  color: var(--light-grey);
+  border-bottom: 2px solid;
+}

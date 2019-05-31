@@ -1,0 +1,28 @@
+@import "../../config/_variables.css";
+
+.hotvideos-hot-container {
+  max-width: var(--max-list-width);
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-top: 30px;
+}
+.hotvideos-column {
+  padding: 10px;
+}
+.hotvideos-title {
+  display: block;
+  font-size: 17px;
+  font-weight: 400;
+  margin-bottom: 15px;
+}
+.hotvideos-video-box {
+  display: flex;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+}
+.hotvideos-divider {
+  margin-top: 40px;
+  color: var(--light-grey);
+  border-bottom: 2px solid;
+}

@@ -1,18 +1,18 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./SmallUserList.css";
 import { Link } from "react-router-dom";
 
 const SmallUserList = props => {
   return (
-    <Link to={`/anonyprofile/${props.username}/`} className={styles.link}>
-      <div className={styles.container}>
+    <Link to={`/anonyprofile/${props.username}/`} className={"sul-link"}>
+      <div className={"sul-container"}>
         <img
           src={props.profileImage || require("../../images/noPhoto.jpg")}
           alt={props.username}
-          className={styles.profileImage}
+          className={"sul-profile-image"}
         />
-        <span className={styles.creator}>{props.username}</span>
+        <span className={"sul-creator"}>{props.username}</span>
       </div>
     </Link>
   );

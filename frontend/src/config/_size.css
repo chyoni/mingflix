@@ -1,0 +1,14 @@
+:root {
+  --max-page-width: 1200px;
+  --max-list-width: 1100px;
+  --small-font-size: 13px;
+  --normal-font-size: 20px;
+  --big-font-size: 25px;
+  --max-card-width: 900px;
+  --tablet-width: 768px;
+  --desktop-width: 875px;
+  --xl-desktop-width: 1351px;
+  --phone-width: 320px;
+  --iphone6-width: 375px;
+  --iphone6plus-width: 550px;
+}

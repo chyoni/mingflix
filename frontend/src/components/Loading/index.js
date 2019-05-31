@@ -1,15 +1,15 @@
 import React from "react";
 import Helmet from "react-helmet";
-import styles from "./styles.module.scss";
+import "./Loading.css";
 
 const Loading = props => (
-  <div className={styles.container}>
+  <div className={"loading-container"}>
     <Helmet>
       <title>Mingflix</title>
     </Helmet>
     <img
       src={require("../../images/loading.png")}
-      className={styles.spinner}
+      className={"loading-spinner"}
       alt={"loading"}
     />
   </div>

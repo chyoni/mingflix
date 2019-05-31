@@ -1,0 +1,108 @@
+@import "../../config/_variables.css";
+
+.cc-container {
+  width: 100%;
+  min-height: 600px;
+  display: flex;
+  flex-direction: column;
+  margin: 0 auto;
+  align-items: center;
+  max-width: var(--max-page-width);
+}
+.cc-create-container {
+  border: 1px solid #e6e6e6;
+  background-color: white;
+  border-radius: 5px;
+  width: 100%;
+  max-width: var(--max-card-width);
+  margin-top: 60px;
+}
+.cc-header {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+  justify-content: center;
+  border-bottom: 1px solid var(--border-color);
+}
+.cc-title {
+  font-size: 19px;
+  font-weight: 600;
+}
+.cc-main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+.cc-preview-input {
+  margin-right: 50px;
+  width: 400px;
+  border: 1px solid #efefef;
+  border-radius: 3px;
+  background-color: var(--bg-color);
+  margin-bottom: 5px;
+  font-size: var(--small-font-size);
+  padding: 9px 0 7px 8px;
+  font-weight: 400;
+}
+.cc-preview-input:focus {
+  outline: none;
+  border: 1px solid #b2b2b2;
+}
+
+.cc-button {
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  color: black;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+}
+.cc-channel-name-box {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+  padding-top: 20px;
+}
+.cc-channel-name-span {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.cc-info-box {
+  padding: 20px;
+  margin-left: -11px;
+}
+.cc-channel-caption-box {
+  margin-bottom: 10px;
+}
+.cc-channel-caption-span {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.cc-streamkey-span {
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 600;
+}
+.cc-footer {
+  margin-top: 30px;
+  margin-bottom: 30px;
+  display: flex;
+  max-width: 775px;
+  justify-content: flex-end;
+}
+.cc-create-button {
+  cursor: pointer;
+  border: 1px solid var(--border-color);
+  color: black;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: 600;
+}

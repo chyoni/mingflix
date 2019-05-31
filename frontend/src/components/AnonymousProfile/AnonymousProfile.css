@@ -1,0 +1,92 @@
+@import "../../config/_variables.css";
+
+.ap-link {
+  text-decoration: none;
+  color: black;
+}
+
+.ap-info-container {
+  width: 100%;
+  max-width: var(--max-page-width);
+  display: flex;
+  margin: 30px auto;
+  justify-content: center;
+  align-items: center;
+  padding-bottom: 80px;
+  border-bottom: 1px solid var(--border-color);
+}
+.ap-header {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  max-width: var(--max-card-width);
+  margin-top: 40px;
+}
+.ap-stream-profile-image {
+  width: 170px;
+  height: 160px;
+  border-radius: 50%;
+  border: 3px solid #ff6b81;
+  padding: 4px;
+  margin-right: 100px;
+}
+.ap-profile-image {
+  width: 170px;
+  height: 160px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  padding: 4px;
+  margin-right: 100px;
+}
+.ap-main {
+}
+.ap-username-card {
+  display: flex;
+  max-width: 305px;
+  justify-content: space-between;
+  align-items: center;
+}
+.ap-username {
+  display: block;
+  font-weight: 100;
+  font-size: 25px;
+  margin-bottom: 30px;
+}
+.ap-channel-card {
+  margin-bottom: 30px;
+}
+.ap-post {
+  margin-right: 40px;
+}
+.ap-post-count {
+  font-size: 15px;
+  font-weight: 600;
+}
+.ap-followers {
+  cursor: pointer;
+  margin-right: 40px;
+}
+.ap-followers-count {
+  font-size: 15px;
+  font-weight: 600;
+}
+.ap-followings {
+  cursor: pointer;
+  margin-right: 40px;
+}
+.ap-followings-count {
+  font-size: 15px;
+  font-weight: 600;
+}
+.ap-channel-caption {
+  font-size: 16px;
+  font-weight: 600;
+}
+.ap-video-container {
+  width: 100%;
+  max-width: var(--max-page-width);
+  display: flex;
+  margin: 30px auto;
+  justify-content: space-between;
+  border-bottom: 1px solid #e6e6e6;
+}

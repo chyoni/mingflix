@@ -1,0 +1,65 @@
+@import "../../config/_variables.css";
+
+.noticerow-container {
+  display: flex;
+  flex-direction: column;
+  padding-left: 10px;
+  padding-right: 10px;
+  width: 100%;
+  max-width: 550px;
+  box-sizing: border-box;
+}
+.noticerow-note-box {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  min-height: 65px;
+  border-bottom: 1px solid var(--light-grey);
+}
+.noticerow-column {
+  display: flex;
+  align-items: center;
+  margin-right: 50px;
+}
+.noticerow-column:last-child {
+  margin-right: 0;
+}
+.noticerow-avatar {
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  border: 1px solid var(--light-grey);
+}
+.noticerow-user {
+  margin-top: 25px;
+  margin-left: 10px;
+  padding-bottom: 20px;
+}
+.noticerow-username {
+  font-size: 15px;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 3px;
+}
+.noticerow-type {
+  display: flex;
+  flex-wrap: wrap;
+  font-size: 15px;
+}
+.noticerow-time {
+  color: grey;
+  margin-left: 5px;
+  font-size: 14px;
+}
+.noticerow-button {
+  margin-top: 15px;
+}
+.noticerow-link {
+  text-decoration: none;
+  color: black;
+}
+.noticerow-notice-on-poster {
+  width: 45px;
+  height: 45px;
+}

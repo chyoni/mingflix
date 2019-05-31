@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./VideoComments.css";
 import Comment from "../Comment";
 
 const VideoCommentsPresenter = props => (
-  <div className={styles.VideoComments}>
+  <div className={"video-comments-video-comments"}>
     <ul>
-      <div className={styles.commentField}>
+      <div className={"video-comments-comment-field"}>
         {props.comments.map(comment => (
           <Comment
             key={comment.id}

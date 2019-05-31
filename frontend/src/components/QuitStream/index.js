@@ -1,19 +1,19 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "./QuitStream.css";
 import PropTypes from "prop-types";
 
 const QuitStream = props => {
   return (
-    <div className={styles.container}>
-      <div className={styles.box}>
-        <header className={styles.header}>
-          <h4 className={styles.title}>{"종료하시겠습니까?"}</h4>
+    <div className={"quit-container"}>
+      <div className={"quit-box"}>
+        <header className={"quit-header"}>
+          <h4 className={"quit-title"}>{"종료하시겠습니까?"}</h4>
         </header>
-        <div className={styles.column}>
-          <span className={styles.quit} onClick={props.quitStream}>
+        <div className={"quit-column"}>
+          <span className={"quit-quit"} onClick={props.quitStream}>
             {"스트리밍 종료"}
           </span>
-          <span className={styles.close} onClick={props.toggleQuitFunc}>
+          <span className={"quit-close"} onClick={props.toggleQuitFunc}>
             {"취소"}
           </span>
         </div>

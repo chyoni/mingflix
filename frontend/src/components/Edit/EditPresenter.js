@@ -1,28 +1,28 @@
 import React from "react";
 import Helmet from "react-helmet";
 import PropTypes from "prop-types";
-import styles from "./styles.module.scss";
+import "./Edit.css";
 import Loading from "../Loading";
 
 const EditPresenter = props => {
   console.log(props);
   return props.loading ? (
-    <div className={styles.container}>
-      <div className={styles.editContainer}>
+    <div className={"edit-container"}>
+      <div className={"edit-edit-container"}>
         <Loading />
       </div>
     </div>
   ) : props.yourProfile.channel ? (
-    <div className={styles.container}>
+    <div className={"edit-container"}>
       <Helmet>
         <title>Mingflix | 프로필 수정</title>
       </Helmet>
-      <div className={styles.editContainer}>
-        <header className={styles.header}>
-          <span className={styles.title}>{"Edit Profile"}</span>
+      <div className={"edit-edit-container"}>
+        <header className={"edit-header"}>
+          <span className={"edit-title"}>{"Edit Profile"}</span>
         </header>
-        <main className={styles.main}>
-          <div className={styles.username}>
+        <main className={"edit-main"}>
+          <div className={"edit-username"}>
             <input
               type={"text"}
               placeholder={"유저닉네임"}
@@ -30,11 +30,11 @@ const EditPresenter = props => {
               value={props.yourProfile.username}
               readOnly={true}
               disabled={true}
-              className={styles.usernameInput}
+              className={"edit-username-input"}
             />
-            <span className={styles.usernameSpan}>{"아이디"}</span>
+            <span className={"edit-username-span"}>{"아이디"}</span>
           </div>
-          <div className={styles.fileBox}>
+          <div className={"edit-file-box"}>
             <input
               type={"text"}
               value={
@@ -44,66 +44,69 @@ const EditPresenter = props => {
               }
               placeholder={"파일명"}
               readOnly={true}
-              className={styles.previewInput}
+              className={"edit-preview-input"}
             />
-            <button className={styles.button}>{"프로필 이미지"}</button>
+            <button className={"edit-button"}>{"프로필 이미지"}</button>
             <input
               type={"file"}
               name={"profileImage"}
-              className={styles.input}
+              className={"edit-input"}
               multiple={false}
               onChange={props.handleProfileImage}
             />
           </div>
-          <div className={styles.infoBox}>
-            <div className={styles.name}>
+          <div className={"edit-info-box"}>
+            <div className={"edit-name"}>
               <input
                 type={"text"}
                 placeholder={"이름"}
                 name={"name"}
                 value={props.name}
                 onChange={props.handleInputChange}
-                className={styles.previewInput}
+                className={"edit-preview-input"}
               />
-              <span className={styles.nameSpan}>{"이름"}</span>
+              <span className={"edit-name-span"}>{"이름"}</span>
             </div>
-            <div className={styles.phone}>
+            <div className={"edit-phone"}>
               <input
                 type={"text"}
                 placeholder={"핸드폰"}
                 name={"phone"}
                 value={props.phone}
                 onChange={props.handleInputChange}
-                className={styles.previewInput}
+                className={"edit-preview-input"}
               />
-              <span className={styles.phoneSpan}>{"핸드폰"}</span>
+              <span className={"edit-phone-span"}>{"핸드폰"}</span>
             </div>
-            <div className={styles.channelName}>
+            <div className={"edit-channel-name"}>
               <input
                 type={"text"}
                 placeholder={"채널명"}
                 name={"channelName"}
                 value={props.channelName}
                 onChange={props.handleInputChange}
-                className={styles.previewInput}
+                className={"edit-preview-input"}
               />
-              <span className={styles.channelNameSpan}>{"채널명"}</span>
+              <span className={"edit-channel-name-span"}>{"채널명"}</span>
             </div>
-            <div className={styles.caption}>
+            <div className={"edit-caption"}>
               <input
                 type={"text"}
                 placeholder={"채널 설명"}
                 name={"channelCaption"}
                 value={props.channelCaption}
                 onChange={props.handleInputChange}
-                className={styles.previewInput}
+                className={"edit-preview-input"}
               />
-              <span className={styles.channelCaptionSpan}>{"채널설명"}</span>
+              <span className={"edit-channel-caption-span"}>{"채널설명"}</span>
             </div>
           </div>
         </main>
-        <footer className={styles.footer}>
-          <button className={styles.updateButton} onClick={props.updateProfile}>
+        <footer className={"edit-footer"}>
+          <button
+            className={"edit-update-button"}
+            onClick={props.updateProfile}
+          >
             {"Update Profile"}
           </button>
         </footer>
@@ -114,13 +117,13 @@ const EditPresenter = props => {
       <Helmet>
         <title>Mingflix | 프로필 수정</title>
       </Helmet>
-      <div className={styles.infoContainer}>
-        <div className={styles.noChannelHeader}>
-          <span className={styles.noChannel}>
+      <div className={"edit-info-container"}>
+        <div className={"edit-no-channel-header"}>
+          <span className={"edit-no-channel"}>
             {"프로필을 수정할 채널을 생성하세요🧐"}
           </span>
           <button
-            className={styles.channelCreate}
+            className={"edit-channel-create"}
             onClick={props.goCreateChannelFunc}
           >
             {"채널 만들기"}

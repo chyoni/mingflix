@@ -1,0 +1,53 @@
+@import "../../config/_variables.css";
+@import url("https://fonts.googleapis.com/css?family=Barlow:400,700|Roboto:400,700");
+
+.fb-blue-button {
+  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -webkit-appearance: none; /*//browser마다 고유의 default 속성을 제거*/
+  border-radius: 3px;
+  background-color: var(--light-blue);
+  color: white;
+  font-weight: 600;
+  border: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--small-font-size);
+  line-height: 26px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+.fb-blue-button:focus,
+.fb-blue-button:active {
+  outline: none;
+}
+.fb-blue-button:active {
+  opacity: 0.9;
+}
+
+.fb-white-button {
+  font-family: "Barlow", sans-serif;
+  font-family: "Roboto", sans-serif;
+  -webkit-appearance: none; /*//browser마다 고유의 default 속성을 제거*/
+  border-radius: 3px;
+  background-color: white;
+  color: black;
+  font-weight: 600;
+  border: 1px solid var(--dark-grey);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: var(--small-font-size);
+  line-height: 26px;
+  cursor: pointer;
+  margin-bottom: 20px;
+}
+
+.fb-white-button:focus,
+.fb-white-button:active {
+  outline: none;
+}
+.fb-white-button:active {
+  opacity: 0.9;
+}

@@ -1,11 +1,11 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "./FollowButton.css";
 import PropTypes from "prop-types";
 
 const FollowButtonPresenter = props => {
   return (
     <button
-      className={props.isFollowing ? styles.whiteButton : styles.blueButton}
+      className={props.isFollowing ? "fb-white-button" : "fb-blue-button"}
       onClick={props.clickButton}
     >
       {props.isFollowing ? "구독 중" : "구독"}

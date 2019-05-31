@@ -1,18 +1,18 @@
 import React from "react";
-import styles from "./styles.module.scss";
+import "./MyPostVideo.css";
 import VideoList from "../VideoList";
 
 const MyPostVideo = props => (
-  <div className={styles.hotContainer}>
-    <div className={styles.column}>
-      <span className={styles.title}>{props.text}</span>
+  <div className={"mpv-mypost-video-container"}>
+    <div className={"mpv-column"}>
+      <span className={"mpv-title"}>{props.text}</span>
     </div>
-    <div className={styles.videoBox}>
+    <div className={"mpv-video-box"}>
       {props.myVideo.map(video => {
         return <VideoList key={video.id} {...video} />;
       })}
     </div>
-    <div className={styles.divider} />
+    <div className={"mpv-divider"} />
   </div>
 );
 

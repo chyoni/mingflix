@@ -1,16 +1,16 @@
 import React from "react";
-import formStyles from "../../shared/formStyles.module.scss";
+import "../../shared/formStyles.css";
 import PropTypes from "prop-types";
 import FacebookLogin from "react-facebook-login";
 
 const LoginFormPresenter = props => (
-  <div className={formStyles.formComponent}>
-    <form className={formStyles.form} onSubmit={props.handleSubmit}>
+  <div className={"fst-form-component"}>
+    <form className={"fst-form"} onSubmit={props.handleSubmit}>
       <input
         type={"text"}
         name={"username"}
         placeholder={"Username"}
-        className={formStyles.textInput}
+        className={"fst-text-input"}
         value={props.username}
         onChange={props.handleInputChange}
       />
@@ -18,23 +18,23 @@ const LoginFormPresenter = props => (
         type={"password"}
         name={"password"}
         placeholder={"Password"}
-        className={formStyles.textInput}
+        className={"fst-text-input"}
         value={props.password}
         onChange={props.handleInputChange}
       />
-      <input type={"submit"} value={"로그인"} className={formStyles.button} />
+      <input type={"submit"} value={"로그인"} className={"fst-button"} />
     </form>
-    <span className={formStyles.divider}>or</span>
+    <span className={"fst-divider"}>or</span>
     <FacebookLogin
       appId="392495391566342"
       autoLoad={false}
       fields="name,email,picture"
-      cssClass={formStyles.facebookLink}
+      cssClass={"fst-facebook-link"}
       callback={props.handleFacebookLogin}
       icon={"fa-facebook-square"}
       textButton={"페이스북으로 로그인"}
     />
-    <span className={formStyles.forgotLink}>{"비밀번호를 잊으셨나요?"}</span>
+    <span className={"fst-forgot-link"}>{"비밀번호를 잊으셨나요?"}</span>
   </div>
 );
 

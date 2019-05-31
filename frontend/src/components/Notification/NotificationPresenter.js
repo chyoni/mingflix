@@ -1,21 +1,24 @@
 import React from "react";
 import PropTypes from "prop-types";
 import CloseIcon from "react-ionicons/lib/MdClose";
-import styles from "./styles.module.scss";
+import "./Notification.css";
 import Loading from "../Loading";
 import NoticeRow from "../NoticeRow";
 
 const NotificationPresenter = props => {
   return (
-    <div className={styles.container}>
-      <div className={styles.box}>
-        <header className={styles.header}>
-          <h4 className={styles.title}>{"Notification"}</h4>
-          <span className={styles.closeIcon} onClick={props.closeNoticeList}>
+    <div className={"notification-container"}>
+      <div className={"notification-box"}>
+        <header className={"notification-header"}>
+          <h4 className={"notification-title"}>{"Notification"}</h4>
+          <span
+            className={"notification-close-icon"}
+            onClick={props.closeNoticeList}
+          >
             <CloseIcon icon={"md-close"} fontSize={"28px"} color={"black"} />
           </span>
         </header>
-        <div className={styles.content}>
+        <div className={"notification-content"}>
           {props.loading ? (
             <Loading />
           ) : (
